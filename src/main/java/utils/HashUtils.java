@@ -3,7 +3,7 @@ package utils;
 import java.security.MessageDigest;
 
 /**
- * Helper functions to deal with strings and hashes
+ * Helper functions to deal with strings and hashes.
  */
 public class HashUtils {
     public static String toHexString(byte[] byteData) {
