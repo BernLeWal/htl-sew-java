@@ -15,7 +15,7 @@ public class EchoClient {
     public static void main(String[] args) {
         Socket clientSocket;
         try {
-            clientSocket = new Socket("10.1.40.11", 23);
+            clientSocket = new Socket("localhost", 23);
             BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintStream output = new PrintStream(clientSocket.getOutputStream());
 
@@ -23,13 +23,20 @@ public class EchoClient {
             System.out.println("EchoClient runs on " + clientSocket.getInetAddress().getHostAddress()
                     + ":" + clientSocket.getLocalPort() + " - type 'quit' to stop.");
             while (true) {
-                String line = scanner.nextLine();
-                output.println(line);
-                if (line.equalsIgnoreCase("quit")) {
-                    break;
+                // Daten von der Tastatur
+                if( System.in.available() > 0  /*sind daten von scanner verfügbar? */ ) {
+                    String line = scanner.nextLine();
+                    output.println(line);
+                    if (line.equalsIgnoreCase("quit")) {
+                        break;
+                    }
                 }
-                line = input.readLine();
-                System.out.println("EchoClient: recieved " + line);
+
+                if( input.ready() /* sind Daten von input verfügbar? */ ) {
+                    // Daten vom Server (Msgs von den anderen Clients)
+                    String line = input.readLine();
+                    System.out.println("EchoClient: recieved " + line);
+                }
             }
 
             output.close();

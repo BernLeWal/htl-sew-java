@@ -1,9 +1,11 @@
-package core.collections;
+package core.data;
+
+import java.io.Serializable;
 
 /**
  * Every instance represents the basic information about a person.
  */
-public class Person {
+public class Person implements Serializable {
     // Attributes
     private int nr;
     private String vn;

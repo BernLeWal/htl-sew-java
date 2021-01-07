@@ -28,19 +28,18 @@ public class ChatClient {
             System.out.println("ChatClient runs on " + clientSocket.getInetAddress().getHostAddress()
                     + ":" + clientSocket.getLocalPort() + " - type 'quit' to stop.");
             while (true) {
-                String line;
-
                 while (input.ready()) {
-                    line = input.readLine();
+                    String line = input.readLine();
                     System.out.println("ChatClient: recieved " + line);
                 }
 
-                line = scanner.nextLine();
-                output.println(line);
-                if (line.equalsIgnoreCase("quit")) {
-                    break;
+                if (System.in.available()>0 ) {
+                    String line = scanner.nextLine();
+                    output.println(line);
+                    if (line.equalsIgnoreCase("quit")) {
+                        break;
+                    }
                 }
-
             }
 
             output.close();

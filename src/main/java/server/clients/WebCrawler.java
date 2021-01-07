@@ -1,6 +1,4 @@
-package server.clients.webcrawler;
-
-import server.clients.HttpDownloader;
+package server.clients;
 
 import java.io.File;
 import java.io.IOException;

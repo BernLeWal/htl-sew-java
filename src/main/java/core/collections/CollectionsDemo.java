@@ -1,5 +1,7 @@
 package core.collections;
 
+import core.data.Person;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
