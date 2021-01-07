@@ -52,7 +52,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>ui.fx.HelloWorldFXDemo</mainClass>
+                    <mainClass>ui.fx.drawing.AnimatedBallDemo</mainClass>
                     <options>
                         <option>--enable-preview</option>
                     </options>

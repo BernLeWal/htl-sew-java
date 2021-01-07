@@ -120,7 +120,17 @@ Contains samples for the JavaFX GUI framework.
 _ATTENTION_: See documentation how JavaFX must be configured and activated in the run configurations!
 
  * __HelloWorldFXDemo__ presents a simple "Hello World!" to the console.
+ * __SimpleUiFXDemo__ generates a UI consisting of a label and a button by programming the gui and layout directly in the sourcecode.
+   
+### ui.fx.drawing
+ * __DrawingFXDemo__ shows how to draw graphical primitives like line, rect, ellipse but also text and images.
+ * __StandingClockDemo__ draws the current time as analog clock into a FX-window.
+ * __RunningClockDemo__ draws the current time as analog clock into a FX-window. The clock hands are animated.
+ * __AnimatedBallDemo__ shows an animated ball inside the content-area of the GUI window.
 
+### ui.fx.fxml
+ * __HelloWorldFXMLDemo__ presents a simple "Hello World!" in a GUI window implemented with FXML.
+ * __LoginFXMLDemo__ shows the UI for a simple Login-Dialog implemented with FXML and the Scene-Builder.
 
 ## utils
  * __CsvUtils__: Helper functions to read CSV files.

@@ -9,7 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * HelloWorldFXDemo presents a simple "Hello World!" to the console.
+ * HelloWorldFXDemo presents a simple "Hello World!" in a GUI window.
  *
  * To enable JavaFX you first need to add the following Maven dependencies in the pom.xml-file:
  *     <dependencies>
