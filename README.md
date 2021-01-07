@@ -112,6 +112,16 @@ The project structure of this repository.
  * __BruteForcePasswordCrackerCHAPClient__ demonstrates a brute-force password attack
    implementing CHAP (challenge-authentication-protocol).
 
+## ui.console
+ * __HelloWorldConsoleDemo__ presents a simple "Hello World!" to the console.
+
+## ui.fx
+Contains samples for the JavaFX GUI framework.  
+_ATTENTION_: See documentation how JavaFX must be configured and activated in the run configurations!
+
+ * __HelloWorldFXDemo__ presents a simple "Hello World!" to the console.
+
+
 ## utils
  * __CsvUtils__: Helper functions to read CSV files.
  * __ProcessUtils__: Helper methods to deal with processes.
