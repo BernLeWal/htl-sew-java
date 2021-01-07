@@ -3,9 +3,9 @@ package core.io.file;
 import java.io.File;
 
 /**
- * DirectorySamples shows various methods to access directories and directory-contents of the file system.
+ * DirectoryDemo shows various methods to access directories and directory-contents of the file system.
  */
-public class DirectorySamples {
+public class DirectoryDemo {
 
     public static void main(String[] args) {
         // List the content of the current directory

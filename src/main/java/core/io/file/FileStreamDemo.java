@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * FileStreamSamples shows how to read and write files in text or binary mode.
+ * FileStreamDemo shows how to read and write files in text or binary mode.
  */
-public class FileStreamSamples {
+public class FileStreamDemo {
 
     public static void main(String[] args) {
         final String binPath = System.getProperty("java.io.tmpdir") + "test.bin";
