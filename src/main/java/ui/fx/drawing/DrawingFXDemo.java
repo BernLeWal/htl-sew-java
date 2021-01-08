@@ -24,13 +24,13 @@ public class DrawingFXDemo extends Application {
         Group root = new Group();
         Scene scene = new Scene(root, 300, 300);//, Color.BEIGE);
 
-        // TODO: hier wird dein Sourcecode eingefügt!
-        drawLine(root);
-        drawTriangle(root);
-        drawRect(root);
-        drawEllipse(root);
+        // hier deinen eigenen Sourcecode eingefügen
+//        drawLine(root);
+//        drawTriangle(root);
+//        drawRect(root);
+//        drawEllipse(root);
         drawText(root);
-        drawImage(root);
+//        drawImage(root);
 
         primaryStage.setTitle("Zeichnen mit JavaFX");
         primaryStage.setScene(scene);

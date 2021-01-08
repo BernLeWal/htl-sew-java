@@ -35,14 +35,6 @@ investigating functioning samples and later doing all the programming exercieses
     Der Kampf geht über zehn Runden in denen sich beide Boxer auf je eine Bewegung (hit/block)
     an einer Position (head/body/foot) in der Vorbereitung
     (d.h. das steht in der Implementierung der Klasse) festlegen.  
-    Diese zehn Runden werden hintereinander ausgeführt und die Boxer bekommen je nach Rundenausgang Gut-/ oder Schlechtpunkte:
-    -	Wenn beide Boxer verteidigen, dann bekommt niemand einen Punkt.
-    -	Wenn beide Boxer schlagen, dann
-    -	…bekommt niemand einen Punkt wenn sie sich auf unterschiedlicher Position treffen (=gleichstand)
-    - 	…bekommen beide einen Punkt Abzug, wenn sie sich auf gleicher Position treffen
-    -	Wenn ein Boxer schlägt und der andere verteidigt, dann…
-    -	…bekommt der Schläger einen Punkt, wenn der Verteidiger auf einer anderen Position verteidigt
-    -	…bekommt der Verteidiger einen Punkt, wenn er den Schlag an der richtigen Position abfängt.  
     Der Boxer mit den meisten Punkten am Ende des Kampfes hat gewonnen.
 
 ## Module 3: Java's Core Features
@@ -52,7 +44,7 @@ investigating functioning samples and later doing all the programming exercieses
    the usage of the most common collections: ArrayList, HashSet and HashMap
    in terms of creating, iterating, modifying and deletion.
 
-### core.collections.sort/**
+### core.collections.sort
  * __SortPersonsDemo__ demonstrates how the Comparable interface is used to self define sort orders.
 
 
@@ -119,6 +111,10 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 * __HelloWorldFXMLDemo__ presents a simple "Hello World!" in a GUI window implemented with FXML.
 * __LoginFXMLDemo__ shows the UI for a simple Login-Dialog implemented with FXML and the Scene-Builder.
 
+### ui.fx.maexchen
+* __MaexchenDemo__ implements a simple dice game with a JavaFX GUI
+
+
 ## Module 5: Client & Server Programming
 
 ### server.sockets
@@ -172,10 +168,8 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
  * __OpenDataDemo__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):  
    _"Katalog Gestorbene in Österreich (ohne Auslandssterbefälle) ab 2000 nach Kalenderwoche"_  
    (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
-   It calculates the total amount of deaths per year.  
-   Attention: when retrieving the URL from the web-site, always change the protocol to "https:", because
-   the server will return only empty files when "http:" is used!
-
+   It calculates the total amount of deaths per year.
+   
 
 
 ## Utility classes 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="306.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.fx.maexchen.MainGUIMaexchenController">
+    <children>
+        <GridPane layoutX="48.0" layoutY="30.0" prefHeight="227.0" prefWidth="389.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="75.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="105.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="120.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Button fx:id="buttonD1" alignment="CENTER" onAction="#buttonD1Clicked" prefHeight="27.0"
+                        prefWidth="83.0" style="-fx-background-color: #2846ab;" text="Wuerfeln" textFill="WHITE"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="buttonD2" alignment="CENTER" onAction="#buttonD2Clicked"
+                        style="-fx-background-color: #2846ab;" text="Wuerfeln" textFill="WHITE" GridPane.columnIndex="2"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                </Button>
+                <Label fx:id="labelPoints" alignment="CENTER" minHeight="16" minWidth="69" text="Punkte:"
+                       textFill="#2846ab" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="labelPlayer1" alignment="CENTER" minHeight="16" minWidth="69" text="Spieler 1"
+                       textFill="#2846ab" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="labelPlayer2" alignment="CENTER" minHeight="16" minWidth="69" text="Spieler 2"
+                       textFill="#2846ab" GridPane.columnIndex="2">
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="LabelPointsP1" alignment="CENTER" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="LabelPointsP2" alignment="CENTER" text="0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <Button fx:id="buttonNewGame" mnemonicParsing="false" onAction="#buttonNewGameClicked"
+                        style="-fx-background-color: #fff; -fx-border-color: #2846ab; -fx-border-radius: 2px;"
+                        text="Neues Spiel" textFill="#2846ab" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>
