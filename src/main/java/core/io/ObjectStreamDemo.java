@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class ObjectStreamDemo {
 
     public static void main(String[] args) {
-        Person meinObj = new Person(1, "Anton", "Bauer");
+        Person meinObj = new Person(1, "Anton", "Bauer", 25);
         
         try {
             // ObjectoutputStream erzeugen

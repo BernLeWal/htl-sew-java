@@ -23,9 +23,9 @@ public class CollectionsDemo {
         ArrayList<Person> persons = new ArrayList<>();
 
         System.out.println("\nadd elements:");
-        persons.add(new Person(1, "Romeo", "Albrecht"));
-        persons.add(new Person(6, "Patrick", "Oboni"));
-        persons.add(new Person(7, "Cosmin", "Sauermann"));
+        persons.add(new Person(1, "Romeo", "Albrecht", 18));
+        persons.add(new Person(6, "Patrick", "Oboni", 17));
+        persons.add(new Person(7, "Cosmin", "Sauermann", 19));
 
         System.out.println("\nread/show elements:");
         for (Person p : persons) {
@@ -36,7 +36,7 @@ public class CollectionsDemo {
         System.out.println("Element on index 1 (position 2): " + persons.get(1));
 
         System.out.println("\ninsert element on index 1 (position 2):");
-        final Person richard = new Person(3, "Richard", "Dürl");
+        final Person richard = new Person(3, "Richard", "Dürl", 18);
         persons.add(1, richard);
         for (Person p : persons) {
             System.out.println(p);
@@ -60,9 +60,9 @@ public class CollectionsDemo {
         HashSet<Person> persons = new HashSet<>();
 
         System.out.println("\nadd elements:");
-        persons.add(new Person(1, "Romeo", "Albrecht"));
-        persons.add(new Person(6, "Patrick", "Oboni"));
-        persons.add(new Person(7, "Cosmin", "Sauermann"));
+        persons.add(new Person(1, "Romeo", "Albrecht", 18));
+        persons.add(new Person(6, "Patrick", "Oboni", 17));
+        persons.add(new Person(7, "Cosmin", "Sauermann", 19));
 
         System.out.println("\nread/show elements:");
         for (Person p : persons) {
@@ -70,7 +70,7 @@ public class CollectionsDemo {
         }
 
         System.out.println("\ninsert element:");
-        final Person richard = new Person(3, "Richard", "Dürl");
+        final Person richard = new Person(3, "Richard", "Dürl", 18);
         persons.add(richard);
         for (Person p : persons) {
             System.out.println(p);
@@ -78,7 +78,7 @@ public class CollectionsDemo {
 
         System.out.println("\nfetch one element: --> no way");
         System.out.println("\ncheck if an element is contained in the set: " + persons.contains(richard));
-        System.out.println("\ncheck if new element is contained in the set: " + persons.contains(new Person(3, "Richard", "Dürl")));
+        System.out.println("\ncheck if new element is contained in the set: " + persons.contains(new Person(3, "Richard", "Dürl", 18)));
 
         System.out.println("\nRemove on element:");
         persons.remove(richard);
@@ -93,11 +93,11 @@ public class CollectionsDemo {
         HashMap<Integer, Person> persons = new HashMap<>();
 
         System.out.println("\nadd elements:");
-        final Person romeo = new Person(1, "Romeo", "Albrecht");
+        final Person romeo = new Person(1, "Romeo", "Albrecht", 18);
         persons.put(1, romeo);
-        final Person patrick = new Person(6, "Patrick", "Oboni");
+        final Person patrick = new Person(6, "Patrick", "Oboni", 17);
         persons.put(6, patrick);
-        final Person cosmin = new Person(7, "Cosmin", "Sauermann");
+        final Person cosmin = new Person(7, "Cosmin", "Sauermann", 19);
         persons.put(7, cosmin);
 
         System.out.println("\nread/show elements:");

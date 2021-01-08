@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>oop.inheritance</OriginalElement>
+  <nodes>
+    <node x="459.0" y="420.0">oop.inheritance.Bernhardiner</node>
+    <node x="232.5" y="0.0">oop.inheritance.Lebewesen</node>
+    <node x="351.0" y="420.0">oop.inheritance.Pudel</node>
+    <node x="0.0" y="386.0">oop.inheritance.Frau</node>
+    <node x="0.0" y="529.0">oop.inheritance.InheritanceDemo</node>
+    <node x="169.0" y="386.0">oop.inheritance.Mann</node>
+    <node x="394.5" y="193.0">oop.inheritance.Hund</node>
+    <node x="86.75" y="193.0">oop.inheritance.Mensch</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="oop.inheritance.Frau" target="oop.inheritance.Mensch">
+      <point x="0.0" y="-49.0" />
+      <point x="74.5" y="361.0" />
+      <point x="124.5" y="361.0" />
+      <point x="-37.75" y="71.5" />
+    </edge>
+    <edge source="oop.inheritance.Mann" target="oop.inheritance.Mensch">
+      <point x="0.0" y="-49.0" />
+      <point x="250.0" y="361.0" />
+      <point x="200.0" y="361.0" />
+      <point x="37.75" y="71.5" />
+    </edge>
+    <edge source="oop.inheritance.Mensch" target="oop.inheritance.Lebewesen">
+      <point x="0.0" y="-71.5" />
+      <point x="162.25" y="168.0" />
+      <point x="268.5" y="168.0" />
+      <point x="-36.0" y="71.5" />
+    </edge>
+    <edge source="oop.inheritance.Bernhardiner" target="oop.inheritance.Hund">
+      <point x="0.0" y="-15.0" />
+      <point x="531.0" y="361.0" />
+      <point x="497.25" y="361.0" />
+      <point x="34.25" y="71.5" />
+    </edge>
+    <edge source="oop.inheritance.Hund" target="oop.inheritance.Lebewesen">
+      <point x="0.0" y="-71.5" />
+      <point x="463.0" y="168.0" />
+      <point x="340.5" y="168.0" />
+      <point x="36.0" y="71.5" />
+    </edge>
+    <edge source="oop.inheritance.Pudel" target="oop.inheritance.Hund">
+      <point x="0.0" y="-15.0" />
+      <point x="395.0" y="361.0" />
+      <point x="428.75" y="361.0" />
+      <point x="-34.25" y="71.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="301.5" y="291.5" />
+  <SelectedNodes>
+    <node>oop.inheritance.Mensch</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
