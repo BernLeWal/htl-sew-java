@@ -1,141 +1,115 @@
 package server.web.miniwebserver;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.net.URL;
 
 public class HttpResponse {
-    private OutputStream outputStream;
+    public static final String WWW_FILES_BASE_PATH = "/server/sockets/www";
+
+    private final OutputStream outputStream;
+
+    private int statusCode;
+    private String statusMessage;
 
     public HttpResponse(OutputStream outputStream) {
         this.outputStream = outputStream;
     }
 
-    public void process(String subPage) throws IOException {
-        // String html = "<HTML><BODY>" + fileName + "</BODY></HTML>";
+    public int getStatusCode() {
+        return statusCode;
+    }
 
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void process(String subPage) throws IOException {
         if (subPage.isEmpty() || subPage.equalsIgnoreCase("/")) {
             subPage = "/index.html";
         }
 
-        String fileName = "/server/sockets/www" + subPage;
-        try {
-            // MIME-TYPES:
-            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
-            if (fileName.endsWith(".html") || fileName.endsWith(".htm"))
-                sendText(fileName, "text/html");
-            else if (fileName.endsWith(".css"))
-                sendText(fileName, "text/css");
-            else if (fileName.endsWith(".js"))
-                sendText(fileName, "text/javascript");
-            else if (fileName.endsWith(".svg"))
-                sendText(fileName, "text/svg+xml");
-            else if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg"))
-                sendImage(fileName, "image/jpeg");
-            else if (fileName.endsWith(".gif"))
-                sendImage(fileName, "image/gif");
-            else if (fileName.endsWith(".png"))
-                sendImage(fileName, "image/png");
-            else
-                sendText(fileName, "text/plain");
-        } catch (Exception e) {
-            System.err.println("HttpResponse stopped with error " + e);
-        }
-
+        sendFile(WWW_FILES_BASE_PATH + subPage, getMimeTypeFromFileName(subPage));
     }
 
-    private void sendText(String fileName, String contentType) {
-        // read text from file
-        StringBuilder html = new StringBuilder();
-        try {
-            InputStream inputStream = getClass().getResourceAsStream(fileName);
-            if (inputStream != null) {
-                BufferedReader fileInput = new BufferedReader(new InputStreamReader(inputStream));
-
-                String line;
-                while ((line = fileInput.readLine()) != null) {
-                    html.append(line);
-                    html.append("\r\n");
-                }
-            } else {
-                System.err.println("HttpResponse: failed to open " + fileName);
+    private void sendFile(String fileName, String contentType) {
+        final URL resource = getClass().getResource(fileName);
+        try (PrintStream out = new PrintStream(outputStream) ) {
+            if (resource == null) {
+                System.err.println("HttpResponse error : file " + fileName + " not found!");
+                sendStatus(out, 404, "Not Found");
+                sendNewLine(out);
+                return;
             }
-        } catch (IOException e) {
-            System.err.println("HttpResponse error when reading file '" + fileName + "'" + e);
-        }
 
-        // send text via HTTP
-        try {
-            BufferedWriter output = new BufferedWriter(
-                    new OutputStreamWriter(new BufferedOutputStream(outputStream), StandardCharsets.UTF_8));
-            sendHeader(output, "HTTP/1.1 200 OK");
-            sendHeader(output, "Content-Type: " + contentType);
-            sendHeader(output, "Content-Length: " + html.length());
-            sendHeader(output, "\r\n");
+            File file = new File(resource.toURI());
+            fileName = file.getAbsolutePath();
+            int numOfBytes = (int) file.length();
 
-            output.write(html.toString());
-            // System.out.println("ModuleStatic: sent '" + html + "'");
-
-            output.flush();
-        } catch (Exception e) {
-            System.err.println("HttpResponse error during sending: " + e);
-        }
-    }
-
-    private void sendImage(String fileName, String contentType) {
-        int numOfBytes = 256;
-        byte[] fileInBytes = null;
-        try {
-            fileName = new File(getClass().getResource(fileName).toURI()).getAbsolutePath();
-            // URL in lokalen Dateinamen konvertieren
-            String fsep = System.getProperty("file.separator", "/");
-            StringBuffer sb = new StringBuffer(fileName.length());
-            for (int i = 0; i < fileName.length(); ++i) {
-                char c = fileName.charAt(i);
-                if (c == '/') {
-                    sb.append(fsep);
-                } else {
-                    sb.append(c);
-                }
-            }
-            fileName = sb.toString();
-            File file = new File(fileName);
-            numOfBytes = (int) file.length();
-
-            try {
-                PrintStream out = new PrintStream(outputStream);
-                FileInputStream is = new FileInputStream(fileName);
-                fileInBytes = new byte[numOfBytes];
+            try (FileInputStream is = new FileInputStream(fileName)) {
                 // HTTP-Header senden
-                sendHeader(out, "HTTP/1.0 200 OK");
-                sendHeader(out, "Server: MiniWebServer 0.5");
-                sendHeader(out, "Content-type: " + contentType + "\r\n");
+                sendStatus(out, 200, "OK");
+                sendHeader(out, "Server", "MiniWebServer 0.5");
+                sendHeader(out, "Content-Type", contentType);
+                sendHeader(out, "Content-Length", String.valueOf(numOfBytes));
+                sendNewLine(out);
                 // Dateiinhalt senden
-                byte[] buf = new byte[256];
+                byte[] buf = new byte[1024];
                 int len;
                 while ((len = is.read(buf)) != -1) {
                     out.write(buf, 0, len);
                 }
-                is.close();
-
-                out.flush();
             } catch (IOException e) {
                 System.err.println("HttpResponse error during sending: " + e);
+                sendStatus(out, 500, "Internal Server Error");
+                sendNewLine(out);
+            } finally {
+                out.flush();
             }
-
         } catch (Exception e) {
-            System.err.println("HttpResponse error reading file '" + fileName + "': " + e);
+            System.err.println("HttpResponse unexpected error processing file '" + fileName + "': " + e);
         }
 
     }
 
-    private void sendHeader(BufferedWriter output, String param) throws IOException {
-        output.write(param + "\r\n");
+    private void sendStatus(PrintStream output, int code, String message) {
+        // HTTP status codes:
+        // https://developer.mozilla.org/de/docs/Web/HTTP/Status
+        final String param = "HTTP/1.0 " + code + " " + message;
+        output.print(param + "\r\n");
+        System.out.println("HttpResponse: sent '" + param + "'");
+        this.statusCode = code;
+        this.statusMessage = message;
+    }
+
+    private void sendHeader(PrintStream output, String key, String value) {
+        final String param = key + ": " + value;
+        output.print(param + "\r\n");
         System.out.println("HttpResponse: sent '" + param + "'");
     }
 
-    private void sendHeader(PrintStream output, String param) throws IOException {
-        output.print(param + "\r\n");
-        System.out.println("HttpResponse: sent '" + param + "'");
+    private void sendNewLine(PrintStream output) {
+        output.print("\r\n");
+    }
+
+    private static String getMimeTypeFromFileName(String fileName) {
+        // MIME-TYPES:
+        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
+        if (fileName.endsWith(".html") || fileName.endsWith(".htm"))
+            return "text/html";
+        else if (fileName.endsWith(".css"))
+            return "text/css";
+        else if (fileName.endsWith(".js"))
+            return "text/javascript";
+        else if (fileName.endsWith(".svg"))
+            return "text/svg+xml";
+        else if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg"))
+            return "image/jpeg";
+        else if (fileName.endsWith(".gif"))
+            return "image/gif";
+        else if (fileName.endsWith(".png"))
+            return "image/png";
+        else
+            return "text/plain";
     }
 
 }

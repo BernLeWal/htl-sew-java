@@ -26,7 +26,6 @@ public class MiniWebService extends Thread {
             HttpResponse response = new HttpResponse(session.getOutputStream());
             response.process(request.getPath());
 
-            session.getOutputStream().close();
             session.close();
         } catch (IOException e) {
             System.err.println("MiniWebService T" + thread_nr + " stopped with error " + e);

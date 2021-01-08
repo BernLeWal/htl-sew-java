@@ -11,7 +11,7 @@ import java.net.Socket;
  * and binary-based (like jpg,..) files in simple GET or POST requests.
  * It also does not evaluate query parameters and request headers.
  */
-public class MiniWebServerDemo {
+public class MiniWebServer {
 
     public static void main(String[] args) {
         System.out.println("MiniWebServer started...");

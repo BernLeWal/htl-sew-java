@@ -4,40 +4,55 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 
 public class HttpRequest {
-    private String method;
+    private String method = "";
     private String path = "";
+    private final HashMap<String, String> headers = new HashMap<>();
+    private final StringBuilder content = new StringBuilder();
 
     public HttpRequest(InputStream inputStream) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
-        boolean isFirstLine = true;
-        while ((line = input.readLine()) != null) {
-            if (line.isEmpty())
-                break;
-            //System.out.println("MyService T" + thread_nr + ": received '" + line + "'");
 
-            if (isFirstLine) {
-                // evaluate HTTP method
-                if (isParam(line, "GET ")) {
-                    method = "GET";
-                } else if (isParam(line, "POST ")) {
-                    method = "POST";
-                }
-                // evaluate requested path to the ressource
-                path = getValue(line, method + " ");
-                path = path.substring(0, path.indexOf(' '));
+        // first line contains HTTP method path and protocol-version
+        String line = input.readLine();
+        if( line!=null && !line.isEmpty() ) {
+            String[] parts = line.split(" ");
+            if( parts.length>0 )
+                method = parts[0];
+            if( parts.length>1 )
+                path = parts[1];
+            // skip parts[2], the HTTP protocol
 
-                System.out.println("HttpRequest: " + method + " " + path);
-                isFirstLine = false;
-            } else {
-                // evaluate the header here...
-            }
+            if (method.isEmpty())
+                method = "GET";
+            if (path.isEmpty())
+                path = "/";
+            System.out.println("HttpRequest: " + method + " " + path);
         }
 
-        if (path.isEmpty())
-            path = "/";
+        // further lines contain the HTTP header parameters
+        while ((line = input.readLine()) != null) {
+            String[] parts = line.split(": ");
+            if( parts.length > 1 ) {
+                headers.put(parts[0], parts[1]);
+                System.out.println("HttpRequest:   header-parameter " + parts[0] + ": " + parts[1]);
+            }
+
+            if (line.isEmpty())
+                break;  // empty line means that now the content starts.
+        }
+
+        // after the empty line follows the content if provided
+        if( line!=null && input.ready()) {
+            while ((line = input.readLine()) != null) {
+                content.append(line);
+                content.append("\n");
+            }
+            System.out.println("HttpRequest:   content " + content);
+        }
+
     }
 
     public String getMethod() {
@@ -48,22 +63,11 @@ public class HttpRequest {
         return path;
     }
 
-
-    private static boolean isParam(String line, String name) {
-        if (name == null || name.isEmpty())
-            return false;
-        if (line == null || line.isEmpty())
-            return false;
-        if (line.length() < name.length())
-            return false;
-        return line.substring(0, name.length()).equals(name);
+    public HashMap<String, String> getHeaders() {
+        return headers;
     }
 
-    private static String getValue(String line, String name) {
-        if (name == null || name.isEmpty())
-            return null;
-        if (line == null || line.isEmpty())
-            return null;
-        return line.substring(name.length());
+    public String getContent() {
+        return content.toString();
     }
 }

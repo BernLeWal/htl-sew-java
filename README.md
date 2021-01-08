@@ -166,10 +166,10 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
    It calculates the total amount of deaths per year.
    
 ### server.web
- * __MiniWebServerDemo__ demonstrates how to write a simplistic HTTP server.  
+ * __MiniWebServer__ demonstrates how to write a simplistic HTTP server.  
     It just supports to deliver static text-based (like html, css, js)
     and binary-based (like jpg,..) files in simple GET or POST requests.
-    It also does not evaluate query parameters and request headers.
+    It also does not evaluate query parameters and response headers.
 
 
 ## Module 6: Enhanced Programming Concepts
