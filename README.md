@@ -78,11 +78,6 @@ investigating functioning samples and later doing all the programming exercieses
  * __JoinTheThreadDemo__ demonstrates why the .join() method is necessary to synchronize the (timline of the) operation of multiple threads.  
    The main()-method runs within the main-thread which generates an extra processing-thread with the JoinerThread class.
 
-### core.threads.cafesimulator
- * __CafeteriaSimulatorDemo__ demonstrates the usage of the producer/consumer-pattern.  
-   The Producer (here PeopleProducer) generates tasks (Person) which are put in a queue (Queue).  
-   Two consumer Threads (here Cafeteria) pick one person after another and executes the tasks.
-
 ### core.threads.primenumber
  * __PrimeNumberCheckerDemo__ performs the long lasting operation to check if a number is a prime-number within extra threads.
 
@@ -170,6 +165,20 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
    (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
    It calculates the total amount of deaths per year.
    
+### server.web
+ * __MiniWebServerDemo__ demonstrates how to write a simplistic HTTP server.  
+    It just supports to deliver static text-based (like html, css, js)
+    and binary-based (like jpg,..) files in simple GET or POST requests.
+    It also does not evaluate query parameters and request headers.
+
+
+## Module 6: Enhanced Programming Concepts
+
+### patterns.producerconsumer
+* __CafeteriaSimulatorDemo__ demonstrates the usage of the producer/consumer-pattern.  
+  The Producer (here PeopleProducer) generates tasks (Person) which are put in a queue (Queue).  
+  Two consumer Threads (here Cafeteria) pick one person after another and executes the tasks.
+
 
 
 ## Utility classes 

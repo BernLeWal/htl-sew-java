@@ -18,15 +18,17 @@ import java.util.Scanner;
 public class ChatClient {
 
     public static void main(String[] args) {
-        Socket clientSocket;
-        try {
-            clientSocket = new Socket("localhost", 23);
-            BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintStream output = new PrintStream(clientSocket.getOutputStream());
-
+        System.out.println("Client startet");
+        try (
+            Socket socket = new Socket("localhost", 23);
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintStream output = new PrintStream(socket.getOutputStream());
+        )
+        {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("ChatClient runs on " + clientSocket.getInetAddress().getHostAddress()
-                    + ":" + clientSocket.getLocalPort() + " - type 'quit' to stop.");
+            System.out.println("ChatClient runs on " + socket.getInetAddress().getHostAddress()
+                    + ":" + socket.getLocalPort() + " - type 'quit' to stop.");
+
             while (true) {
                 while (input.ready()) {
                     String line = input.readLine();
@@ -41,10 +43,6 @@ public class ChatClient {
                     }
                 }
             }
-
-            output.close();
-            input.close();
-            clientSocket.close();
         } catch (IOException e) {
             System.err.println("ChatClient: ERROR " + e);
         }

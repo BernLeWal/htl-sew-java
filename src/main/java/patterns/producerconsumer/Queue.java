@@ -1,4 +1,4 @@
-package core.threads.cafesimulator;
+package patterns.producerconsumer;
 
 import java.util.ArrayList;
 import java.util.List;

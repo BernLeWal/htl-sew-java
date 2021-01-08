@@ -1,4 +1,4 @@
-package core.threads.cafesimulator;
+package patterns.producerconsumer;
 
 /**
  * CafeteriaSimulatorDemo demonstrates the usage of the producer/consumer-pattern.

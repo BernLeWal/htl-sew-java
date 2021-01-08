@@ -1,4 +1,4 @@
-package core.threads.cafesimulator;
+package patterns.producerconsumer;
 
 public class Cafeteria extends Thread {
     private final String name;
