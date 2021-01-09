@@ -1,4 +1,4 @@
-package server.web.miniwebserver;
+package server.web;
 
 import java.io.BufferedReader;
 import java.io.IOException;
