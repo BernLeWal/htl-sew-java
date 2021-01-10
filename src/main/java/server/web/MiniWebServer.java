@@ -12,7 +12,7 @@ import java.net.Socket;
  * It also does not evaluate query parameters and request headers.
  */
 public class MiniWebServer {
-    public static final String WWW_FILES_BASE_PATH = "/server/sockets/www";
+    public static final String WWW_FILES_BASE_PATH = "/www";
 
     private static int thread_count = 0;
 
