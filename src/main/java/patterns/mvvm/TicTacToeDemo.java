@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class TicTacToeDemo extends Application {
 
-    public static final String RESSOURCES_BASE_PATH = "/ui/fx/tictactoe/";
+    public static final String RESSOURCES_BASE_PATH = "/ui/tictactoe/";
 
     private static Scene scene;
 
