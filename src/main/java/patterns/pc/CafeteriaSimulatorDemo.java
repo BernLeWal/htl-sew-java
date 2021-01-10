@@ -1,4 +1,8 @@
-package patterns.producerconsumer;
+package patterns.pc;
+
+import patterns.pc.consumer.Cafeteria;
+import patterns.pc.producer.PeopleProducer;
+import patterns.pc.queues.Queue;
 
 /**
  * CafeteriaSimulatorDemo demonstrates the usage of the producer/consumer-pattern.

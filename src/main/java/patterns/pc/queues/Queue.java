@@ -1,4 +1,6 @@
-package patterns.producerconsumer;
+package patterns.pc.queues;
+
+import patterns.pc.jobs.Person;
 
 import java.util.ArrayList;
 import java.util.List;

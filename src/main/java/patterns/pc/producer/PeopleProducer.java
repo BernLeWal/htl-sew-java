@@ -1,4 +1,7 @@
-package patterns.producerconsumer;
+package patterns.pc.producer;
+
+import patterns.pc.jobs.Person;
+import patterns.pc.queues.Queue;
 
 import java.util.Random;
 

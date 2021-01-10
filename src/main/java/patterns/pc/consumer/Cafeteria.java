@@ -1,4 +1,7 @@
-package patterns.producerconsumer;
+package patterns.pc.consumer;
+
+import patterns.pc.jobs.Person;
+import patterns.pc.queues.Queue;
 
 public class Cafeteria extends Thread {
     private final String name;

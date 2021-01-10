@@ -1,4 +1,4 @@
-package patterns.producerconsumer;
+package patterns.pc.jobs;
 
 import java.util.Random;
 
