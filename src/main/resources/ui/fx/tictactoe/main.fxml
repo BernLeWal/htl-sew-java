@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.3468727534148095" xmlns="http://javafx.com/javafx/10.0.2-internal"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="patterns.mvvm.view.MainController">
+    <items>
+        <VBox minHeight="200.0" minWidth="100.0" prefWidth="150">
+            <children>
+                <Label maxWidth="Infinity" minHeight="40.0" text="Tic Tac Toe" textAlignment="CENTER">
+                    <font>
+                        <Font name="Segoe UI Black" size="30.0"/>
+                    </font>
+                </Label>
+                <HBox alignment="TOP_CENTER">
+                    <children>
+                        <ImageView fitHeight="70.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Logo.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label maxWidth="Infinity" minHeight="40.0" text="Spieler 1:" HBox.hgrow="SOMETIMES">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label maxWidth="Infinity" minHeight="40.0" text="Punkte: " HBox.hgrow="SOMETIMES">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="labelScore0" maxWidth="Infinity" minHeight="40.0" text="0" HBox.hgrow="SOMETIMES">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <ComboBox id="cbxPlayer1" fx:id="comboPlayer0" editable="true" maxWidth="Infinity" prefWidth="150.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Computer (offensiv)"/>
+                            <String fx:value="Computer (defensiv)"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <HBox>
+                    <children>
+                        <Label maxWidth="Infinity" minHeight="40.0" text="Spieler 2:" HBox.hgrow="SOMETIMES">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label maxWidth="Infinity" minHeight="40.0" text="Punkte: " HBox.hgrow="SOMETIMES">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="labelScore1" maxWidth="Infinity" minHeight="40.0" text="0" HBox.hgrow="SOMETIMES">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <ComboBox id="cbxPlayer2" fx:id="comboPlayer1" editable="true" maxWidth="Infinity" prefWidth="150.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Computer (offensiv)"/>
+                            <String fx:value="Computer (defensiv)"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <TextArea fx:id="textMessage" editable="false" prefHeight="76.0" prefWidth="181.0" wrapText="true">
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </padding>
+                </TextArea>
+                <GridPane hgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES"/>
+                        <ColumnConstraints hgrow="SOMETIMES"/>
+                    </columnConstraints>
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#onResetClicked"
+                                style="-fx-font-family: System; -fx-font-size: 14.0;" text="Reset"/>
+                        <Button mnemonicParsing="false" onAction="#onQuitClicked"
+                                style="-fx-font-family: System; -fx-font-size: 14.0;" text="Quit"
+                                GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+                    </children>
+                    <rowConstraints>
+                        <RowConstraints/>
+                    </rowConstraints>
+                </GridPane>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </VBox>
+        <GridPane gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="34.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" percentHeight="34.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Button fx:id="button00" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" ">
+                    <font>
+                        <Font name="Script MT Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button01" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="1">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button02" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="2">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="0"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button11" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="1"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button12" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="2"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button20" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="0"
+                        GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button21" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="1"
+                        GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="button22" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false" onAction="#onButtonClicked" text=" " GridPane.columnIndex="2"
+                        GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Button>
+            </children>
+        </GridPane>
+    </items>
+</SplitPane>

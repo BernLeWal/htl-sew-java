@@ -174,6 +174,10 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 
 ## Module 6: Enhanced Programming Concepts
 
+### patterns.mvvm
+ * __TicTacToeDemo__ implements the tic-tac-toe game with a computer enemy.
+    It shows how to use the MVVM-pattern together with a JavaFX FXML GUI.
+
 ### patterns.producerconsumer
 * __CafeteriaSimulatorDemo__ demonstrates the usage of the producer/consumer-pattern.  
   The Producer (here PeopleProducer) generates tasks (Person) which are put in a queue (Queue).  

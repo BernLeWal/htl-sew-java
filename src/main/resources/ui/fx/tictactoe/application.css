@@ -1,0 +1,14 @@
+#title {
+    -fx-font-size: 20.0px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+.button {
+    -fx-font-size: 48.0px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-font-family: Script MT Bold;
+    -fx-font-color: black;
+    -fx-color: white;
+}

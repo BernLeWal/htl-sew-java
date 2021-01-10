@@ -52,7 +52,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>ui.fx.maexchen.MaexchenDemo</mainClass>
+                    <mainClass>patterns.mvvm.TicTacToeDemo</mainClass>
                     <options>
                         <option>--enable-preview</option>
                     </options>
