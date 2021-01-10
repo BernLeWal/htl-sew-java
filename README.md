@@ -174,6 +174,10 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 
 ## Module 6: Enhanced Programming Concepts
 
+### patterns.gameloop
+ * __TetrisDemo__ implements the tetris game using a simple form of the gameloop behavioral pattern
+    with a Swing/AWT user interface.
+
 ### patterns.mvvm
  * __TicTacToeDemo__ implements the tic-tac-toe game with a computer enemy.
     It shows how to use the MVVM-pattern together with a JavaFX FXML GUI.
