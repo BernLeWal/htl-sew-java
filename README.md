@@ -5,10 +5,14 @@ This collection of samples and demos is intended to show a specific seperate fun
 less extra functionallity and code as possible.  
 So this project is a collection of many small demos instead of a whole solution.
 
-Concept and syntax documentation can be found in the sew java course. This repository is used as learning by
-investigating functioning samples and later doing all the programming exercieses by yourself.
-
 # Tutorial - learning by samples
+Concept and syntax documentation can be found in the sew java course.
+
+[Tutorial - learning by samples](docs/README.md)  
+[Tutorial - Lernen mit Beispielen - Kurs in Deutsch](docs/README_de.md)
+
+# Project Structure
+This repository is used as learning by investigating functioning samples and later doing all the programming exercieses by yourself.
 
 ## Module 1: Learn the very basics of the Java language
 
