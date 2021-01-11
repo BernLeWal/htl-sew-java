@@ -15,6 +15,8 @@ public class HttpRequest {
     public HttpRequest(InputStream inputStream) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(inputStream));
 
+        System.out.println("HttpRequest info:");
+
         // first line contains HTTP method path and protocol-version
         String line = input.readLine();
         if( line!=null && !line.isEmpty() ) {
@@ -29,15 +31,16 @@ public class HttpRequest {
                 method = "GET";
             if (path.isEmpty())
                 path = "/";
-            System.out.println("HttpRequest: " + method + " " + path);
+            System.out.println("\t" + method + " " + path + " " + ((parts.length>2) ? parts[2] : "") );
         }
 
         // further lines contain the HTTP header parameters
+        System.out.println("\tHeader values:");
         while ((line = input.readLine()) != null) {
             String[] parts = line.split(": ");
             if( parts.length > 1 ) {
                 headers.put(parts[0], parts[1]);
-                System.out.println("HttpRequest:   header-parameter " + parts[0] + ": " + parts[1]);
+                System.out.println("\t\t" + parts[0] + ": " + parts[1]);
             }
 
             if (line.isEmpty())
@@ -50,9 +53,9 @@ public class HttpRequest {
                 content.append(line);
                 content.append("\n");
             }
-            System.out.println("HttpRequest:   content " + content);
+            System.out.println();
+            System.out.println(content);
         }
-
     }
 
     public String getMethod() {

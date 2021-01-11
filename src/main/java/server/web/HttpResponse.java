@@ -29,6 +29,8 @@ public class HttpResponse {
     }
 
     public void sendHeaders(int statusCode, String statusMessage) {
+        System.out.println("HttpResponse info:");
+
         // HTTP status codes:
         // https://developer.mozilla.org/de/docs/Web/HTTP/Status
         try {
@@ -37,13 +39,14 @@ public class HttpResponse {
             // HTTP response status
             final String param = "HTTP/1.0 " + statusCode + " " + statusMessage;
             output.print(param);
-            System.out.println("HttpResponse: send '" + param + "'");
+            System.out.println("\t" + param);
 
             // HTTP response headers
+            System.out.println("\tHeader Values:");
             for (String key : headers.keySet()) {
                 final String value = headers.get(key);
                 output.print(key + ": " + value + "\r\n");
-                System.out.println("HttpResponse: send '" + key + ": " + value + "'");
+                System.out.println("\t\t" + key + ": " + value);
             }
 
             // newline indicates that the HTTP header is finished and content will follow
