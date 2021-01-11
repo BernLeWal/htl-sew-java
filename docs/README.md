@@ -4,6 +4,9 @@
 Concept and syntax documentation can be found in the sew java course. This repository is used as learning by
 investigating functioning samples and later doing all the programming exercieses by yourself.
 
+## Module 0: Before you start
+[Open Module 0](Module0.md)
+
 ## Module 1: Learn the very basics of the Java language
 [Open Module 1](Module1.md)
 
