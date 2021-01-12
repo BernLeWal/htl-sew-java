@@ -2,6 +2,7 @@ package server.http;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class HttpResponse {
@@ -58,15 +59,15 @@ public class HttpResponse {
     }
 
     public void sendFile(String fileName) {
-        final URL resource = getClass().getResource(fileName);
-        if (resource == null) {
+        fileName = new File(".").getAbsolutePath() + "/src/main/webapp" + fileName;
+        File file = new File(fileName);
+        if (file == null || !file.exists()) {
             System.err.println("HttpResponse error : file " + fileName + " not found!");
             sendHeaders(404, "Not Found");
             return;
         }
 
         try {
-            File file = new File(resource.toURI());
             fileName = file.getAbsolutePath();
             int numOfBytes = (int) file.length();
 
