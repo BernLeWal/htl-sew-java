@@ -8,6 +8,11 @@
     <artifactId>htl-sew-java</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- Jetty webapps -->
+    <packaging>war</packaging>
+    <name>htl-sew-java webapp</name>
+    <url>http://localhost</url>
+
     <properties>
         <java.version>15</java.version>
         <javafx.version>13</javafx.version>
@@ -58,7 +63,14 @@
                     </options>
                 </configuration>
             </plugin>
-        </plugins>
+                <!-- Jetty Plugin. Default port is 8080 -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>11.0.0</version>
+                </plugin>
+            </plugins>
+            <finalName>htl-sew-java-web</finalName>
     </build>
 
 </project>
