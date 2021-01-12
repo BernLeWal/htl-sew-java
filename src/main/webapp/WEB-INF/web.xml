@@ -4,4 +4,15 @@
 
 <web-app>
     <display-name>htl-sew-java Web Application</display-name>
+
+    <!--hello WebApp:-->
+    <servlet>
+        <servlet-name>helloServlet</servlet-name>
+        <servlet-class>server.webapp.hello.HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>helloServlet</servlet-name>
+        <url-pattern>/hello/HelloServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

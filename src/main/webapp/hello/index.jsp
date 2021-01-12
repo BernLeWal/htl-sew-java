@@ -44,7 +44,7 @@
     <li><a href="/hello/">/hello/ - die Hauptseite</a></li>
     <li><a href="index.html">index.html - eine statische HTML-Seite</a></li>
     <li><a href="index.jsp">index.jsp - eine einfache JSP-Seite</a></li>
-    <!--<li><a href="HelloServlet"></a>HelloServlet - ein einfaches Servlet</li>-->
+    <li><a href="HelloServlet">HelloServlet - ein einfaches Servlet</a></li>
 </ul>
 </p>
 </body>
