@@ -174,6 +174,9 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
     It just supports to deliver static text-based (like html, css, js)
     and binary-based (like jpg,..) files in simple GET or POST requests.
     It also does not evaluate query parameters and response headers.
+   
+### server.db
+ * __JdbcDemo__ shows how to use a very simple database based on SQLite.
 
 ### server.webapp 
 This module contains all demos for web-application, based on the Jakarta (JavaEE 9) framework.  
