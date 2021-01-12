@@ -169,7 +169,7 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
    (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
    It calculates the total amount of deaths per year.
    
-### server.web
+### server.http
  * __MiniWebServer__ demonstrates how to write a simplistic HTTP server.  
     It just supports to deliver static text-based (like html, css, js)
     and binary-based (like jpg,..) files in simple GET or POST requests.

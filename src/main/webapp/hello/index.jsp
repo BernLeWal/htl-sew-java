@@ -13,7 +13,8 @@
     <title>Hello JSP</title>
 </head>
 <body>
-<h1>Hello World!</h1>
+<h1>Hello JSP</h1>
+<h2>Demo von JSP-Funktionalitäten</h2>
 <p>
     Anzeige eines berechneten Wertes: <%= 12.5f %><br/>
     Anzeige des Ergebnisses eines Funktionsaufrufs: <%= LocalDateTime.now() %><br/>
@@ -36,6 +37,15 @@
             out.println( name + ": " + request.getParameter(name) + "<br/>");
         }
     %>
+</p>
+<h2>Seiten dieser Demo-WebApp:</h2>
+<p>
+<ul>
+    <li><a href="/hello/">/hello/ - die Hauptseite</a></li>
+    <li><a href="index.html">index.html - eine statische HTML-Seite</a></li>
+    <li><a href="index.jsp">index.jsp - eine einfache JSP-Seite</a></li>
+    <!--<li><a href="HelloServlet"></a>HelloServlet - ein einfaches Servlet</li>-->
+</ul>
 </p>
 </body>
 </html>
