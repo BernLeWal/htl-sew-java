@@ -169,12 +169,27 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
    (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
    It calculates the total amount of deaths per year.
    
-### server.web
+### server.http
  * __MiniWebServer__ demonstrates how to write a simplistic HTTP server.  
     It just supports to deliver static text-based (like html, css, js)
     and binary-based (like jpg,..) files in simple GET or POST requests.
     It also does not evaluate query parameters and response headers.
+   
+### server.db
+ * __JdbcDemo__ shows how to use a very simple database based on SQLite.
 
+### server.webapp 
+This module contains all demos for web-application, based on the Jakarta (JavaEE 9) framework.  
+[Jetty from Eclipse](https://www.eclipse.org/jetty/) in the version 11.0 is used as servlet-container.  
+A short introduction how to build you first webapp by yourself can be found in
+[javapointers.com](https://javapointers.com/how-to/creating-web-application-using-maven-in-intellij/)  
+ATTENTION: You need to use the jetty-plugin of version 11.0.0. in order to support Java 15.  
+
+To start the webapps use the maven command: ```mvn jetty:run```
+
+### server.webapp.hello
+ * __HelloServlet__ demonstrates how simple Servlets are programmed and executed in a web-app.  
+    A JSTL introduction can be found in [A Guide to the JSTL Library \| Baeldung](https://www.baeldung.com/jstl)
 
 ## Module 6: Enhanced Programming Concepts
 

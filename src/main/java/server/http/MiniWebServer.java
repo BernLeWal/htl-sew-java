@@ -1,4 +1,4 @@
-package server.web;
+package server.http;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -12,7 +12,7 @@ import java.net.Socket;
  * It also does not evaluate query parameters and request headers.
  */
 public class MiniWebServer {
-    public static final String WWW_FILES_BASE_PATH = "/www";
+    public static final String WWW_FILES_BASE_PATH = "/static";
 
     private static int thread_count = 0;
 
