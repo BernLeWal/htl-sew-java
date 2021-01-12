@@ -1,9 +1,6 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Bernhard
-  Date: 12.01.2021
-  Time: 14:54
-  To change this template use File | Settings | File Templates.
+  hello_jstl.jsp demonstrates the basic use of JSTL inside JSP files in a web-app.
+  for a JSTL-Tutorial see https://www.baeldung.com/jstl
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>

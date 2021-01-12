@@ -185,7 +185,8 @@ ATTENTION: You need to use the jetty-plugin of version 11.0.0. in order to suppo
 To start the webapps use the maven command: ```mvn jetty:run```
 
 ### server.webapp.hello
- * __HelloServlet__ demonstrates how simple Servlets are programmed and executed in a web-app.
+ * __HelloServlet__ demonstrates how simple Servlets are programmed and executed in a web-app.  
+    A JSTL introduction can be found in [A Guide to the JSTL Library \| Baeldung](https://www.baeldung.com/jstl)
 
 ## Module 6: Enhanced Programming Concepts
 
