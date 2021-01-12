@@ -175,6 +175,17 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
     and binary-based (like jpg,..) files in simple GET or POST requests.
     It also does not evaluate query parameters and response headers.
 
+### server.webapp 
+This module contains all demos for web-application, based on the Jakarta (JavaEE 9) framework.  
+[Jetty from Eclipse](https://www.eclipse.org/jetty/) in the version 11.0 is used as servlet-container.  
+A short introduction how to build you first webapp by yourself can be found in
+[javapointers.com](https://javapointers.com/how-to/creating-web-application-using-maven-in-intellij/)  
+ATTENTION: You need to use the jetty-plugin of version 11.0.0. in order to support Java 15.  
+
+To start the webapps use the maven command: ```mvn jetty:run```
+
+### server.webapp.hello
+ * __HelloServlet__ demonstrates how simple Servlets are programmed and executed in a web-app.
 
 ## Module 6: Enhanced Programming Concepts
 

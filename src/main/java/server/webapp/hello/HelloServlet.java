@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.Enumeration;
 
+/**
+ * HelloServlet demonstrates how simple Servlets are programmed and executed in a web-app.
+ */
 public class HelloServlet implements Servlet {
     private String message;
 
@@ -67,6 +70,7 @@ public class HelloServlet implements Servlet {
                 <li><a href="index.html">index.html - eine statische HTML-Seite</a></li>
                 <li><a href="index.jsp">index.jsp - eine einfache JSP-Seite</a></li>
                 <li><a href="HelloServlet">HelloServlet - ein einfaches Servlet</a></li>
+                <li><a href="hello_jstl.jsp">hello_jstl.jsp - eine JSP-Seite mit JSTL</a></li>
             </ul>
             </p>
                 """);
