@@ -194,6 +194,9 @@ To start the webapps use the maven command: ```mvn jetty:run```
  * __HelloWebappSetup__ initialized the SQLite database used in the jstl_with_sql.jsp page.
     Remarks: For a productive webapp it is better to create the database outside the web-pages.
 
+### server.webapp.macdagoberts
+ * __MacdagobertsWebappSetup__ initialized the SQLite database used in the MacDagobert's webapp.
+
 ## Module 6: Enhanced Programming Concepts
 
 ### patterns.gameloop

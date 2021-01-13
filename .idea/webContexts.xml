@@ -4,6 +4,10 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/macdagoberts/alle.jsp" value="file://$PROJECT_DIR$/src/main/webapp/macdagoberts" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/macdagoberts/bestellung.jsp" value="file://$PROJECT_DIR$/src/main/webapp/macdagoberts" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/macdagoberts/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/macdagoberts" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/macdagoberts/neu.jsp" value="file://$PROJECT_DIR$/src/main/webapp/macdagoberts" />
       </map>
     </option>
   </component>
