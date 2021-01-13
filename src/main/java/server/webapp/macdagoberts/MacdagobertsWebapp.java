@@ -3,16 +3,43 @@ package server.webapp.macdagoberts;
 import java.sql.*;
 
 /**
- * MacdagobertsWebappSetup initialized the SQLite database used in the MacDagobert's webapp.
- * Remarks: Run this program before starting the webapp!
+ * MacdagobertsWebapp initialized the SQLite database used in the MacDagobert's webapp
+ * and provides a singleton instance to access the datalayer functions.
+ *
+ * Remarks: Run getInstance().setup() before starting the webapp!
  */
-public class MacdagobertsWebappSetup {
+public class MacdagobertsWebapp {
+    // constants define the database-server, -driver and datasource
     public static final String JDBC_DRIVER = "org.sqlite.JDBC";
     public static final String DATABASE_NAME = "resources/server/webapp/macdagoberts/MacDagoberts.db";
 
+
+    //
+    // singleton-pattern to retrieve the one and only instance for the webapp
+    // late binding is used, so that the instance is only created when really used for the first time.
+    //
+    private static MacdagobertsWebapp instance;
+
+    public static MacdagobertsWebapp getInstance() {
+        if (instance==null) {
+            try {
+                instance = new MacdagobertsWebapp();
+            } catch (ClassNotFoundException e) {
+                System.err.println("ERROR: JDBC-driver count not be loaded! Install the driver for " + JDBC_DRIVER);
+                e.printStackTrace();
+            } catch (SQLException e) {
+                System.err.println("ERROR: Datasource could not be opened! Check that file access is possible to " + DATABASE_NAME);
+                e.printStackTrace();
+            }
+        }
+        return instance;
+    }
+
+
+
     private final Connection connection;
 
-    public MacdagobertsWebappSetup() throws ClassNotFoundException, SQLException {
+    private MacdagobertsWebapp() throws ClassNotFoundException, SQLException {
         // load the sqlite-JDBC driver using the current class loader
         Class.forName(JDBC_DRIVER);
 
@@ -20,12 +47,46 @@ public class MacdagobertsWebappSetup {
         connection = DriverManager.getConnection("jdbc:sqlite:src/main/" + DATABASE_NAME);
     }
 
-    public void run() {
+    public void setup() {
         System.out.println("Setup SQLite database in " + DATABASE_NAME);
 
         recreateTableSpeisen();
         recreateTableBestellungen();
         testTableBestellungen();
+    }
+
+    public int getNextOrderId() {
+        try (
+                Statement statement = connection.createStatement()
+        ) {
+            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+
+            // fetch max id-number
+            int id = 1;
+            ResultSet rs = statement.executeQuery("select max(id) from bestellungen");
+            while (rs.next()) {
+                // read the result set
+                id = rs.getInt(1) + 1;
+            }
+            return id;
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return 0;
+        }
+    }
+
+    public int removeOrder(int id) {
+        try (
+                Statement statement = connection.createStatement()
+        ) {
+            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+            System.out.println("Remove bestellung " + id);
+            return statement.executeUpdate("delete from bestellungen where id=" + id);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return -1;
+        }
     }
 
     private void recreateTableSpeisen() {
@@ -121,7 +182,7 @@ public class MacdagobertsWebappSetup {
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
             // fetch max id-number
-            int id = getNextOrderId(connection);
+            int id = getNextOrderId();
             System.out.println("\tNext id for bestellungen is " + id);
 
             // add a new order
@@ -142,14 +203,14 @@ public class MacdagobertsWebappSetup {
             }
 
             // check if the next orderid is valid
-            int nextId = getNextOrderId(connection);
+            int nextId = getNextOrderId();
             System.out.println("\tNext id for bestellungen is " + nextId);
 
             // remove the order
-            removeOrder(connection, id);
+            removeOrder(id);
 
             // check if the next orderid is valid
-            nextId = getNextOrderId(connection);
+            nextId = getNextOrderId();
             System.out.println("\tNext id for bestellungen is " + nextId);
 
         } catch (SQLException e) {
@@ -159,50 +220,8 @@ public class MacdagobertsWebappSetup {
         }
     }
 
-    public static int getNextOrderId(Connection connection) {
-        try (
-                Statement statement = connection.createStatement()
-        ) {
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-            // fetch max id-number
-            int id = 1;
-            ResultSet rs = statement.executeQuery("select max(id) from bestellungen");
-            while (rs.next()) {
-                // read the result set
-                id = rs.getInt(1) + 1;
-            }
-            return id;
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return 0;
-        }
-    }
-
-    public static int removeOrder(Connection connection, int id) {
-        try (
-                Statement statement = connection.createStatement()
-        ) {
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            System.out.println("Remove bestellung " + id);
-            return statement.executeUpdate("delete from bestellungen where id=" + id);
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return -1;
-        }
-    }
-
 
     public static void main(String[] args) {
-        try {
-            new MacdagobertsWebappSetup().run();
-        } catch (ClassNotFoundException e) {
-            System.err.println("ERROR: JDBC-driver count not be loaded! Install the driver for " + JDBC_DRIVER);
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.err.println("ERROR: Datasource could not be opened! Check that file access is possible to " + DATABASE_NAME);
-            e.printStackTrace();
-        }
+        getInstance().setup();
     }
 }
