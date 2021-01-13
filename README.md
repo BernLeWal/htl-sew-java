@@ -191,6 +191,9 @@ To start the webapps use the maven command: ```mvn jetty:run```
  * __HelloServlet__ demonstrates how simple Servlets are programmed and executed in a web-app.  
     A JSTL introduction can be found in [A Guide to the JSTL Library \| Baeldung](https://www.baeldung.com/jstl)
 
+ * __HelloWebappSetup__ initialized the SQLite database used in the jstl_with_sql.jsp page.
+    Remarks: For a productive webapp it is better to create the database outside the web-pages.
+
 ## Module 6: Enhanced Programming Concepts
 
 ### patterns.gameloop

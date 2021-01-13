@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Hello JSP</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <h1>Hello JSP</h1>
@@ -45,7 +46,8 @@
     <li><a href="index.html">index.html - eine statische HTML-Seite</a></li>
     <li><a href="index.jsp">index.jsp - eine einfache JSP-Seite</a></li>
     <li><a href="HelloServlet">HelloServlet - ein einfaches Servlet</a></li>
-    <li><a href="hello_jstl.jsp">hello_jstl.jsp - eine JSP-Seite mit JSTL</a></li>
+    <li><a href="jstl.jsp">jstl.jsp - eine JSP-Seite mit JSTL</a></li>
+    <li><a href="jstl_with_sql.jsp">jstl_with_sql.jsp - eine JSP-Seite mit eingebauten SQL-Abfragen</a></li>
 </ul>
 </p>
 </body>

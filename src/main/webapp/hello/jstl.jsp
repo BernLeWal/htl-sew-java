@@ -1,6 +1,6 @@
 <%--
-  hello_jstl.jsp demonstrates the basic use of JSTL inside JSP files in a web-app.
-  for a JSTL-Tutorial see https://www.baeldung.com/jstl
+  jstl.jsp demonstrates the basic use of JSTL inside JSP files in a web-app.
+  For a JSTL-Tutorial see https://www.baeldung.com/jstl
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -10,9 +10,13 @@
 <html>
 <head>
     <title>Hello JSTL</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <h1>Hello JSTL!</h1>
+<p>
+    Auf <a href="https://www.baeldung.com/jstl">baeldung.com</a> findest du ein JSTL-Tutorial zur Einführung.
+</p>
 <h2>Demo von JSP-Funktionalitäten</h2>
 <p>
     <c:set var="string1" value="This is a string stored in an JSTL variable."/>
@@ -26,7 +30,8 @@
     <li><a href="index.html">index.html - eine statische HTML-Seite</a></li>
     <li><a href="index.jsp">index.jsp - eine einfache JSP-Seite</a></li>
     <li><a href="HelloServlet">HelloServlet - ein einfaches Servlet</a></li>
-    <li><a href="hello_jstl.jsp">hello_jstl.jsp - eine JSP-Seite mit JSTL</a></li>
+    <li><a href="jstl.jsp">jstl.jsp - eine JSP-Seite mit JSTL</a></li>
+    <li><a href="jstl_with_sql.jsp">jstl_with_sql.jsp - eine JSP-Seite mit eingebauten SQL-Abfragen</a></li>
 </ul>
 </p>
 </body>
