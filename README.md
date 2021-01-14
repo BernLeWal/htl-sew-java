@@ -169,6 +169,12 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
    (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
    It calculates the total amount of deaths per year.
    
+ * __NicerOpenDataDemo__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):  
+    _"Katalog Gestorbene in Österreich (ohne Auslandssterbefälle) ab 2000 nach Kalenderwoche"_
+    (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
+    Improvement: It stores the data in specific objects instead of unspecific tables of strings.    
+    It calculates the total amount of deaths per year, per agegroup and per male/female
+   
 ### server.http
  * __MiniWebServer__ demonstrates how to write a simplistic HTTP server.  
     It just supports to deliver static text-based (like html, css, js)
@@ -190,6 +196,12 @@ To start the webapps use the maven command: ```mvn jetty:run```
 ### server.webapp.hello
  * __HelloServlet__ demonstrates how simple Servlets are programmed and executed in a web-app.  
     A JSTL introduction can be found in [A Guide to the JSTL Library \| Baeldung](https://www.baeldung.com/jstl)
+
+ * __HelloWebappSetup__ initialized the SQLite database used in the jstl_with_sql.jsp page.
+    Remarks: For a productive webapp it is better to create the database outside the web-pages.
+
+### server.webapp.macdagoberts
+ * __MacdagobertsWebapp__ initialized the SQLite database used in the MacDagobert's webapp.
 
 ## Module 6: Enhanced Programming Concepts
 

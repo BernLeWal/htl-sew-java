@@ -24,8 +24,8 @@ public class JdbcDemo {
             ResultSet rs = statement.executeQuery("select * from person");
             while (rs.next()) {
                 // read the result set
-                System.out.println("name = " + rs.getString("name"));
-                System.out.println("id = " + rs.getInt("id"));
+                System.out.print("person: name = " + rs.getString("name"));
+                System.out.println(", id = " + rs.getInt("id"));
             }
         } catch (SQLException e) {
             // if the error message is "out of memory",

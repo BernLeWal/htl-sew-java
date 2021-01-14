@@ -37,8 +37,7 @@ Kommentare sind beliebige Erklärungstexte für den Programmier und enthalten ke
 d.h. Kommentare werden nicht ausgeführt.
 
 ```java
-// Alles nach diesen beiden Zeichen ist Erklärungstext
-// (gehört nicht zum Code). 
+// Alles nach diesen beiden Zeichen ist Erklärungstext (gehört nicht zum Code). 
 
 /* Kann überall zwischen oder hinter dem Code eingefügt werden. */
 ```
@@ -70,7 +69,7 @@ int h,k,l;	// Es können auch mehrere Datentypen (vom
 }
 ```
 
-## 2. Variablen und einfache Ausgabe 
+## 2. Variablen 
 
 ### Initialisierung von Variablen durch Zuweisung eines Wertes
 Zuweisungen passieren immer von rechts nach links
@@ -86,7 +85,8 @@ double pi = 3.14159;
 x = pi;
 ```
 
-### Die Klasse String: Objekte sind keine Datentypen
+### Text und Zeichenketten (String)
+Hinweise: Objekte sind keine primitiven Datentypen
 ```javascript
 // Klassenname objektname = new Klassenname(); 
 String text = new String(); // Das Objekt ist hier „text“ von der Klasse String
@@ -96,13 +96,24 @@ wort = new String();	    // und hier wird initialisiert.
 
 ```
 
+## 3. Mit dem User interagieren: einfache Ein- und Ausgabe
+
 ### Ausgabe von Text und Variablenwerten
 ```javascript
 System.out.println("Ausgabe von Text " + variable); // mit Zeilenumbruch
 System.out.print("Ausgabe von Text " + variable);   // ohne Zeilenumbruch
 ```
 
-## 3. Bedingungen, Verzweigungen und Schleifen
+### Tastatureingaben
+Die Eingabe über die Tastatur kann man z.B. mit der Klasse Scanner durchführen
+```javascript
+Scanner sc = new Scanner(System.in);
+wort = sc.next();   // ein Wort einlesen
+i = sc.nextInt();   // eine Zahl einlesen
+zeile = sc.nextLine();  // eine ganze Textzeile einlesen (bis der User die ENTER-Taste drückt)
+```
+
+## 4. Ablaufsteuerung in Programmen
 
 ### Einfache Verzweigung ```if```
 Verzweigungen sind immer an Bedingungen geknüpft.
@@ -189,17 +200,207 @@ while (i < b);
 ```
 
 ### Und-/Oder- Verknüpfungen
-Logische UND Verknüpfung: beide Bedingungen müssen wahr sein
+__Logische UND Verknüpfung__: beide Bedingungen müssen wahr sein.
+
 ```javascript
-if(Bedingung1 && Bedingung2) { }
+if(Bedingung1 && Bedingung2) { 
+    // weiteren Code hier einfügen
+}
+```
+&& ... Wenn Bedingung1 bereits falsch ist, dann wird Bedingung2 nicht mehr geprüft.  
+& ... Es werden immer beide Bedingungen geprüft.
+
+__Logische ODER Verknüpfung__: zumindest eine der beiden Bedingungen muss wahr sein
+```javascript
+if (Bedingung1 || Bedingung2) { 
+    // weiteren Code hier einfügen
+}
+```
+|| ... Wenn Bedingung1 bereits wahr ist, dann wird Bedingung2 nicht mehr geprüft.  
+| ... Es werden immer beide Bedingungen geprüft.
+
+## 5. Arbeit mit Variablen und Werten
+
+### Umwandlung von Datentypen
+In Java Zeichenketten in Nummern umwandeln und umgekehrt.
+
+__Nummern in Strings umwandeln:__  
+Für das Umwandeln von beliebigen primitiven Datentypen in Strings kann man die statische Hilfsfunktion String.valueOf(…) verwenden. 
+Beispiele:
+```javascript
+String si = String.valueOf(i);  // aus int wird String
+String sf = String.valueOf(f);  // aus float wird String
+String sd = String.valueOf(d);  // aus double wird String
 ```
 
-Logische ODER Verknüpfung: zumindest eine der beiden Bedingungen muss wahr sein
+__Gleitkommazahlen formatieren:__  
+Mit der Hilfsfunktion String.format(…) kann man Zahlen schön formatieren, 
+d.h. die Anzahl der zu erzeugenden Zeichen und Nachkommastellen angeben. 
+Dabei ist der erste Parameter der sogenannte Format-String und 
+der zweite Parameter enthält den Wert der ausgegeben werden soll. 
+Beispiele:
 ```javascript
-if(Bedingung1 || Bedingung2) { }
+String sfd = String.format("%5d", i);   
+// liefert "   17" (insgesamt 5 Zeichen)
+
+String sff = String.format("%5.2f", f);
+// liefert " 1,20" (insgesamt 5 Zeichen; 2 Nachkommast.)
 ```
 
-## 4.Arrays
+__(Einfache) Umwandlung von Strings in Nummern:__  
+Für die Umwandlung von Zeichenketten in primitive Datentypen können die Wrapper-Klassen verwendet werden, 
+die zu jedem Datentyp existieren, z.B. die Klasse Integer für int, Double für double und Float für float.
+```javascript
+int i = Integer.valueOf("17").intValue();
+float f = Float.valueOf("1.2").floatValue();
+double d = Double.valueOf("1.22").doubleValue();
+```
+Achtung: Kann der String nicht umgewandelt werden, so liefert der obengenannte Code den Wert 0.
+
+__Casting__: Umwandlung von Werten zwischen primitiven Datentypen  
+Zahlenwerte können nicht einfach zwischen unterschiedlichen primitiven Datentypen ausgetauscht werden, der Programmierer muss explizit angeben wenn ein Wert bzw. eine Variable als ein anderer Datentyp verwendet werden soll – das nennt man Casten.
+```javascript
+float f_i = (float)17; // ergibt float mit Wert 17.0f
+int i_d = (int)1.2;    // ergibt int mit Wert 1. ACHTUNG: Datenverlust!
+double d_f = (double)1.2f; // ergibt double Wert 1.2
+```
+
+### Strings
+In Java mit Zeichenketten arbeiten.
+
+__String erzeugen und initialisieren:__
+```javascript
+String zeichenkette = new String();
+zeichenkette = "Das ist ein Text!";
+
+// Weitere Möglichkeiten einen String zu initialisieren:
+String zeichenkette2 = "Das ist ein Text!";
+String zeichenkette3 = new String("Das ist ein Text!");
+```
+__Zeichen und Zeichenketten auslesen:__
+```javascript
+zeichenkette = "Das ist ein Text!";
+//  Position:   0   4  7    12
+
+// charAt(…) liefert das Zeichen an der angegebenen Stelle
+char zeichenT = zeichenkette.charAt( 12 );       // 'T'
+
+// substring(… , …) mit zwei Parameter liefert den Teil vom Start- bis zum Endindex
+String kopie1 = zeichenkette.substring(4,7);     // "ist"
+// substring(…) mit einem Parameter liefert die Teilzeichenkette ab dem Index bis zum Ende
+String kopie2 = zeichenkette.substring(12);      // "Text!"
+```
+__Anzahl der Zeichen in einer Zeichenkette:__
+```javascript
+int laenge = zeichenkette.length();
+// liefert die Länge der Zeichenkette, hier 17
+```
+__Suchen in Zeichenketten:__
+```javascript
+int pos1 = zeichenkette.indexOf("ein");     // liefert die Anfangsposition einer Teilzeichenkette (hier: pos=8),
+                                            //bei Nichtfinden ist pos=-1
+int pos2 = zeichenkette.indexOf("ein", 9);  // wie vorher, beginnt aber erst bei Parameter2 (Startwert=9)
+                                            //zu suchen, (Ergebnis: pos=-1)
+```
+__Vergleichen von Zeichenketten:__
+```javascript
+// vergleicht ob beide Texte inkl. Groß-/kleinschreibung ident sind:
+boolean gleicherText =
+    zeichenkette.equals("Das ist ein Text!");           //true
+boolean gleicherInhalt =
+    zeichenkette.equalsIgnoreCase("das ist ein text!"); //true
+```
+
+### Zufallszahlen
+```javascript
+// Math.random() gibt eine Zufallszahl zwischen 0 und 1 vom Typ double aus.
+int zufallszahl = (int)(Math.random()*50+1);    // Zufallszahl zwischen 1 und 50
+```
+
+### Restwertdivision
+```javascript
+if (i % 2 == 0) {
+    // weiteren Code hier einfügen, um alle geraden Zahlen von "i" herauszufinden
+}
+```
+
+## 6. Unterprogramme und Funktionen
+
+### Methoden von Objekten
+Objekte die von Klassen erstellt werden (z.B. sc vom Scanner oder von String) bieten Methoden an, die aufgerufen werden können.
+Methoden sind eine Art Teil-Programme (Unterprogramme, Funktionen) die man nutzen kann.
+Näheres dazu siehe [Modul 2: Objektorientiertes Programmieren](Module2_de.md).
+```javascript
+// Rückgabetyp wert = objektname.methodenname(Parametertyp parname1,..);
+String eingabeText = sc.next(); // Scanner sc = new Scanner(System.in);
+int eingabeWert = sc.nextInt();
+```
+
+### Statische Methoden
+Diese Methoden kann man direkt von Klassen aufrufen (man muss kein Objekt erzeugen).
+```javascript
+// Rückgabetyp wert = Klassenname.methodenname(Parametertyp parname1,..);
+double x = Math.sqrt(1234);
+double y = Math.sin(x);
+```
+
+### Die Idee von eigenen Unterprogrammen und Funktionen
+__Was ist eine Prozedur/Funktion?__  
+Eine Prozedur/Funktion ist ein „Name“, der mit bestimmtem Code verknüpft ist, sie können…
+ * …Informationen an eine Funktion übergeben --> mittels (Funktions-)Parametern
+ * …Funktionen Code ausführen lassen --> (Funktions-)Implementierung
+ * …dafür sorgen, dass die Funktion auch Informationen zurückgibt --> Rückgabewert
+
+__Wann soll ich mit einer Funktion arbeiten?__  
+...für immer _wiederkehrende Arbeiten_, die sich von der Art her _sehr ähnelt_.
+
+__Vorgang beim Erstellen von Funktionen:__
+1.	Gemeinsame Kennzeichen des Problems aufgreifen...
+2.	...In eine separate Funktion verschieben
+3.	So bleiben nur noch die Unterschiede übrig
+4.	--> diese als Parameter beim Funktionsaufruf verwenden.
+
+__Vorteile:__
+ * Tipparbeit sparen
+ * Fehlerprüfung durch den Computer (Compiler)
+ * Wiederverwendbarkeit
+ * Behandlung von Bugs: einmal reparieren überall funktioniert es richtig
+ * Code ist einfacher zu lesen/verstehen und zu pflegen
+
+### Eigene (statische) Methoden
+```javascript
+// Aufruf der Methode ohne Rückgabewert aus der Eigenen Klasse:
+// EigenerKlassenname.methodenname(parameter1, parameter2);
+Main.multipliziereUndAusgeben(5,4); // Eigenen Klasse ist “Main“
+
+// Aufruf der Methode mit Rückgabewert aus der Eigenen Klasse:
+// Rückgabetyp wert = EigenerKlassenname.methodenname(param1, param2);
+int wert = Main.multipliziere(5,4); // Eigenen Klasse ist “Main“
+
+
+// Syntax:  statische Methode ohne Rückgabewert
+//public static void methodenname(Parametertyp1 par1, Parametertyp2 par2) {
+//  //weiteren Code hier einfügen.
+//} 
+// Beispiel:
+public static void multipliziereUndAusgeben(int x, int y) {
+    int ergebnis = x*y;
+    System.out.println(ergebnis);
+}
+
+// Syntax:  statische Methode mit Rückgabewert
+//public static Rückgabetyp methodenname(Parametertyp1 par1, Parametertyp2 par2) {
+//  //weiteren Code hier einfügen.
+//  return ergebnis;
+//} 
+// Beispiel:
+public int void multipliziere(int x, int y) {
+    int ergebnis = x*y;
+    return ergebnis;
+}
+```
+
+## 8. Arrays - Listen von mehreren Werten
 Ein Array ist nichts anderes als eine Liste in der Werte eines bestimmten 'Typs' stehen. 
 Diese Liste ist nummeriert von 0 an.
 
@@ -301,6 +502,50 @@ if (Arrays.equals(zahlen, zahlen2)) {
 }
 ```
 
+## 9. Datum und Zeit
+In Java mit Datum, Zeit und Perioden arbeiten.  
+Beispiele siehe [lang/DateTimeDemos.java](../src/main/java/lang/DateTimeDemos.java)
+
+### Heutiges Datum & heutige Uhrzeit ermitteln
+```javascript
+LocalDateTime now = LocalDateTime.now();    // Datum und Uhrzeit
+LocalDate dateNow = LocalDate.now();        // nur Datum
+LocalTime timeNow = LocalTime.now();        // nur Uhrzeit
+System.out.println("Heute ist der " + now.getDayOfMonth() +
+    ". " + now.getMonth().getDisplayName(TextStyle.FULL,Locale.GERMANY) +
+    " " + now.getYear());
+System.out.println("Es ist jetzt " + now.getHour() +
+    ":" + now.getMinute() + "." + now.getSecond());
+```
+### Bestimmtes Datum / bestimmte Zeit erzeugen
+```javascript
+LocalDate dateOfBirth = LocalDate.of(1976, Month.JUNE, 3);
+System.out.println("Du wurdest an einem " +
+    dateOfBirth.getDayOfWeek().getDisplayName(TextStyle.FULL,Locale.GERMANY) +
+    " geboren.");
+
+LocalTime timeUE1 = LocalTime.of(8, 15);
+System.out.println("Unterrichtsbeginn ist um " + timeUE1.getHour() + ":" + timeUE1.getMinute());
+
+Period schuljahr = Period.ofWeeks(43);
+```
+### Mit Datum und Zeit rechnen
+```javascript
+LocalDate date40er = dateOfBirth.plusYears(40);
+System.out.println("Dein 40. Geburtstag war an einem " +
+    date40er.getDayOfWeek().getDisplayName(TextStyle.FULL,Locale.GERMANY));
+
+LocalTime timeUE2 = timeUE1.plusMinutes(55);
+System.out.println("Die 2.UE beginnt um " + timeUE2.getHour() + ":" + timeUE2.getMinute());
+```
+### Datum-/Zeitdifferenzen berechnen
+```javascript
+Period lifeTime = dateOfBirth.until(dateNow);
+System.out.println("Zwischen deinem Geburtstag und jetzt liegen"+
+    lifeTime.getYears() + " Jahre, " +
+    lifeTime.getMonths() + " Monate und " +
+    lifeTime.getDays() + " Tage.");
+```
 
 
 
@@ -364,7 +609,7 @@ Teilausdruck nur dann ausgewertet, wenn er für das Ergebnis des Gesamtausdrucks
 |-----------|-----------------------------------|---------------------------------------------------------------
 | !			| Logisches NICHT					| !a ergibt false, wenn a wahr ist, und true, wenn a false ist.
 | &&		| UND mit Short-Circuit-Evaluation	| a && b ergibt true, wenn sowohl a als auch b wahr sind. Ist a bereits falsch, so wird false zurückgegeben und b nicht mehr ausgewertet.
-| \| \|		| ODER mit Short-Circuit-Evaluation	| a \|\| b ergibt true, wenn mindestens einer der beiden Ausdrücke a oder b wahr ist. Ist bereits a wahr, so wird true zurückgegeben und b nicht mehr ausgewertet.
+| \|\|	    | ODER mit Short-Circuit-Evaluation	| a \|\| b ergibt true, wenn mindestens einer der beiden Ausdrücke a oder b wahr ist. Ist bereits a wahr, so wird true zurückgegeben und b nicht mehr ausgewertet.
 | &			| UND ohne Short-Circuit-Evaluation	| a & b ergibt true, wenn sowohl a als auch b wahr sind. Beide Teilausdrücke werden ausgewertet.
 | \|		| ODER ohne Short-Circuit-Eval.		| a \| b ergibt true, wenn mindestens einer der beiden Ausdrücke a oder b wahr ist. Beide Teilausdrücke werden ausgewertet.
 | ^			| Exklusiv-ODER						| a ^ b ergibt true, wenn beide Ausdrücke einen unterschiedlichen Wahrheitswert haben.

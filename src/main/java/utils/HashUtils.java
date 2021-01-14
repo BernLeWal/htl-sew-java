@@ -34,4 +34,11 @@ public class HashUtils {
         }
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        // demonstrate the use of the hash function
+        System.out.println("The MD5 hash of 'class' is '" + hash("class") + "'");
+        System.out.println("The MD5 hash of 'admin' is '" + hash("admin") + "'");
+        System.out.println("The MD5 hash of '' is '" + hash("") + "'");
+    }
 }
