@@ -267,6 +267,7 @@ double d_f = (double)1.2f; // ergibt double Wert 1.2
 
 ### Strings
 In Java mit Zeichenketten arbeiten.
+[lang/Demo05Strings.java](../src/main/java/lang/Demo05Strings.java)
 
 __String erzeugen und initialisieren:__
 ```javascript
