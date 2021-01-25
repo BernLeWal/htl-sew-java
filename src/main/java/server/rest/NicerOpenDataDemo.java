@@ -81,4 +81,133 @@ public class NicerOpenDataDemo {
             e.printStackTrace();
         }
     }
+
+    public static class CalculatedDeathsPerYear {
+        private int totalDeaths;
+        private int deathsYonger65;
+        private int deathsOlder65;
+        private int deathsMale;
+        private int deathsFemale;
+
+        public int getTotalDeaths() {
+            return totalDeaths;
+        }
+
+        public int getDeathsYonger65() {
+            return deathsYonger65;
+        }
+
+        public int getDeathsOlder65() {
+            return deathsOlder65;
+        }
+
+        public int getDeathsMale() {
+            return deathsMale;
+        }
+
+        public int getDeathsFemale() {
+            return deathsFemale;
+        }
+
+        public void incTotalDeaths(int value) {
+            totalDeaths += value;
+        }
+
+        public void incDeathsYounger65(int value) {
+            deathsYonger65 += value;
+        }
+
+        public void incDeathsOlder65(int value) {
+            deathsOlder65 += value;
+        }
+
+        public void incDeathsMale(int value) {
+            deathsMale += value;
+        }
+
+        public void incDeathsFemale(int value) {
+            deathsFemale += value;
+        }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "total=" + totalDeaths +
+                    ", yonger65=" + deathsYonger65 +
+                    ", older65=" + deathsOlder65 +
+                    ", male=" + deathsMale +
+                    ", female=" + deathsFemale +
+                    '}';
+        }
+    }
+
+    public static class DeathsPerWeek {
+        private int year;
+        private int weekNr;
+        private int province;
+        private int ageGroup;
+        private int sex;
+
+        private int deaths;
+
+        public int getYear() {
+            return year;
+        }
+
+        public void setYear(int year) {
+            this.year = year;
+        }
+
+        public int getWeekNr() {
+            return weekNr;
+        }
+
+        public void setWeekNr(int weekNr) {
+            this.weekNr = weekNr;
+        }
+
+        public int getProvince() {
+            return province;
+        }
+
+        public void setProvince(int province) {
+            this.province = province;
+        }
+
+        public int getAgeGroup() {
+            return ageGroup;
+        }
+
+        public void setAgeGroup(int ageGroup) {
+            this.ageGroup = ageGroup;
+        }
+
+        public int getSex() {
+            return sex;
+        }
+
+        public void setSex(int sex) {
+            this.sex = sex;
+        }
+
+        public int getDeaths() {
+            return deaths;
+        }
+
+        public void setDeaths(int deaths) {
+            this.deaths = deaths;
+        }
+
+        @Override
+        public String toString() {
+            return "DeathsPerWeek{" +
+                    "year=" + year +
+                    ", weekNr=" + weekNr +
+                    ", province=" + province +
+                    ", ageGroup=" + ageGroup +
+                    ", sex=" + sex +
+                    ", deaths=" + deaths +
+                    '}';
+        }
+    }
 }

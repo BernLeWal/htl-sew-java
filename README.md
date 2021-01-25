@@ -174,6 +174,13 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
     (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
     Improvement: It stores the data in specific objects instead of unspecific tables of strings.    
     It calculates the total amount of deaths per year, per agegroup and per male/female
+
+ * __MapQuestDirectionsDemo__ shows how to use REST-GET Webservice calls to the MapQuest-Directions API
+    to build a very simple road/tour-navigation system.  
+    It uses the URL-class to do the HTTP transfers and the Jackson-Library to parse JSON.  
+    API-Documentation see (https://developer.mapquest.com/documentation/directions-api)  
+    __ATTENTION__: You must provide a authentication-key (stored in MAPQUEST_API_KEY) to use that service!
+    see (https://developer.mapquest.com/) - Get a free API key
    
 ### server.http
  * __MiniWebServer__ demonstrates how to write a simplistic HTTP server.  
