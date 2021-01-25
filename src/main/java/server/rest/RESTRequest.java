@@ -44,7 +44,7 @@ public class RESTRequest {
         return headerParams.get(key);
     }
 
-    public RESTResponse execute() throws RESTException {
+    public RESTResponse get() throws RESTException {
         StringBuilder rawUrl = new StringBuilder();
         rawUrl.append(resourceUrl);
 

@@ -1,9 +1,15 @@
 package server.rest;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
+import java.util.ArrayList;
+
 /**
  * MapQuestDirections implements the Directions-API from the MapQuest webserver.
+ * API-Documentation see https://developer.mapquest.com/documentation/directions-api
  *
  * ATTENTION: You must provide a authentication-key (stored in MAPQUEST_API_KEY) to use that service!
+ * see https://developer.mapquest.com/ - Get a free API key
  */
 public class MapQuestDirections {
     public static String MAPQUEST_API_KEY = null;
@@ -51,9 +57,22 @@ public class MapQuestDirections {
         }
     }
 
+    public class Maneuver {
+        public String narrative;
+        public double distance;
+        public String mapUrl;
+    }
+
+    // inputs to the REST-call
     private Unit unit = Unit.KILOMETERS;
     private RouteType routeType = RouteType.FASTEST;
     private Locale locale = Locale.de_DE;
+
+    // outputs of the REST-call
+    private int statuscode;
+    private String formattedTime;
+    private double distance;
+    private ArrayList<Maneuver> maneuvers = new ArrayList<>();
 
     public Unit getUnit() {
         return unit;
@@ -79,6 +98,21 @@ public class MapQuestDirections {
         this.locale = locale;
     }
 
+    public int getStatuscode() {
+        return statuscode;
+    }
+
+    public String getFormattedTime() {
+        return formattedTime;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    //
+    // Operations:
+    //
     public boolean query(String from, String to) throws RESTException {
         if( MAPQUEST_API_KEY==null || MAPQUEST_API_KEY.isEmpty() ) {
             throw new RESTException(500, "No authorization key provided!");
@@ -94,7 +128,34 @@ public class MapQuestDirections {
         rq.setQueryParam("routeType", routeType.value);
         rq.setQueryParam("locale", locale.value);
 
-        RESTResponse rs = rq.execute();
+        RESTResponse rs = rq.get();
+
+        // parse JSON-tree
+        JsonNode json = rs.readAsJSON();
+
+        this.statuscode = json.get("info").get("statuscode").asInt();
+        this.formattedTime = json.get("route").get("formattedTime").asText();
+        this.distance = json.get("route").get("distance").asDouble();
+
+        var ms = json.get("route").get("legs").get(0).get("maneuvers");
+        for( JsonNode child : ms ) {
+            Maneuver maneuver = new Maneuver();
+            maneuvers.add(maneuver);
+            maneuver.narrative = child.get("narrative").asText();
+            maneuver.distance = child.get("distance").asDouble();
+            if( child.has("mapUrl") )
+                maneuver.mapUrl = child.get("mapUrl").asText();
+        }
+
+        // output the results
+        System.out.printf("API status: %d = Route erfolgreich ermittelt.\n", statuscode);
+        System.out.printf("Reisedauer: %s\n", formattedTime);
+        System.out.printf("Distanz: %.2f\n", distance);
+
+        System.out.println("============================");
+        for( Maneuver m : maneuvers ) {
+            System.out.printf("%s (%.2f km)\n", m.narrative, m.distance);
+        }
 
         return true;
     }
