@@ -3,10 +3,13 @@ package ui.fx.fxml;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.util.Pair;
 import server.rest.MapQuestDirections;
 import server.rest.RESTException;
 import utils.StringUtils;
@@ -19,14 +22,13 @@ import utils.StringUtils;
 public class RoutePlannerMainWindowController {
     public TextField textFrom;
     public TextField textTo;
-    public ListView listView;
+    public ListView<Pair<String, String>> listView;
     public ImageView imageView;
     public Label labelStatus;
     public Button buttonClear;
     public Button buttonRun;
 
-    private final StringProperty fromProperty = new SimpleStringProperty();
-    private final StringProperty toProperty = new SimpleStringProperty();
+    private final StringProperty mapUrlProperty = new SimpleStringProperty();
 
     @FXML
     public void initialize() {
@@ -36,27 +38,25 @@ public class RoutePlannerMainWindowController {
 
         // 1st: define the data sources and bind them to a property
         // (on the properties the automatic binding mechanisms are implemented)
-        fromProperty.bind( textFrom.textProperty() );
-        toProperty.bind( textTo.textProperty() );
 
         // 2st: define how the binding-values are calculated
         BooleanBinding isClearButtonDisabled = new BooleanBinding() {
             @Override
             protected boolean computeValue() {
-                return StringUtils.isNullOrEmpty(fromProperty.get()) && StringUtils.isNullOrEmpty(toProperty.get());
+                return StringUtils.isNullOrEmpty(textFrom.textProperty().get()) && StringUtils.isNullOrEmpty(textTo.textProperty().get());
             }
         };
 
         BooleanBinding isRunButtonDisabled = new BooleanBinding() {
             @Override
             protected boolean computeValue() {
-                return StringUtils.isNullOrEmpty(fromProperty.get()) || StringUtils.isNullOrEmpty(toProperty.get());
+                return StringUtils.isNullOrEmpty(textFrom.textProperty().get()) || StringUtils.isNullOrEmpty(textTo.textProperty().get());
             }
         };
 
         // 3rd: add the change listeners to the properties
-        fromProperty.addListener((o, oldVal, newVal) -> isClearButtonDisabled.invalidate());
-        toProperty.addListener((o, oldVal, newVal) -> isRunButtonDisabled.invalidate());
+        textFrom.textProperty().addListener((o, oldVal, newVal) -> isClearButtonDisabled.invalidate());
+        textTo.textProperty().addListener((o, oldVal, newVal) -> isRunButtonDisabled.invalidate());
 
         // 4th: bind the targets
         buttonClear.disableProperty().bind( isClearButtonDisabled );
@@ -106,7 +106,7 @@ public class RoutePlannerMainWindowController {
 
             System.out.println("============================");
             for( MapQuestDirections.Maneuver m : route.getManeuvers() ) {
-                listView.getItems().add( String.format("%s (%.2f km)", m.narrative, m.distance) );
+                listView.getItems().add( new Pair<>(String.format("%s (%.2f km)", m.narrative, m.distance),m.mapUrl) );
             }
         } catch (RESTException e) {
             e.printStackTrace();
