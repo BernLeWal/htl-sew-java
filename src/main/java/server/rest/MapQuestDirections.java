@@ -70,6 +70,7 @@ public class MapQuestDirections {
 
     // outputs of the REST-call
     private int statuscode;
+    private String errorMessage;
     private String formattedTime;
     private double distance;
     private ArrayList<Maneuver> maneuvers = new ArrayList<>();
@@ -102,6 +103,8 @@ public class MapQuestDirections {
         return statuscode;
     }
 
+    public String getErrorMessage() { return errorMessage; }
+
     public String getFormattedTime() {
         return formattedTime;
     }
@@ -109,6 +112,8 @@ public class MapQuestDirections {
     public double getDistance() {
         return distance;
     }
+
+    public ArrayList<Maneuver> getManeuvers() { return maneuvers; }
 
     //
     // Operations:
@@ -134,27 +139,23 @@ public class MapQuestDirections {
         JsonNode json = rs.readAsJSON();
 
         this.statuscode = json.get("info").get("statuscode").asInt();
-        this.formattedTime = json.get("route").get("formattedTime").asText();
-        this.distance = json.get("route").get("distance").asDouble();
+        if( statuscode==0 ) {
+            this.formattedTime = json.get("route").get("formattedTime").asText();
+            this.distance = json.get("route").get("distance").asDouble();
 
-        var ms = json.get("route").get("legs").get(0).get("maneuvers");
-        for( JsonNode child : ms ) {
-            Maneuver maneuver = new Maneuver();
-            maneuvers.add(maneuver);
-            maneuver.narrative = child.get("narrative").asText();
-            maneuver.distance = child.get("distance").asDouble();
-            if( child.has("mapUrl") )
-                maneuver.mapUrl = child.get("mapUrl").asText();
+            var ms = json.get("route").get("legs").get(0).get("maneuvers");
+            for (JsonNode child : ms) {
+                Maneuver maneuver = new Maneuver();
+                maneuvers.add(maneuver);
+                maneuver.narrative = child.get("narrative").asText();
+                maneuver.distance = child.get("distance").asDouble();
+                if (child.has("mapUrl"))
+                    maneuver.mapUrl = child.get("mapUrl").asText();
+            }
         }
-
-        // output the results
-        System.out.printf("API status: %d = Route erfolgreich ermittelt.\n", statuscode);
-        System.out.printf("Reisedauer: %s\n", formattedTime);
-        System.out.printf("Distanz: %.2f\n", distance);
-
-        System.out.println("============================");
-        for( Maneuver m : maneuvers ) {
-            System.out.printf("%s (%.2f km)\n", m.narrative, m.distance);
+        else
+        {
+            this.errorMessage = json.get("info").get("messages").get(0).asText();
         }
 
         return true;

@@ -18,10 +18,20 @@ public class MapQuestDirectionsDemo {
         System.out.println("Enter MapQuest Authentication Key: ");
         MapQuestDirections.MAPQUEST_API_KEY = sc.nextLine();
 
-        MapQuestDirections dir = new MapQuestDirections();
+        MapQuestDirections route = new MapQuestDirections();
 
         try {
-            dir.query("Vienna, Austria", "Schladming, Austria");
+            route.query("Vienna, Austria", "Schladming, Austria");
+
+            // output the results
+            System.out.printf("API status: %d = %s\n", route.getStatuscode(), (route.getStatuscode()==0)?"Route erfolgreich ermittelt.":route.getErrorMessage());
+            System.out.printf("Reisedauer: %s\n", route.getFormattedTime());
+            System.out.printf("Distanz: %.2f\n", route.getDistance());
+
+            System.out.println("============================");
+            for( MapQuestDirections.Maneuver m : route.getManeuvers() ) {
+                System.out.printf("%s (%.2f km)\n", m.narrative, m.distance);
+            }
         } catch (RESTException e) {
             e.printStackTrace();
         }
