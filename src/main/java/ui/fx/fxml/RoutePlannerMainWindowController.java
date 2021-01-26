@@ -1,13 +1,12 @@
 package ui.fx.fxml;
 
+import java.io.IOException;
+import java.net.URL;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 import server.rest.MapQuestDirections;
@@ -22,13 +21,15 @@ import utils.StringUtils;
 public class RoutePlannerMainWindowController {
     public TextField textFrom;
     public TextField textTo;
-    public ListView<Pair<String, String>> listView;
-    public ImageView imageView;
-    public Label labelStatus;
     public Button buttonClear;
     public Button buttonRun;
+    public ListView<Pair<String, String>> listView;
+    public ScrollPane imageViewPane;
+    public ImageView imageView;
+    public Label labelStatus;
 
-    private final StringProperty mapUrlProperty = new SimpleStringProperty();
+    public static final String DEFAULT_TEXT = "Start/Ziel eingeben und [Berechnen] klicken.";
+    private Image defaultImage;
 
     @FXML
     public void initialize() {
@@ -62,17 +63,45 @@ public class RoutePlannerMainWindowController {
         buttonClear.disableProperty().bind( isClearButtonDisabled );
         buttonRun.disableProperty().bind( isRunButtonDisabled );
 
+        //
+        // ListView and ImageView
+        //
+        defaultImage = new Image(RoutePlanner.class.getResourceAsStream("/ui/fx/placeholder.jpg"));
+
+        // listen to selection changes
+        listView.getItems().add( new Pair<>(DEFAULT_TEXT,""));
+        listView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            Image image = null;
+            if( newValue!=null ) {
+                System.out.println("ListView - Item changed to: " + newValue);
+                try {
+                    image = new Image(new URL(newValue.getValue()).openConnection().getInputStream());
+                } catch (IOException e) {
+                    System.err.println("WARNING: Failed to load image from " + newValue.getValue());
+                }
+            }
+            if( image==null ) {
+                System.out.println("ListView - No Item selected.");
+            }
+            imageView.imageProperty().set( (image!=null) ? image : defaultImage );
+        });
 
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
+        imageView.fitWidthProperty().bind(imageViewPane.widthProperty());
+        imageView.fitHeightProperty().bind(imageViewPane.heightProperty());
+
+        imageView.imageProperty().set( defaultImage );
     }
 
     // JavaFX Event Handlers
     public void onButtonClearClicked(ActionEvent actionEvent) {
         textFrom.setText("");
         textTo.setText("");
+
         listView.getItems().clear();
+        listView.getItems().add( new Pair<>(DEFAULT_TEXT,""));
 
         textFrom.requestFocus();
     }
@@ -90,6 +119,7 @@ public class RoutePlannerMainWindowController {
             MapQuestDirections.MAPQUEST_API_KEY = td.showAndWait().orElse("");
         }
 
+        listView.getItems().clear();
         MapQuestDirections route = new MapQuestDirections();
 
         try {
@@ -109,7 +139,8 @@ public class RoutePlannerMainWindowController {
                 listView.getItems().add( new Pair<>(String.format("%s (%.2f km)", m.narrative, m.distance),m.mapUrl) );
             }
         } catch (RESTException e) {
-            e.printStackTrace();
+            listView.getItems().add( new Pair<>(DEFAULT_TEXT,""));
+            labelStatus.setText( e.getLocalizedMessage() );
         }
     }
 }
