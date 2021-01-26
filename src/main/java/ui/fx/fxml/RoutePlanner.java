@@ -13,10 +13,6 @@ import java.util.Scanner;
 public class RoutePlanner extends Application {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter MapQuest Authentication Key: ");
-        MapQuestDirections.MAPQUEST_API_KEY = sc.nextLine();
-
         launch(args);
     }
 

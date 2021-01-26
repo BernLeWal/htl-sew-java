@@ -49,6 +49,9 @@
         </HBox>
     </SplitPane>
     <HBox>
+        <padding>
+            <Insets topRightBottomLeft="3"/>
+        </padding>
         <Label fx:id="labelStatus" HBox.hgrow="ALWAYS" text="Willkommen beim Routenplaner!"/>
     </HBox>
 </VBox>

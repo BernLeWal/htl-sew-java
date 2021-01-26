@@ -133,29 +133,33 @@ public class MapQuestDirections {
         rq.setQueryParam("routeType", routeType.value);
         rq.setQueryParam("locale", locale.value);
 
-        RESTResponse rs = rq.get();
+        try {
+            RESTResponse rs = rq.get();
 
-        // parse JSON-tree
-        JsonNode json = rs.readAsJSON();
+            // parse JSON-tree
+            JsonNode json = rs.readAsJSON();
 
-        this.statuscode = json.get("info").get("statuscode").asInt();
-        if( statuscode==0 ) {
-            this.formattedTime = json.get("route").get("formattedTime").asText();
-            this.distance = json.get("route").get("distance").asDouble();
+            this.statuscode = json.get("info").get("statuscode").asInt();
+            if (statuscode == 0) {
+                this.formattedTime = json.get("route").get("formattedTime").asText();
+                this.distance = json.get("route").get("distance").asDouble();
 
-            var ms = json.get("route").get("legs").get(0).get("maneuvers");
-            for (JsonNode child : ms) {
-                Maneuver maneuver = new Maneuver();
-                maneuvers.add(maneuver);
-                maneuver.narrative = child.get("narrative").asText();
-                maneuver.distance = child.get("distance").asDouble();
-                if (child.has("mapUrl"))
-                    maneuver.mapUrl = child.get("mapUrl").asText();
+                var ms = json.get("route").get("legs").get(0).get("maneuvers");
+                for (JsonNode child : ms) {
+                    Maneuver maneuver = new Maneuver();
+                    maneuvers.add(maneuver);
+                    maneuver.narrative = child.get("narrative").asText();
+                    maneuver.distance = child.get("distance").asDouble();
+                    if (child.has("mapUrl"))
+                        maneuver.mapUrl = child.get("mapUrl").asText();
+                }
+            } else {
+                this.errorMessage = json.get("info").get("messages").get(0).asText();
             }
         }
-        else
-        {
-            this.errorMessage = json.get("info").get("messages").get(0).asText();
+        catch( RESTException e) {
+            this.statuscode = -1;
+            this.errorMessage = e.getLocalizedMessage();
         }
 
         return true;

@@ -6,10 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import server.rest.MapQuestDirections;
 import server.rest.RESTException;
@@ -43,12 +40,24 @@ public class RoutePlannerMainWindowController {
     public void onButtonClearClicked(ActionEvent actionEvent) {
         textFrom.setText("");
         textTo.setText("");
-        listView.getItems().removeAll();
+        listView.getItems().clear();
 
         textFrom.requestFocus();
     }
 
     public void onButtonRunClicked(ActionEvent actionEvent) {
+        if( StringUtils.isNullOrEmpty( MapQuestDirections.MAPQUEST_API_KEY) ) {
+            TextInputDialog td = new TextInputDialog( MapQuestDirections.MAPQUEST_API_KEY);
+            td.setHeaderText("""
+                    Für die Benutzung des MapQuest WebServices wird ein KEY benötigt!
+                    Man kann diesen kostenlos auf der Seite https://developer.mapquest.com/ erhalten.
+                    (Um nur die JavaFX-GUI ohne Routenplanung auszuprobieren einfach leer lassen). 
+                     
+                    Den Authentication-Key hier eingeben:
+                    """);
+            MapQuestDirections.MAPQUEST_API_KEY = td.showAndWait().orElse("");
+        }
+
         MapQuestDirections route = new MapQuestDirections();
 
         try {
