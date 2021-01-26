@@ -109,6 +109,10 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 ### ui.fx.fxml
 * __HelloWorldFXMLDemo__ presents a simple "Hello World!" in a GUI window implemented with FXML.
 * __LoginFXMLDemo__ shows the UI for a simple Login-Dialog implemented with FXML and the Scene-Builder.
+* __RoutePlanner__ is s very simple route-planing GUI application using UI-layouting and data-binding.  
+    The _RoutePlannerMainWindowController_ implements the controller for the FXML-File _RoutePlannerMainWindow.fxml_.
+    It shows how to do layouting with VBox, HBox and SplitPane.
+    Also it demonstrates how to do data-binding to automaticaly enable/disable buttons in regard to textfield values.
 
 ### ui.fx.maexchen
 * __MaexchenDemo__ implements a simple dice game with a JavaFX GUI

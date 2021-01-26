@@ -10,6 +10,9 @@ import server.rest.MapQuestDirections;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * RoutePlanner is s very simple route-planing GUI application using UI-layouting and data-binding.
+ */
 public class RoutePlanner extends Application {
 
     public static void main(String[] args) {

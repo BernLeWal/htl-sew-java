@@ -1,6 +1,5 @@
 package ui.fx.fxml;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,6 +11,11 @@ import server.rest.MapQuestDirections;
 import server.rest.RESTException;
 import utils.StringUtils;
 
+/**
+ * The RoutePlannerMainWindowController implements the controler for the FXML-File RoutePlannerMainWindow.fxml.
+ * It shows how to do layouting with VBox, HBox and SplitPane.
+ * Also it demonstrates how to do data-binding to automaticaly enable/disable buttons in regard to textfield values.
+ */
 public class RoutePlannerMainWindowController {
     public TextField textFrom;
     public TextField textTo;
@@ -21,15 +25,43 @@ public class RoutePlannerMainWindowController {
     public Button buttonClear;
     public Button buttonRun;
 
-    private RouteFromToPresentationModel routeFromToPresentationModel;
+    private final StringProperty fromProperty = new SimpleStringProperty();
+    private final StringProperty toProperty = new SimpleStringProperty();
 
     @FXML
     public void initialize() {
-        routeFromToPresentationModel = new RouteFromToPresentationModel();
-        routeFromToPresentationModel.fromProperty.bind( textFrom.textProperty() );
-        routeFromToPresentationModel.toProperty.bind( textTo.textProperty() );
-        buttonClear.disableProperty().bind( routeFromToPresentationModel.isClearDisabled );
-        buttonRun.disableProperty().bind(routeFromToPresentationModel.isRunDisabled );
+        //
+        // JavaFX Data Binding
+        //
+
+        // 1st: define the data sources and bind them to a property
+        // (on the properties the automatic binding mechanisms are implemented)
+        fromProperty.bind( textFrom.textProperty() );
+        toProperty.bind( textTo.textProperty() );
+
+        // 2st: define how the binding-values are calculated
+        BooleanBinding isClearButtonDisabled = new BooleanBinding() {
+            @Override
+            protected boolean computeValue() {
+                return StringUtils.isNullOrEmpty(fromProperty.get()) && StringUtils.isNullOrEmpty(toProperty.get());
+            }
+        };
+
+        BooleanBinding isRunButtonDisabled = new BooleanBinding() {
+            @Override
+            protected boolean computeValue() {
+                return StringUtils.isNullOrEmpty(fromProperty.get()) || StringUtils.isNullOrEmpty(toProperty.get());
+            }
+        };
+
+        // 3rd: add the change listeners to the properties
+        fromProperty.addListener((o, oldVal, newVal) -> isClearButtonDisabled.invalidate());
+        toProperty.addListener((o, oldVal, newVal) -> isRunButtonDisabled.invalidate());
+
+        // 4th: bind the targets
+        buttonClear.disableProperty().bind( isClearButtonDisabled );
+        buttonRun.disableProperty().bind( isRunButtonDisabled );
+
 
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
@@ -79,48 +111,5 @@ public class RoutePlannerMainWindowController {
         } catch (RESTException e) {
             e.printStackTrace();
         }
-    }
-
-    //
-    // JavaFX Data Binding
-    //
-    public class RouteFromToPresentationModel {
-        private final StringProperty fromProperty = new SimpleStringProperty();
-        private final StringProperty toProperty = new SimpleStringProperty();
-
-        public RouteFromToPresentationModel() {
-            fromProperty.addListener((o, oldVal, newVal) -> isClearDisabled.invalidate());
-            toProperty.addListener((o, oldVal, newVal) -> isRunDisabled.invalidate());
-        }
-
-        public String getFromText() {
-            return fromProperty.get();
-        }
-
-        public void setFromText(String fromText) {
-            this.fromProperty.set(fromText);
-        }
-
-        public String getToText() {
-            return toProperty.get();
-        }
-
-        public void setToText(String toText) {
-            this.toProperty.set(toText);
-        }
-
-        public BooleanBinding isClearDisabled = new BooleanBinding() {
-            @Override
-            protected boolean computeValue() {
-                return StringUtils.isNullOrEmpty(getFromText()) && StringUtils.isNullOrEmpty(getToText());
-            }
-        };
-
-        public BooleanBinding isRunDisabled = new BooleanBinding() {
-            @Override
-            protected boolean computeValue() {
-                return StringUtils.isNullOrEmpty(getFromText()) || StringUtils.isNullOrEmpty(getToText());
-            }
-        };
     }
 }
