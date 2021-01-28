@@ -514,7 +514,6 @@ if (Arrays.equals(zahlen, zahlen2)) {
 
 ## 9. Datum und Zeit
 In Java mit Datum, Zeit und Perioden arbeiten.  
-Beispiele siehe [lang/DateTimeDemos.java](../src/main/java/lang/DateTimeDemos.java)
 
 ### Heutiges Datum & heutige Uhrzeit ermitteln
 ```javascript
@@ -557,8 +556,9 @@ System.out.println("Zwischen deinem Geburtstag und jetzt liegen"+
     lifeTime.getDays() + " Tage.");
 ```
 
+Beispielprogramm: [lang/Demo09DatumZeit.java](../src/main/java/lang/Demo09DatumZeit.java)
 
-
+----------
 
 # Anhang
 

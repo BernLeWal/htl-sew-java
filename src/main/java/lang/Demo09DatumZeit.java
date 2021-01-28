@@ -4,7 +4,10 @@ import java.time.*;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-public class DateTimeDemos {
+/**
+ * Demo09DatumZeit zeigt wie man in Java mit Datum, Zeit und Perioden arbeitet.
+ */
+public class Demo09DatumZeit {
 
     public static void main(String[] args) {
         // Heutiges Datum abrufen

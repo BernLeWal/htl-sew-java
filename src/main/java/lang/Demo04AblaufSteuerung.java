@@ -1,7 +1,7 @@
 package lang;
 
 /**
- * Demo04Control zeigt die Möglichkeiten der Ablaufsteuerung in einem Java-Programm.
+ * Demo04AblaufSteuerung zeigt die Möglichkeiten der Ablaufsteuerung in einem Java-Programm.
  */
 public class Demo04AblaufSteuerung {
     public static void main(String[] args) {

@@ -17,6 +17,14 @@ This repository is used as learning by investigating functioning samples and lat
 ## Module 1: Learn the very basics of the Java language
 
 ### lang.*
+* __Demo00Start__ das Grundgerüst eines Java-Programms
+* __Demo01Grundlagen__ demonstriert die grundsätzlichsten Elemente der Java Programmiersprache.
+* __Demo03EinUndAusgabe__ zeigt wie man in Java etwas ausgibt bzw. vom Benutzer Eingaben einliest.
+* __Demo04AblaufSteuerung__ zeigt die Möglichkeiten der Ablaufsteuerung in einem Java-Programm.
+* __Demo05Strings__ zeigt die Arbeit mit Zeichenketten (=Strings) in Java.
+* __Demo05WerteUmwandeln__ demonstriert wie Werte zwischen unterschiedlichsten einfachen Datentypen umgewandelt werden.
+* __Demo09DatumZeit__ zeigt wie man in Java mit Datum, Zeit und Perioden arbeitet.
+
 
 ## Module 2: Object-orientied programming with Java
 
