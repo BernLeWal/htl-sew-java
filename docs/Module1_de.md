@@ -6,11 +6,11 @@
 Zeigt das Grundgerüst, Syntax und primitive Datentypen mit Java.
 
 ### Grundgerüst einer Java-Datei:
-Die einfachste Java-Datei mit dem Dateinamen "Demo00FirstJavaFile.java" sieht folgendermaßen aus:
+Die einfachste Java-Datei mit dem Dateinamen "Demo00Start.java" sieht folgendermaßen aus:
 ```java
 package lang;                                   // Package-Name, das "Unterverzeichnis" in dem die Java-Datei gespeichert ist
 
-public class Demo00FirstJavaFile                // Klassenname, muss gleichlauten wie der Dateiname der .java-Datei (ohne Dateierweiterung) 
+public class Demo00Start                        // Klassenname, muss gleichlauten wie der Dateiname der .java-Datei (ohne Dateierweiterung) 
 {
     public static void main(String[] args) {    // Hauptprogramm, wird exakt immer so definiert
         // Der hier enthaltene Sourcecode wird ausgeführt wenn das Programm gestartet wird
@@ -19,7 +19,7 @@ public class Demo00FirstJavaFile                // Klassenname, muss gleichlaute
     }
 }
 ```
-[lang/Demo00FirstJavaFile.java](../src/main/java/lang/Demo00FirstJavaFile.java)
+Beispielprogramm: [lang/Demo00Start.java](../src/main/java/lang/Demo00Start.java)
 
 Zum Starten dieses Programms in der Entwicklungsumgebung IntelliJ 
 mit der rechten Maustaste auf die Datei "Demo00FirstJavaFile.java" klicken
@@ -42,23 +42,6 @@ d.h. Kommentare werden nicht ausgeführt.
 /* Kann überall zwischen oder hinter dem Code eingefügt werden. */
 ```
 
-### Deklaration von primitiven Datentypen
-Sogenannte primitive Datentypen werden für Variablen verwendet, 
-dort können einfache Werte abgespeichert und z.B. für Berechnungen verwendet werden.
-
-```javascript
-// Es wird ein Platz im Speicher bestimmter Größe 
-// (je nach Typ) reserviert.
-
-int i;	// Für ganze Zahlen 
-long h;	// Für noch längere ganze Zahlen 
-double x;	// Für Kommazahlen 
-boolean y;	// Für zwei Zustände (wahr/falsch) 
-int h,k,l;	// Es können auch mehrere Datentypen (vom
-        	// gleichen Typ) in einer Zeile deklariert 
-	        // werden
-```
-
 ### Blöcke von zusammengehörenden Source-Zeilen
 ```javascript
 {
@@ -70,6 +53,23 @@ int h,k,l;	// Es können auch mehrere Datentypen (vom
 ```
 
 ## 2. Variablen 
+
+### Deklaration von primitiven Datentypen
+Sogenannte primitive Datentypen werden für Variablen verwendet,
+dort können einfache Werte abgespeichert und z.B. für Berechnungen verwendet werden.
+
+```javascript
+// Es wird ein Platz im Speicher bestimmter Größe 
+// (je nach Typ) reserviert.
+
+int i;	// Für ganze Zahlen 
+long h;	// Für noch längere ganze Zahlen 
+double x;	// Für Kommazahlen 
+boolean y;	// Für zwei Zustände (wahr/falsch) 
+int n,k,l;	// Es können auch mehrere Datentypen (vom
+        	// gleichen Typ) in einer Zeile deklariert 
+	        // werden
+```
 
 ### Initialisierung von Variablen durch Zuweisung eines Wertes
 Zuweisungen passieren immer von rechts nach links
@@ -96,6 +96,8 @@ wort = new String();	    // und hier wird initialisiert.
 
 ```
 
+Beispielprogramm: [lang/Demo01Grundlagen.java](../src/main/java/lang/Demo01Grundlagen.java)
+
 ## 3. Mit dem User interagieren: einfache Ein- und Ausgabe
 
 ### Ausgabe von Text und Variablenwerten
@@ -112,6 +114,8 @@ wort = sc.next();   // ein Wort einlesen
 i = sc.nextInt();   // eine Zahl einlesen
 zeile = sc.nextLine();  // eine ganze Textzeile einlesen (bis der User die ENTER-Taste drückt)
 ```
+
+Beispielprogramm: [lang/Demo03EinUndAusgabe.java](../src/main/java/lang/Demo03EinUndAusgabe.java)
 
 ## 4. Ablaufsteuerung in Programmen
 
@@ -219,55 +223,12 @@ if (Bedingung1 || Bedingung2) {
 || ... Wenn Bedingung1 bereits wahr ist, dann wird Bedingung2 nicht mehr geprüft.  
 | ... Es werden immer beide Bedingungen geprüft.
 
+Beispielprogramm: [lang/Demo04AblaufSteuerung.java](../src/main/java/lang/Demo04AblaufSteuerung.java)
+
 ## 5. Arbeit mit Variablen und Werten
-
-### Umwandlung von Datentypen
-In Java Zeichenketten in Nummern umwandeln und umgekehrt.
-
-__Nummern in Strings umwandeln:__  
-Für das Umwandeln von beliebigen primitiven Datentypen in Strings kann man die statische Hilfsfunktion String.valueOf(…) verwenden. 
-Beispiele:
-```javascript
-String si = String.valueOf(i);  // aus int wird String
-String sf = String.valueOf(f);  // aus float wird String
-String sd = String.valueOf(d);  // aus double wird String
-```
-
-__Gleitkommazahlen formatieren:__  
-Mit der Hilfsfunktion String.format(…) kann man Zahlen schön formatieren, 
-d.h. die Anzahl der zu erzeugenden Zeichen und Nachkommastellen angeben. 
-Dabei ist der erste Parameter der sogenannte Format-String und 
-der zweite Parameter enthält den Wert der ausgegeben werden soll. 
-Beispiele:
-```javascript
-String sfd = String.format("%5d", i);   
-// liefert "   17" (insgesamt 5 Zeichen)
-
-String sff = String.format("%5.2f", f);
-// liefert " 1,20" (insgesamt 5 Zeichen; 2 Nachkommast.)
-```
-
-__(Einfache) Umwandlung von Strings in Nummern:__  
-Für die Umwandlung von Zeichenketten in primitive Datentypen können die Wrapper-Klassen verwendet werden, 
-die zu jedem Datentyp existieren, z.B. die Klasse Integer für int, Double für double und Float für float.
-```javascript
-int i = Integer.valueOf("17").intValue();
-float f = Float.valueOf("1.2").floatValue();
-double d = Double.valueOf("1.22").doubleValue();
-```
-Achtung: Kann der String nicht umgewandelt werden, so liefert der obengenannte Code den Wert 0.
-
-__Casting__: Umwandlung von Werten zwischen primitiven Datentypen  
-Zahlenwerte können nicht einfach zwischen unterschiedlichen primitiven Datentypen ausgetauscht werden, der Programmierer muss explizit angeben wenn ein Wert bzw. eine Variable als ein anderer Datentyp verwendet werden soll – das nennt man Casten.
-```javascript
-float f_i = (float)17; // ergibt float mit Wert 17.0f
-int i_d = (int)1.2;    // ergibt int mit Wert 1. ACHTUNG: Datenverlust!
-double d_f = (double)1.2f; // ergibt double Wert 1.2
-```
 
 ### Strings
 In Java mit Zeichenketten arbeiten.
-[lang/Demo05Strings.java](../src/main/java/lang/Demo05Strings.java)
 
 __String erzeugen und initialisieren:__
 ```javascript
@@ -312,6 +273,52 @@ boolean gleicherInhalt =
     zeichenkette.equalsIgnoreCase("das ist ein text!"); //true
 ```
 
+Beispielprogramm: [lang/Demo05Strings.java](../src/main/java/lang/Demo05Strings.java)
+
+### Umwandlung von Datentypen
+In Java Zeichenketten in Nummern umwandeln und umgekehrt.
+
+__Nummern in Strings umwandeln:__  
+Für das Umwandeln von beliebigen primitiven Datentypen in Strings kann man die statische Hilfsfunktion String.valueOf(…) verwenden.
+Beispiele:
+```javascript
+String si = String.valueOf(i);  // aus int wird String
+String sf = String.valueOf(f);  // aus float wird String
+String sd = String.valueOf(d);  // aus double wird String
+```
+
+__Gleitkommazahlen formatieren:__  
+Mit der Hilfsfunktion String.format(…) kann man Zahlen schön formatieren,
+d.h. die Anzahl der zu erzeugenden Zeichen und Nachkommastellen angeben.
+Dabei ist der erste Parameter der sogenannte Format-String und
+der zweite Parameter enthält den Wert der ausgegeben werden soll.
+Beispiele:
+```javascript
+String sfd = String.format("%5d", i);   
+// liefert "   17" (insgesamt 5 Zeichen)
+
+String sff = String.format("%5.2f", f);
+// liefert " 1,20" (insgesamt 5 Zeichen; 2 Nachkommast.)
+```
+
+__(Einfache) Umwandlung von Strings in Nummern:__  
+Für die Umwandlung von Zeichenketten in primitive Datentypen können die Wrapper-Klassen verwendet werden,
+die zu jedem Datentyp existieren, z.B. die Klasse Integer für int, Double für double und Float für float.
+```javascript
+int i = Integer.valueOf("17").intValue();
+float f = Float.valueOf("1.2").floatValue();
+double d = Double.valueOf("1.22").doubleValue();
+```
+Achtung: Kann der String nicht umgewandelt werden, so liefert der obengenannte Code den Wert 0.
+
+__Casting__: Umwandlung von Werten zwischen primitiven Datentypen  
+Zahlenwerte können nicht einfach zwischen unterschiedlichen primitiven Datentypen ausgetauscht werden, der Programmierer muss explizit angeben wenn ein Wert bzw. eine Variable als ein anderer Datentyp verwendet werden soll – das nennt man Casten.
+```javascript
+float f_i = (float)17; // ergibt float mit Wert 17.0f
+int i_d = (int)1.2;    // ergibt int mit Wert 1. ACHTUNG: Datenverlust!
+double d_f = (double)1.2f; // ergibt double Wert 1.2
+```
+
 ### Zufallszahlen
 ```javascript
 // Math.random() gibt eine Zufallszahl zwischen 0 und 1 vom Typ double aus.
@@ -324,6 +331,8 @@ if (i % 2 == 0) {
     // weiteren Code hier einfügen, um alle geraden Zahlen von "i" herauszufinden
 }
 ```
+
+Beispielprogramm: [lang/Demo05WerteUmwandeln.java](../src/main/java/lang/Demo05WerteUmwandeln.java)
 
 ## 6. Unterprogramme und Funktionen
 

@@ -1,5 +1,8 @@
 package lang;
 
+/**
+ * Demo05Strings zeigt die Arbeit mit Zeichenketten (=Strings) in Java.
+ */
 public class Demo05Strings {
     public static void main(String[] args) {
         // ---------- String erzeugen und initialisieren: ----------
