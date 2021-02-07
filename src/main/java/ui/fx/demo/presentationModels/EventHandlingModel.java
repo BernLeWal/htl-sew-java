@@ -9,37 +9,37 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class EventHandlingModel {
-	
-	private BooleanProperty check = new SimpleBooleanProperty(false);
-	private BooleanBinding disable = new BooleanBinding() {
-		@Override
-		protected boolean computeValue() {
-			return !check.get();
-		}
-	};
-	
-	public EventHandlingModel() {
-		check.addListener(new ChangeListener<>() {
-			@Override
-			public void changed(ObservableValue<? extends Boolean> observable,
-					Boolean oldValue, Boolean newValue) {
-				disable.invalidate();
-			}
-		});
-	}
 
-	public BooleanProperty checkProperty() {
-		return check;
-	}
+    private BooleanProperty check = new SimpleBooleanProperty(false);
+    private BooleanBinding disable = new BooleanBinding() {
+        @Override
+        protected boolean computeValue() {
+            return !check.get();
+        }
+    };
 
-	public BooleanBinding disableBinding() {
-		return disable;
-	}
-	
-	private ObservableList<String> persons = FXCollections
-			.observableArrayList("Maria", "Peter");
+    public EventHandlingModel() {
+        check.addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable,
+                                Boolean oldValue, Boolean newValue) {
+                disable.invalidate();
+            }
+        });
+    }
 
-	public ObservableList<String> getPersons() {
-		return persons;
-	}	
+    public BooleanProperty checkProperty() {
+        return check;
+    }
+
+    public BooleanBinding disableBinding() {
+        return disable;
+    }
+
+    private ObservableList<String> persons = FXCollections
+            .observableArrayList("Maria", "Peter");
+
+    public ObservableList<String> getPersons() {
+        return persons;
+    }
 }

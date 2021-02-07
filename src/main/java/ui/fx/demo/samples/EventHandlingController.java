@@ -1,53 +1,53 @@
 package ui.fx.demo.samples;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ui.fx.demo.AbstractController;
 import ui.fx.demo.presentationModels.EventHandlingModel;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class EventHandlingController extends AbstractController {
 
-	private EventHandlingModel model;
-	@FXML
-	CheckBox check;
-	@FXML
-	Button button;
-	@FXML
-	TextField txt;
-	@FXML
-	ListView<String> lst;
+    private EventHandlingModel model;
+    @FXML
+    CheckBox check;
+    @FXML
+    Button button;
+    @FXML
+    TextField txt;
+    @FXML
+    ListView<String> lst;
 
-	@Override
-	public void initialize(URL url, ResourceBundle resources) {
-		super.initialize(url, resources);
+    @Override
+    public void initialize(URL url, ResourceBundle resources) {
+        super.initialize(url, resources);
 
-		model = new EventHandlingModel();
-		
-		lst.setItems(model.getPersons());
+        model = new EventHandlingModel();
 
-		applyBindings();
-	}
+        lst.setItems(model.getPersons());
 
-	private void applyBindings() {
-		check.selectedProperty().bindBidirectional(model.checkProperty());
-		button.disableProperty().bind(model.disableBinding());
-		txt.textProperty().addListener((s) -> onTxtChanged());
-	}
+        applyBindings();
+    }
 
-	@FXML
-	public void onButton() {
-		Alert dialog = new Alert(Alert.AlertType.NONE, "Called from a event handler", ButtonType.OK );
-		dialog.setTitle( "Hello world!" );
-		dialog.showAndWait();
-	}
+    private void applyBindings() {
+        check.selectedProperty().bindBidirectional(model.checkProperty());
+        button.disableProperty().bind(model.disableBinding());
+        txt.textProperty().addListener((s) -> onTxtChanged());
+    }
 
-	@FXML
-	public void onTxtChanged() {
-		ObservableList<String> models = model.getPersons();
-		models.add(txt.getText());
-	}
+    @FXML
+    public void onButton() {
+        Alert dialog = new Alert(Alert.AlertType.NONE, "Called from a event handler", ButtonType.OK);
+        dialog.setTitle("Hello world!");
+        dialog.showAndWait();
+    }
+
+    @FXML
+    public void onTxtChanged() {
+        ObservableList<String> models = model.getPersons();
+        models.add(txt.getText());
+    }
 }

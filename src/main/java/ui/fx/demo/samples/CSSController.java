@@ -6,7 +6,7 @@ import ui.fx.demo.controls.TitledBorder;
 
 public class CSSController extends AbstractController {
 
-	@FXML
-	TitledBorder LoremIpsum;
+    @FXML
+    TitledBorder LoremIpsum;
 
 }

@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.demo.MainController"
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.demo.AllDemosController"
           alignment="TOP_CENTER" hgap="10" vgap="10" styleClass="pane">
     <columnConstraints>
         <ColumnConstraints prefWidth="100"/>

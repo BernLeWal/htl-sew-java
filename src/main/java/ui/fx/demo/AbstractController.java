@@ -1,9 +1,5 @@
 package ui.fx.demo;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -11,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public abstract class AbstractController implements Initializable {
 	private Stage stage;
@@ -46,7 +46,7 @@ public abstract class AbstractController implements Initializable {
 					getClass().getResource(css).toExternalForm());
 		}
 
-		AbstractController controller = (AbstractController) fl.getController();
+		AbstractController controller = fl.getController();
 		controller.setStage(newStage);
 		controller.setModel(model);
 		newStage.setScene(scene);
