@@ -118,6 +118,21 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 ### ui.fx.maexchen
 * __MaexchenDemo__ implements a simple dice game with a JavaFX GUI
 
+### ui.fx.samples
+* __AllDemos__ starts a JavaFX application presenting a simple menu to run all the JavaFX samples.
+* __ControlsDemo__ starts a JavaFX application, showing how to put various kinds of simple
+    controls like Text, TextField, ComboBox, CheckBox, RadioButtons and Buttons
+    into a FXML window.
+* __CSSDemo__ is a JavaFX application showing how to use cascading-style-sheets (CSS) in your user-interface.
+    It also demonstrates how an user-defined control is used in the FXML.
+* __DataBindingDemo__ is a JavaFX application that shows how to use data-binding in fxml.  
+    A StringProperty is generated who stores a text value,
+    which is bidirectional bound to a TextField (to be modified)
+    and unidirectional bound to a Label via fxml.
+* __EventHandlingDemo__ is a JavaFX application which shows how event-handling is implemented in Java
+    via simple onAction-eventhandling directly at a control (here a Button)
+    or with the PresentationModel-Pattern to provide a managable solution for multiple-handlings.
+  
 
 ## Module 5: Client & Server Programming
 

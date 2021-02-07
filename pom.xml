@@ -83,7 +83,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>ui.fx.demo.AllDemos</mainClass>
+                    <mainClass>ui.fx.samples.AllDemos</mainClass>
                 </configuration>
             </plugin>
                 <!-- Jetty Plugin. Default port is 8080 -->
