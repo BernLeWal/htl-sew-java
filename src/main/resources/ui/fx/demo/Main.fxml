@@ -13,7 +13,6 @@
         <RowConstraints prefHeight="75"/>
         <RowConstraints prefHeight="75"/>
         <RowConstraints prefHeight="75"/>
-        <RowConstraints prefHeight="75"/>
     </rowConstraints>
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="0" maxWidth="Infinity"
@@ -37,7 +36,4 @@
             maxWidth="Infinity" maxHeight="Infinity" onAction="#onLists"/>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="CSS"
             maxWidth="Infinity" maxHeight="Infinity" onAction="#onCSS"/>
-
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="OwnControls"
-            maxWidth="Infinity" maxHeight="Infinity"/>
 </GridPane>
