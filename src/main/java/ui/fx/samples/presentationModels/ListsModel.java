@@ -13,8 +13,9 @@ public class ListsModel {
     }
 
     private Collection<ListDemoModel> persons = Arrays
-            .asList(new ListDemoModel("Peter", 35), new ListDemoModel(
-                    "Max", 0.75f), new ListDemoModel("Isabella", 32));
+            .asList(new ListDemoModel("Peter", 35),
+                    new ListDemoModel("Max", 0.75f),
+                    new ListDemoModel("Isabella", 32));
 
     public ObservableList<ListDemoModel> getPersons() {
         return FXCollections.observableArrayList(persons);

@@ -6,6 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * ListDemo is a JavaFX application which demonstrates how to use
+ * ListView and TableView and how to fill them with data based on presentation-model classes
+ */
 public class ListsDemo extends Application {
     @Override
     public void start(Stage stage) throws Exception {

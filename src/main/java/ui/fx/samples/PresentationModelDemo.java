@@ -7,6 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * PresentationModelDemo is a JavaFX-application which shows how the presentation-model pattern
+ * is used in a user-interface.
+ *
+ * The model (here an instance of a Person class) is primarily stored in the Controller-class
+ * which adds the references to the presentation-models.
+ * The user-interface only works with the presentation-models,
+ * so the model itself is indirectly accessed.
+ * The presentation-model manages the validation and data flow.
+ */
 public class PresentationModelDemo extends Application {
     @Override
     public void start(Stage stage) throws Exception {

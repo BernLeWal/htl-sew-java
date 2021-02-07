@@ -132,7 +132,22 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 * __EventHandlingDemo__ is a JavaFX application which shows how event-handling is implemented in Java
     via simple onAction-eventhandling directly at a control (here a Button)
     or with the PresentationModel-Pattern to provide a managable solution for multiple-handlings.
-  
+* __LayoutsDemo__ is a JavaFX application which demonstrates how layouting
+    of your controls on the user-interface works,
+    with samples of TabPane, VBox/HBox, StackPane and GridPane.  
+* __ListDemo__ is a JavaFX application which demonstrates how to use
+    ListView and TableView and how to fill them with data based on presentation-model classes
+* __LowLevelBindingDemo__ is a JavaFX application showing how very simple (low level)
+    bindings directly defined on multiple controls during the UI initialization works.  
+    Demonstrates direct selected, visible and text-value bindings.
+* __PresentationModelDemo__ is a JavaFX-application which shows how the presentation-model pattern
+    is used in a user-interface.  
+    The model (here an instance of a Person class) is primarily stored in the Controller-class
+    which adds the references to the presentation-models.
+    The user-interface only works with the presentation-models,
+    so the model itself is indirectly accessed.
+    The presentation-model manages the validation and data flow.
+
 
 ## Module 5: Client & Server Programming
 

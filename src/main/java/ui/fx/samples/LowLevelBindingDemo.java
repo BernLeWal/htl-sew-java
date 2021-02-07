@@ -6,6 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * LowLevelBindingDemo is a JavaFX application showing how very simple (low level)
+ * bindings directly defined on multiple controls during the UI initialization works.
+ * Demonstrates direct selected, visible and text-value bindings.
+ */
 public class LowLevelBindingDemo extends Application {
     @Override
     public void start(Stage stage) throws Exception {

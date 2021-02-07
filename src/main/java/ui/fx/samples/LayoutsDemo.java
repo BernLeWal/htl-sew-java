@@ -6,6 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * LayoutsDemo is a JavaFX application which demonstrates how layouting
+ * of your controls on the user-interface works,
+ * with samples of TabPane, VBox/HBox, StackPane and GridPane.
+ */
 public class LayoutsDemo extends Application {
     @Override
     public void start(Stage stage) throws Exception {
