@@ -1,4 +1,4 @@
-package ui.fx.demo.Samples;
+package ui.fx.demo.samples;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,8 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import ui.fx.demo.AbstractController;
-import ui.fx.demo.Controls.TitledBorder;
-import ui.fx.demo.PresentationModels.LowLevelBindingModel;
+import ui.fx.demo.controls.TitledBorder;
+import ui.fx.demo.presentationModels.LowLevelBindingModel;
 
 public class LowLevelBindingController extends AbstractController {
 

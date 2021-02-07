@@ -108,7 +108,7 @@ public class RoutePlannerMainWindowController {
 
     public void onButtonRunClicked(ActionEvent actionEvent) {
         if( StringUtils.isNullOrEmpty( MapQuestDirections.MAPQUEST_API_KEY) ) {
-            TextInputDialog td = new TextInputDialog( MapQuestDirections.MAPQUEST_API_KEY);
+            TextInputDialog td = new TextInputDialog( MapQuestDirections.MAPQUEST_API_KEY );
             td.setHeaderText("""
                     Für die Benutzung des MapQuest WebServices wird ein KEY benötigt!
                     Man kann diesen kostenlos auf der Seite https://developer.mapquest.com/ erhalten.

@@ -1,4 +1,4 @@
-package ui.fx.demo.Samples;
+package ui.fx.demo.samples;
 
 import ui.fx.demo.AbstractController;
 

@@ -1,11 +1,11 @@
-package ui.fx.demo.PresentationModels;
+package ui.fx.demo.presentationModels;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import ui.fx.demo.Models.Person;
+import ui.fx.demo.models.Person;
 import utils.StringUtils;
 
 public class PersonModel {
@@ -41,7 +41,7 @@ public class PersonModel {
 	};
 
 	public PersonModel() {
-		ChangeListener<String> canEditListener = new ChangeListener<String>() {
+		ChangeListener<String> canEditListener = new ChangeListener<>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {

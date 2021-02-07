@@ -1,4 +1,4 @@
-package ui.fx.demo.Samples;
+package ui.fx.demo.samples;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,8 +8,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import ui.fx.demo.AbstractController;
-import ui.fx.demo.Models.Person;
-import ui.fx.demo.PresentationModels.PersonModel;
+import ui.fx.demo.models.Person;
+import ui.fx.demo.presentationModels.PersonModel;
 
 public class PresentationModelController extends AbstractController {
 	@FXML

@@ -1,33 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import ui.fx.demo.Controls.*?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.cell.*?> 
-<?import javafx.collections.*?> 
-
-<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.demo.Samples.ListsController">
-	<Tab text="ListView">
-		<ListView fx:id="list"/>
-	</Tab>
-	<Tab text="TableView" >
-		<TableView fx:id="table">
-			<columns>
-				<TableColumn text="Name">
-					<cellValueFactory>
-						<PropertyValueFactory property="name" />
-					</cellValueFactory>
-				</TableColumn>
-				<TableColumn text="Age">
-					<cellValueFactory>
-						<PropertyValueFactory property="age" />
-					</cellValueFactory>
-				</TableColumn>
-			</columns>
-		</TableView>
-	</Tab>
+<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.demo.samples.ListsController">
+    <Tab text="ListView">
+        <ListView fx:id="list"/>
+    </Tab>
+    <Tab text="TableView">
+        <TableView fx:id="table">
+            <columns>
+                <TableColumn text="Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Age">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="age"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </Tab>
 </TabPane>

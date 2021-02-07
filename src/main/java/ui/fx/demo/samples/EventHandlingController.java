@@ -1,4 +1,4 @@
-package ui.fx.demo.Samples;
+package ui.fx.demo.samples;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ui.fx.demo.AbstractController;
-import ui.fx.demo.PresentationModels.EventHandlingModel;
+import ui.fx.demo.presentationModels.EventHandlingModel;
 
 public class EventHandlingController extends AbstractController {
 

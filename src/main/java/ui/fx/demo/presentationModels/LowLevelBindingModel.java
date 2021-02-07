@@ -1,4 +1,4 @@
-package ui.fx.demo.PresentationModels;
+package ui.fx.demo.presentationModels;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.StringBinding;
@@ -23,7 +23,7 @@ public class LowLevelBindingModel {
 		});
 		
 		// Listener mit anonymer implementierung eines Interfaces
-		text.addListener(new ChangeListener<String>() {
+		text.addListener(new ChangeListener<>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
@@ -56,7 +56,7 @@ public class LowLevelBindingModel {
 		}
 	};
 	
-	private ObjectProperty<Color> color = new SimpleObjectProperty<Color>(Color.GREEN);
+	private ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.GREEN);
 	private StringBinding style = new StringBinding() {
 		@Override
 		protected String computeValue() {
@@ -107,7 +107,7 @@ public class LowLevelBindingModel {
 	}
 
 
-	public static final String toRGBCode(Color color) {
+	public static String toRGBCode(Color color) {
 		return String.format("#%02X%02X%02X", (int) (color.getRed() * 255),
 				(int) (color.getGreen() * 255), (int) (color.getBlue() * 255));
 	}

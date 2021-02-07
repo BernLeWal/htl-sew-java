@@ -1,4 +1,4 @@
-package ui.fx.demo.PresentationModels;
+package ui.fx.demo.presentationModels;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
@@ -19,7 +19,7 @@ public class EventHandlingModel {
 	};
 	
 	public EventHandlingModel() {
-		check.addListener(new ChangeListener<Boolean>() {
+		check.addListener(new ChangeListener<>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable,
 					Boolean oldValue, Boolean newValue) {

@@ -1,4 +1,4 @@
-package ui.fx.demo.Models;
+package ui.fx.demo.models;
 
 public class Person {
 	private String vorname;

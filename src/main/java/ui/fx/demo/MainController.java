@@ -3,7 +3,7 @@ package ui.fx.demo;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import ui.fx.demo.Models.Person;
+import ui.fx.demo.models.Person;
 
 public class MainController extends AbstractController {
 

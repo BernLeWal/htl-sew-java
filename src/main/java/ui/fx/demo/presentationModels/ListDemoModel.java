@@ -1,4 +1,4 @@
-package ui.fx.demo.PresentationModels;
+package ui.fx.demo.presentationModels;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;

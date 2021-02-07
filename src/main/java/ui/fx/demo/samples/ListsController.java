@@ -1,4 +1,4 @@
-package ui.fx.demo.Samples;
+package ui.fx.demo.samples;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +9,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.StringConverter;
 import ui.fx.demo.AbstractController;
-import ui.fx.demo.PresentationModels.ListDemoModel;
-import ui.fx.demo.PresentationModels.ListsModel;
+import ui.fx.demo.presentationModels.ListDemoModel;
+import ui.fx.demo.presentationModels.ListsModel;
 
 public class ListsController extends AbstractController {
 	private ListsModel model;
@@ -26,7 +26,7 @@ public class ListsController extends AbstractController {
 		model = new ListsModel();
 		
 		list.setItems(model.getPersons());
-		list.setCellFactory(TextFieldListCell.forListView(new StringConverter<ListDemoModel>() {
+		list.setCellFactory(TextFieldListCell.forListView(new StringConverter<>() {
 			@Override
 			public String toString(ListDemoModel object) {
 				return String.format("%s (%.1f)", object.getName(), object.getAge());

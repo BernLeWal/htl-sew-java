@@ -1,4 +1,4 @@
-package ui.fx.demo.PresentationModels;
+package ui.fx.demo.presentationModels;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package ui.fx.demo.Controls;
+package ui.fx.demo.controls;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;

@@ -1,4 +1,4 @@
-package ui.fx.demo.Samples;
+package ui.fx.demo.samples;
 
 import java.net.URL;
 import java.util.ResourceBundle;
