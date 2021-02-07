@@ -13,11 +13,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * LoginFXMLDemo shows the UI for a simple Login-Dialog implemented with FXML and the Scene-Builder.
+ * LoginDialogDemo shows the UI for a simple Login-Dialog implemented with FXML and the Scene-Builder.
  *
  * Use java/class as credentials for the username/password.
  */
-public class LoginFXMLDemo extends Application {
+public class LoginDialogDemo extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
