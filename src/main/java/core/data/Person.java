@@ -8,15 +8,20 @@ import java.io.Serializable;
 public class Person implements Serializable, Comparable<Person> {
     // Attributes
     private int nr;
-    private String vn;
-    private String nn;
+    private String vorname;
+    private String nachname;
     private int alter;
 
     // Constructors
-    public Person(int nr, String vn, String nn, int alter) {
+    public Person() {
+        nr = 0;
+        alter = 0;
+    }
+
+    public Person(int nr, String vorname, String nachname, int alter) {
         this.nr = nr;
-        this.vn = vn;
-        this.nn = nn;
+        this.vorname = vorname;
+        this.nachname = nachname;
         this.alter = alter;
     }
 
@@ -25,12 +30,12 @@ public class Person implements Serializable, Comparable<Person> {
         return nr;
     }
 
-    public String getVn() {
-        return vn;
+    public String getVorname() {
+        return vorname;
     }
 
-    public String getNn() {
-        return nn;
+    public String getNachname() {
+        return nachname;
     }
 
     public int getAlter() {
@@ -39,15 +44,15 @@ public class Person implements Serializable, Comparable<Person> {
 
     // Methods
     public String name() {
-        return nn + " " + vn;
+        return nachname + " " + vorname;
     }
 
     @Override
     public String toString() {
         return "Person{" +
                 "nr=" + nr +
-                ", vn='" + vn + '\'' +
-                ", nn='" + nn + '\'' +
+                ", vorname='" + vorname + '\'' +
+                ", nachname='" + nachname + '\'' +
                 ", alter=" + alter +
                 '}';
     }

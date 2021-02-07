@@ -19,7 +19,7 @@ public class CollectionsDemo {
     }
 
     private static void listDemo() {
-        System.out.println("********** List demo **********");
+        System.out.println("********** List samples **********");
         ArrayList<Person> persons = new ArrayList<>();
 
         System.out.println("\nadd elements:");
@@ -56,7 +56,7 @@ public class CollectionsDemo {
     }
 
     private static void setDemo() {
-        System.out.println("********** Set demo **********");
+        System.out.println("********** Set samples **********");
         HashSet<Person> persons = new HashSet<>();
 
         System.out.println("\nadd elements:");
@@ -89,7 +89,7 @@ public class CollectionsDemo {
     }
 
     private static void mapDemo() {
-        System.out.println("********** Map demo **********");
+        System.out.println("********** Map samples **********");
         HashMap<Integer, Person> persons = new HashMap<>();
 
         System.out.println("\nadd elements:");
@@ -114,7 +114,7 @@ public class CollectionsDemo {
             System.out.println(nr + ": " + persons.get(nr));
         }
 
-        System.out.println("\n\n********** Multi-Map demo **********");
+        System.out.println("\n\n********** Multi-Map samples **********");
         HashMap<String, ArrayList<Person>> personGroups = new HashMap<>();
 
         System.out.println("\ncreate a list for devs and put it into map");

@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * EchoClient is a console-based client for the EchoServer in this demo
+ * EchoClient is a console-based client for the EchoServer in this samples
  */
 public class EchoClient {
 

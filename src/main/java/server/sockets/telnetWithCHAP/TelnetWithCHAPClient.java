@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 /**
- * TelnetWithCHAPClient is a console-based client for the TelnetWithChapServer in this demo
+ * TelnetWithCHAPClient is a console-based client for the TelnetWithChapServer in this samples
  */
 public class TelnetWithCHAPClient {
 
