@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.samples.AllDemosController"
+          alignment="TOP_CENTER" hgap="10" vgap="10" styleClass="pane">
+    <columnConstraints>
+        <ColumnConstraints prefWidth="100"/>
+        <ColumnConstraints prefWidth="100"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="75"/>
+        <RowConstraints prefHeight="75"/>
+        <RowConstraints prefHeight="75"/>
+        <RowConstraints prefHeight="75"/>
+    </rowConstraints>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="0" maxWidth="Infinity"
+            maxHeight="Infinity" onAction="#onLayouts">Layouts
+    </Button>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="Infinity"
+            maxHeight="Infinity" onAction="#onControls">Controls
+    </Button>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="1" text="DataBinding"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onDataBinding"/>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="1"
+            text="PresentationModel" maxWidth="Infinity" maxHeight="Infinity" onAction="#onPresentationModel"/>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="2" text="Low-Level Binding"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onLowLevelBinding"/>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="EventHandling"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onEventHandling"/>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Lists"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onLists"/>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="CSS"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onCSS"/>
+</GridPane>

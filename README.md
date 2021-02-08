@@ -115,8 +115,9 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 * __AnimatedBallDemo__ shows an animated ball inside the content-area of the GUI window.
 
 ### ui.fx.fxml
-* __HelloWorldFXMLDemo__ presents a simple "Hello World!" in a GUI window implemented with FXML.
-* __LoginFXMLDemo__ shows the UI for a simple Login-Dialog implemented with FXML and the Scene-Builder.
+* __HelloWorldDialogDemo__ presents a simple "Hello World!" in a GUI window implemented with FXML.
+* __LoginDialogDemo__ shows the UI for a simple Login-Dialog implemented with FXML and the Scene-Builder.
+   
 * __RoutePlanner__ is s very simple route-planing GUI application using UI-layouting and data-binding.  
     The _RoutePlannerMainWindowController_ implements the controller for the FXML-File _RoutePlannerMainWindow.fxml_.
     It shows how to do layouting with VBox, HBox and SplitPane.
@@ -124,6 +125,36 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 
 ### ui.fx.maexchen
 * __MaexchenDemo__ implements a simple dice game with a JavaFX GUI
+
+### ui.fx.samples
+* __AllDemos__ starts a JavaFX application presenting a simple menu to run all the JavaFX samples.
+* __ControlsDemo__ starts a JavaFX application, showing how to put various kinds of simple
+    controls like Text, TextField, ComboBox, CheckBox, RadioButtons and Buttons
+    into a FXML window.
+* __CSSDemo__ is a JavaFX application showing how to use cascading-style-sheets (CSS) in your user-interface.
+    It also demonstrates how an user-defined control is used in the FXML.
+* __DataBindingDemo__ is a JavaFX application that shows how to use data-binding in fxml.  
+    A StringProperty is generated who stores a text value,
+    which is bidirectional bound to a TextField (to be modified)
+    and unidirectional bound to a Label via fxml.
+* __EventHandlingDemo__ is a JavaFX application which shows how event-handling is implemented in Java
+    via simple onAction-eventhandling directly at a control (here a Button)
+    or with the PresentationModel-Pattern to provide a managable solution for multiple-handlings.
+* __LayoutsDemo__ is a JavaFX application which demonstrates how layouting
+    of your controls on the user-interface works,
+    with samples of TabPane, VBox/HBox, StackPane and GridPane.  
+* __ListDemo__ is a JavaFX application which demonstrates how to use
+    ListView and TableView and how to fill them with data based on presentation-model classes
+* __LowLevelBindingDemo__ is a JavaFX application showing how very simple (low level)
+    bindings directly defined on multiple controls during the UI initialization works.  
+    Demonstrates direct selected, visible and text-value bindings.
+* __PresentationModelDemo__ is a JavaFX-application which shows how the presentation-model pattern
+    is used in a user-interface.  
+    The model (here an instance of a Person class) is primarily stored in the Controller-class
+    which adds the references to the presentation-models.
+    The user-interface only works with the presentation-models,
+    so the model itself is indirectly accessed.
+    The presentation-model manages the validation and data flow.
 
 
 ## Module 5: Client & Server Programming

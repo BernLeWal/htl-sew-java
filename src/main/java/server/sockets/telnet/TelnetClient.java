@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 /**
- * TelnetClient is a console-based client for the TelnetServer in this demo
+ * TelnetClient is a console-based client for the TelnetServer in this samples
  */
 public class TelnetClient {
 

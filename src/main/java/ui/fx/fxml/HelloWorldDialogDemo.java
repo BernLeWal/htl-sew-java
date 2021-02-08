@@ -13,9 +13,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * HelloWorldFXMLDemo presents a simple "Hello World!" in a GUI window implemented with FXML.
+ * HelloWorldDialogDemo presents a simple "Hello World!" in a GUI window implemented with FXML.
  */
-public class HelloWorldFXMLDemo extends Application {
+public class HelloWorldDialogDemo extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

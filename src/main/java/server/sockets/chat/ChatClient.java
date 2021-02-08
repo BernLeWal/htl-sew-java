@@ -13,7 +13,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * ChatClient is a console-based client for the ChatServer in this demo
+ * ChatClient is a console-based client for the ChatServer in this samples
  */
 public class ChatClient {
 
@@ -22,7 +22,7 @@ public class ChatClient {
         try (
             Socket socket = new Socket("localhost", 23);
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintStream output = new PrintStream(socket.getOutputStream());
+            PrintStream output = new PrintStream(socket.getOutputStream())
         )
         {
             Scanner scanner = new Scanner(System.in);
