@@ -1,6 +1,7 @@
 package ui.fx.samples;
 
 import core.data.Person;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -51,7 +52,14 @@ public class AllDemosController extends AbstractController {
     }
 
     @FXML
+    public void onListsPresentationModel() throws IOException {
+        showDialog( "ListsPresentationModel.fxml", "Lists with PresentationModel");
+    }
+
+    @FXML
     public void onCSS() throws IOException {
         showDialog("CSS.fxml", "CSS");
     }
+
+
 }

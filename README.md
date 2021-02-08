@@ -142,8 +142,10 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
     or with the PresentationModel-Pattern to provide a managable solution for multiple-handlings.
 * __LayoutsDemo__ is a JavaFX application which demonstrates how layouting
     of your controls on the user-interface works,
-    with samples of TabPane, VBox/HBox, StackPane and GridPane.  
-* __ListDemo__ is a JavaFX application which demonstrates how to use
+    with samples of TabPane, VBox/HBox, StackPane and GridPane.
+* __ListsDemo__ is a JavaFX application which demonstrates how to use
+    ListView and TableView and how to fill them with data
+* __ListsPresentationModelDemo__ is a JavaFX application which demonstrates how to use
     ListView and TableView and how to fill them with data based on presentation-model classes
 * __LowLevelBindingDemo__ is a JavaFX application showing how very simple (low level)
     bindings directly defined on multiple controls during the UI initialization works.  

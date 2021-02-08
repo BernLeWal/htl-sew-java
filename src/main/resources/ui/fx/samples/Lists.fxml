@@ -9,14 +9,24 @@
     <Tab text="TableView">
         <TableView fx:id="table">
             <columns>
-                <TableColumn text="Name">
+                <TableColumn text="Nr">
                     <cellValueFactory>
-                        <PropertyValueFactory property="name"/>
+                        <PropertyValueFactory property="nr"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Vorame">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="vorname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Nachname">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nachname"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Age">
                     <cellValueFactory>
-                        <PropertyValueFactory property="age"/>
+                        <PropertyValueFactory property="alter"/>
                     </cellValueFactory>
                 </TableColumn>
             </columns>

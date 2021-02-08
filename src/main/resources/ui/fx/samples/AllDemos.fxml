@@ -13,6 +13,7 @@
         <RowConstraints prefHeight="75"/>
         <RowConstraints prefHeight="75"/>
         <RowConstraints prefHeight="75"/>
+        <RowConstraints prefHeight="75"/>
     </rowConstraints>
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="0" maxWidth="Infinity"
@@ -34,6 +35,9 @@
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Lists"
             maxWidth="Infinity" maxHeight="Infinity" onAction="#onLists"/>
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="CSS"
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Lists with PM"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onListsPresentationModel"/>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="CSS"
             maxWidth="Infinity" maxHeight="Infinity" onAction="#onCSS"/>
 </GridPane>

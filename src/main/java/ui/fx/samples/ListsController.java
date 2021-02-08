@@ -1,42 +1,47 @@
 package ui.fx.samples;
 
+import core.data.Person;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.StringConverter;
-import ui.fx.samples.presentationModels.ListDemoModel;
-import ui.fx.samples.presentationModels.ListsModel;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class ListsController extends AbstractController {
-    private ListsModel model;
+    // the model:
+    private Collection<Person> persons = Arrays
+            .asList(new Person(1, "Rudi", "Ratlos", 35),
+                    new Person(2, "Susi", "Sorglos", 75),
+                    new Person(3, "Peter", "Planlos", 32));
+
     @FXML
-    ListView<ListDemoModel> list;
+    ListView<Person> list;
     @FXML
-    TableView<ListDemoModel> table;
+    TableView<Person> table;
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
         super.initialize(url, resources);
 
-        model = new ListsModel();
-
-        list.setItems(model.getPersons());
+        list.setItems(FXCollections.observableArrayList(persons));
         list.setCellFactory(TextFieldListCell.forListView(new StringConverter<>() {
             @Override
-            public String toString(ListDemoModel object) {
-                return String.format("%s (%.1f)", object.getName(), object.getAge());
+            public String toString(Person object) {
+                return String.format("%s %s (%d)", object.getVorname(), object.getNachname(), object.getAlter());
             }
 
             @Override
-            public ListDemoModel fromString(String string) {
+            public Person fromString(String string) {
                 return null;
             }
         }));
 
-        table.setItems(model.getPersons());
+        table.setItems(FXCollections.observableArrayList(persons));
     }
 }

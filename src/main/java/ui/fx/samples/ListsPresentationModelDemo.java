@@ -7,18 +7,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * ListsDemo is a JavaFX application which demonstrates how to use
- * ListView and TableView and how to fill them with data
+ * ListsPresentationModelDemo is a JavaFX application which demonstrates how to use
+ * ListView and TableView and how to fill them with data based on presentation-model classes
  */
-public class ListsDemo extends Application {
+public class ListsPresentationModelDemo extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/ui/fx/samples/Lists.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/ui/fx/samples/ListsPresentationModel.fxml"));
             Scene scene = new Scene(root, 1024, 768);
             scene.getStylesheets().add(getClass().getResource("/ui/fx/samples/application.css").toExternalForm());
             stage.setScene(scene);
-            stage.setTitle("JavaFX Lists Demo");
+            stage.setTitle("JavaFX Lists with PresentationModel Demo");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
