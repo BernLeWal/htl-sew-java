@@ -37,8 +37,8 @@ public class AllDemosController extends AbstractController {
     }
 
     @FXML
-    public void onLowLevelBinding() throws IOException {
-        showDialog("LowLevelBinding.fxml", "Low-Level binding");
+    public void onSimpleBinding() throws IOException {
+        showDialog("SimpleBinding.fxml", "Simple binding");
     }
 
     @FXML

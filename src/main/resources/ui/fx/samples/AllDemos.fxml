@@ -23,21 +23,22 @@
             maxHeight="Infinity" onAction="#onControls">Controls
     </Button>
 
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="1" text="DataBinding"
-            maxWidth="Infinity" maxHeight="Infinity" onAction="#onDataBinding"/>
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="1"
-            text="PresentationModel" maxWidth="Infinity" maxHeight="Infinity" onAction="#onPresentationModel"/>
-
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="2" text="Low-Level Binding"
-            maxWidth="Infinity" maxHeight="Infinity" onAction="#onLowLevelBinding"/>
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="EventHandling"
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="1" text="Simple Binding"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onSimpleBinding"/>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="1" text="EventHandling"
             maxWidth="Infinity" maxHeight="Infinity" onAction="#onEventHandling"/>
 
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Lists"
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="2" text="CSS"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onCSS"/>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="DataBinding"
+            maxWidth="Infinity" maxHeight="Infinity" onAction="#onDataBinding"/>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="3"
+            text="PresentationModel" maxWidth="Infinity" maxHeight="Infinity" onAction="#onPresentationModel"/>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Lists"
             maxWidth="Infinity" maxHeight="Infinity" onAction="#onLists"/>
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Lists with PM"
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="4" text="Lists with PM"
             maxWidth="Infinity" maxHeight="Infinity" onAction="#onListsPresentationModel"/>
 
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="CSS"
-            maxWidth="Infinity" maxHeight="Infinity" onAction="#onCSS"/>
 </GridPane>

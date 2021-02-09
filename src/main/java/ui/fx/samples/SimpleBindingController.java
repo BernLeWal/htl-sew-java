@@ -9,7 +9,7 @@ import ui.fx.samples.presentationModels.LowLevelBindingModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LowLevelBindingController extends AbstractController {
+public class SimpleBindingController extends AbstractController {
 
     private LowLevelBindingModel model;
 

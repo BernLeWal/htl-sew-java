@@ -150,7 +150,7 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
     ListView and TableView and how to fill them with data
 * __ListsPresentationModelDemo__ is a JavaFX application which demonstrates how to use
     ListView and TableView and how to fill them with data based on presentation-model classes
-* __LowLevelBindingDemo__ is a JavaFX application showing how very simple (low level)
+* __SimpleBindingDemo__ is a JavaFX application showing how very simple (low level)
     bindings directly defined on multiple controls during the UI initialization works.  
     Demonstrates direct selected, visible and text-value bindings.
 * __PresentationModelDemo__ is a JavaFX-application which shows how the presentation-model pattern

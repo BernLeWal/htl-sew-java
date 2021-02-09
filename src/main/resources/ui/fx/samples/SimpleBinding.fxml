@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import ui.fx.samples.controls.*?>
-<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.samples.LowLevelBindingController">
+<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.samples.SimpleBindingController">
     <Tab text="Bool">
         <VBox styleClass="pane">
             <CheckBox fx:id="check">Checked by User</CheckBox>
