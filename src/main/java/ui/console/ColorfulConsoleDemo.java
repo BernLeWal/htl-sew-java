@@ -8,7 +8,7 @@ import org.fusesource.jansi.AnsiConsole;
  * ColorfulConsoleDemo demonstrates how to use the ANSI console commands to make the console more colorful.
  * ATTENTION: You need to run this sample directly in the command-line window, in the IDE's output window the colors won't appear!
  *
- * https://github.com/fusesource/jansi
+ * (see https://github.com/fusesource/jansi for the documentation of the JANSI library)
  */
 public class ColorfulConsoleDemo {
     public static void main(String[] args) {

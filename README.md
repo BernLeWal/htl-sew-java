@@ -100,6 +100,9 @@ This repository is used as learning by investigating functioning samples and lat
 
 ### ui.console
 * __HelloWorldConsoleDemo__ presents a simple "Hello World!" to the console.
+* __ColorfulConsoleDemo__ demonstrates how to use the ANSI console commands to make the console more colorful.  
+    ATTENTION: You need to run this sample directly in the command-line window, in the IDE's output window the colors won't appear!
+    (see https://github.com/fusesource/jansi for the documentation of the JANSI library)
 
 ### ui.fx
 Contains samples for the JavaFX GUI framework.  
