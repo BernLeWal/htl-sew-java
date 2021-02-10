@@ -1,5 +1,5 @@
 # Modul 1: Lerne die Grundlagen der Java Programmiersprache kennen
-[Module 1 in english](Module1.md)
+[Module 1 in english](../en/Module1.md)
 
 ## 1. Java Grundgerüst
 
@@ -19,12 +19,12 @@ public class Demo00Start                        // Klassenname, muss gleichlaute
     }
 }
 ```
-Beispielprogramm: [lang/Demo00Start.java](../src/main/java/lang/Demo00Start.java)
+Beispielprogramm: [lang/Demo00Start.java](../../src/main/java/lang/Demo00Start.java)
 
 Zum Starten dieses Programms in der Entwicklungsumgebung IntelliJ 
 mit der rechten Maustaste auf die Datei "Demo00FirstJavaFile.java" klicken
 und im Popup-Menü "Run Demo00FirstJavaFile.main()" ausführen, so wie im folgenden Screenshot gezeigt wird:
-![Ein Java-Programm in IntelliJ starten](images/IntelliJ_RunJavaProgram.png)
+![Ein Java-Programm in IntelliJ starten](../images/IntelliJ_RunJavaProgram.png)
 
 Die Java-Dateien sind hierarchisch in Unterverzeichnissen geordnet, so wie man es z.B. aus dem Windows Explorer kennt.  
 Das __Package__, das im Sourcecode immer oben angegeben ist, entspricht dem Unterverzeichnis (ausgehend vom "src"-Verzeichnis)
@@ -96,7 +96,7 @@ wort = new String();	    // und hier wird initialisiert.
 
 ```
 
-Beispielprogramm: [lang/Demo01Grundlagen.java](../src/main/java/lang/Demo01Grundlagen.java)
+Beispielprogramm: [lang/Demo01Grundlagen.java](../../src/main/java/lang/Demo01Grundlagen.java)
 
 ## 3. Mit dem User interagieren: einfache Ein- und Ausgabe
 
@@ -115,7 +115,7 @@ i = sc.nextInt();   // eine Zahl einlesen
 zeile = sc.nextLine();  // eine ganze Textzeile einlesen (bis der User die ENTER-Taste drückt)
 ```
 
-Beispielprogramm: [lang/Demo03EinUndAusgabe.java](../src/main/java/lang/Demo03EinUndAusgabe.java)
+Beispielprogramm: [lang/Demo03EinUndAusgabe.java](../../src/main/java/lang/Demo03EinUndAusgabe.java)
 
 ## 4. Ablaufsteuerung in Programmen
 
@@ -223,7 +223,7 @@ if (Bedingung1 || Bedingung2) {
 || ... Wenn Bedingung1 bereits wahr ist, dann wird Bedingung2 nicht mehr geprüft.  
 | ... Es werden immer beide Bedingungen geprüft.
 
-Beispielprogramm: [lang/Demo04AblaufSteuerung.java](../src/main/java/lang/Demo04AblaufSteuerung.java)
+Beispielprogramm: [lang/Demo04AblaufSteuerung.java](../../src/main/java/lang/Demo04AblaufSteuerung.java)
 
 ## 5. Arbeit mit Variablen und Werten
 
@@ -273,7 +273,7 @@ boolean gleicherInhalt =
     zeichenkette.equalsIgnoreCase("das ist ein text!"); //true
 ```
 
-Beispielprogramm: [lang/Demo05Strings.java](../src/main/java/lang/Demo05Strings.java)
+Beispielprogramm: [lang/Demo05Strings.java](../../src/main/java/lang/Demo05Strings.java)
 
 ### Umwandlung von Datentypen
 In Java Zeichenketten in Nummern umwandeln und umgekehrt.
@@ -332,7 +332,7 @@ if (i % 2 == 0) {
 }
 ```
 
-Beispielprogramm: [lang/Demo05WerteUmwandeln.java](../src/main/java/lang/Demo05WerteUmwandeln.java)
+Beispielprogramm: [lang/Demo05WerteUmwandeln.java](../../src/main/java/lang/Demo05WerteUmwandeln.java)
 
 ## 6. Unterprogramme und Funktionen
 
@@ -556,7 +556,7 @@ System.out.println("Zwischen deinem Geburtstag und jetzt liegen"+
     lifeTime.getDays() + " Tage.");
 ```
 
-Beispielprogramm: [lang/Demo09DatumZeit.java](../src/main/java/lang/Demo09DatumZeit.java)
+Beispielprogramm: [lang/Demo09DatumZeit.java](../../src/main/java/lang/Demo09DatumZeit.java)
 
 ----------
 

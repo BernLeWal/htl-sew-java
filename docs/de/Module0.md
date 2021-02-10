@@ -1,5 +1,5 @@
 # Modul 0: Bevor es losgeht
-[Module 0 in english](Module0.md)
+[Module 0 in english](../en/Module0.md)
 
 ## 1. Source-Beispiele herunterladen
 Damit du diesen Kurs machen kannst benötigst du das Projekt mit allen Source-Beispielen, dass du von GITHUB herunterladen kannst:  
@@ -7,7 +7,7 @@ Damit du diesen Kurs machen kannst benötigst du das Projekt mit allen Source-Be
 
 Dort auf den grünen "Code"-Button klicken und am einfachsten (für nicht git-Nutzer) Download-ZIP auswählen,
 wie im Screenshot unten dargestellt:  
-![GitHub download ZIP](images/GitHub_DownloadRepoAsZIP.png)
+![GitHub download ZIP](../images/GitHub_DownloadRepoAsZIP.png)
 
 Die heruntergeladene ZIP-Datei auf deinem Computer entpacken, z.B. im "Dokumente"-Ordner.
 
@@ -20,7 +20,7 @@ heruntergelasen und installiert werden kann.
 ## 3. Projekt in der Entwicklungsumgebung öffnen
 Jetzt wird noch IntelliJ gestartet und das Projekt htl-sew-java geöffnet, navigiere dazu im "Open Project"-Dialog
 an die Stelle wo du zuvor das ZIP-File entpackt hast, im folgenden Beispiel war es "C:\dev\HTL22\htl-sew-java":  
-![IntelliJ: Open Project](images/IntelliJ_OpenProject.png)
+![IntelliJ: Open Project](../images/IntelliJ_OpenProject.png)
 
 
 ## Jetzt bist du bereit für dein erstes Java Programm!

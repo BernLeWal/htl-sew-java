@@ -8,8 +8,8 @@ So this project is a collection of many small demos instead of a whole solution.
 # Tutorial - learning by samples
 Concept and syntax documentation can be found in the sew java course.
 
-[Tutorial - learning by samples](docs/README.md)  
-[Tutorial - Lernen mit Beispielen - Kurs in Deutsch](docs/README_de.md)
+[Tutorial - learning by samples](docs/en/README.md)  
+[Tutorial - Lernen mit Beispielen - Kurs in Deutsch](docs/de/README.md)
 
 # Project Structure
 This repository is used as learning by investigating functioning samples and later doing all the programming exercieses by yourself.

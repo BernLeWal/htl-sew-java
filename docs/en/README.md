@@ -1,5 +1,5 @@
 # Tutorial - learning by samples
-[Tutorial in Deutsch](README_de.md)
+[Tutorial in Deutsch](../de/README.md)
 
 Concept and syntax documentation can be found in the sew java course. This repository is used as learning by
 investigating functioning samples and later doing all the programming exercieses by yourself.
