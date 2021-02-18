@@ -69,6 +69,12 @@
             <artifactId>jansi</artifactId>
             <version>2.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -91,14 +97,25 @@
                     <mainClass>ui.fx.samples.AllDemos</mainClass>
                 </configuration>
             </plugin>
-                <!-- Jetty Plugin. Default port is 8080 -->
-                <plugin>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <version>11.0.0</version>
-                </plugin>
-            </plugins>
-            <finalName>htl-sew-java-web</finalName>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.1.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- Jetty Plugin. Default port is 8080 -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>11.0.0</version>
+            </plugin>
+        </plugins>
+        <finalName>htl-sew-java-web</finalName>
     </build>
 
 </project>
