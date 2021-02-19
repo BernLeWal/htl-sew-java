@@ -6,14 +6,19 @@ public class MarkdownToken {
     private final MarkdownTokenType type;
     private final String value;
 
+    public MarkdownToken(MarkdownTokenType type) {
+        this.type = type;
+        this.value = "";
+    }
+
     public MarkdownToken(MarkdownTokenType type, String value) {
         this.type = type;
         this.value = value;
     }
 
-    public MarkdownToken(MarkdownTokenType type) {
+    public MarkdownToken(MarkdownTokenType type, char value) {
         this.type = type;
-        this.value = "";
+        this.value = String.valueOf(value);
     }
 
     public MarkdownTokenType getType() {

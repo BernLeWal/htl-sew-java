@@ -101,6 +101,7 @@ Blockquotes can contain other Markdown formatted elements. Not all elements can 
 Lists
 
 You can organize items into ordered and unordered lists.
+
 Ordered Lists
 
 To create an ordered list, add line items with numbers followed by periods. 
@@ -132,4 +133,14 @@ Two cascaded lists written with indentations:
     1. Indented item
     2. Indented item
 4. Fourth item 
+
+Unordered Lists @TODO
+
+To create an unordered list, add line items with '-' or '*' followed by an gap
+
+- First item
+* Second item
+  - Third item
+  * Fourth item 
+
 

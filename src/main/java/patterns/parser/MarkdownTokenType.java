@@ -10,5 +10,6 @@ public enum MarkdownTokenType {
     EM,
     INDENT,
     QUOTE,
+    UL,
 
 }
