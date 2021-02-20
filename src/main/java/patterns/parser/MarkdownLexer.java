@@ -17,6 +17,10 @@ public class MarkdownLexer {
 
     // intermediate variables during lexing:
     private BufferedReader reader;
+    private char currentChar;
+    private boolean checkCurrentCharAgain;
+    private StringBuilder currentText;
+    private boolean isNextCharAtLineStart;
     private ArrayList<MarkdownToken> tokens;
 
     // construction:
@@ -61,105 +65,45 @@ public class MarkdownLexer {
 
         try (BufferedReader reader =new BufferedReader(new InputStreamReader(input,StandardCharsets.UTF_8))){
             this.reader = reader;
-            StringBuilder currentText = new StringBuilder();
-            boolean isNextCharAtLineStart = true;
+            currentText = new StringBuilder();
+            isNextCharAtLineStart = true;
             boolean isCharAtLineStart = false;
             boolean eof = false;
             while (!eof) {
-                char character = readChar();
+                currentChar = readChar();
                 isCharAtLineStart = isNextCharAtLineStart;
                 isNextCharAtLineStart = false;
 
-                boolean checkCharacterAgain;
                 do {
-                    checkCharacterAgain = false;
+                    checkCurrentCharAgain = false;
 
-                    if (character == (char) -1) {
+                    if (currentChar == (char) -1) {
                         eof = true;
                         if (isCreateCRLFEofToken)
                             tokens.add(new MarkdownToken(MarkdownTokenType.CRLF, "EOF"));
                     } else if (isCharAtLineStart) {
-                        if (character == ' ') {
-                            StringBuilder space = new StringBuilder();
-                            do {
-                                space.append(character);
-                                character = readChar();
-                            } while (character == ' ');
-                            tokens.add(new MarkdownToken(MarkdownTokenType.INDENT, space.toString()));
-                        }
-                        if (character == '#') {
-                            StringBuilder heading = new StringBuilder();
-                            do {
-                                heading.append(character);
-                                character = readChar();
-                            } while (character == '#');
-                            tokens.add(new MarkdownToken(MarkdownTokenType.H, heading.toString()));
-                            checkCharacterAgain = (character != ' ');
-                        } else if (character == '-' || character == '*') {
-                            if (tryReadNextChar(' '))
-                                tokens.add(new MarkdownToken(MarkdownTokenType.UL, character));
-                            else
-                                checkCharacterAgain = true;
-                        } else if (character == '>') {
-                            StringBuilder quote = new StringBuilder();
-                            do {
-                                quote.append(character);
-                                character = readChar();
-                            } while (character == '>');
-                            tokens.add(new MarkdownToken(MarkdownTokenType.QUOTE, quote.toString()));
-                            checkCharacterAgain = (character != ' ');
-                        } else
-                            checkCharacterAgain = true;
+                        boolean tokenCreated = tryTokenIndent();    // ' '
+                        tokenCreated |= tryToken('#', MarkdownTokenType.H);          // '#'
+                        tokenCreated |= tryTokenUnnumberedList();   // '-', '*'
+                        tokenCreated |= tryToken('>', MarkdownTokenType.QUOTE);            // '>'
+                        if( !tokenCreated )
+                            checkCurrentCharAgain = true;
                     } else {
                         // !isCharAtLineStart
-                        if (character == ' ') {
-                            StringBuilder space = new StringBuilder();
-                            do {
-                                space.append(character);
-                                character = readChar();
-                            } while (character == ' ');
-                            if (space.length() > 1) {
-                                tryCreateTextToken(currentText);
-                                tokens.add(new MarkdownToken(MarkdownTokenType.BR, space.toString()));
-                            } else
-                                currentText.append(' ');
-                            checkCharacterAgain = true;
-                        } else
-                            checkCharacterAgain = true;
+                        boolean tokenCreated = tryTokenBreak();     // ' '
+                        if (!tokenCreated)
+                            checkCurrentCharAgain = true;
                     }
                     //
-                    if (checkCharacterAgain) {
-                        checkCharacterAgain = false;
-                        if (character == '\r') {
-                            tryCreateTextToken(currentText);
-                            tryReadNextChar('\n');
-                            tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
-                            isNextCharAtLineStart = true;
-                        } else if (character == '\n') {
-                            tryCreateTextToken(currentText);
-                            tryReadNextChar('\r');
-                            tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
-                            isNextCharAtLineStart = true;
-                        } else if (character == '<') {
-                            tryCreateTextToken(currentText);
-                            tokens.add(new MarkdownToken(MarkdownTokenType.LT));
-                        } else if (character == '>') {
-                            tryCreateTextToken(currentText);
-                            tokens.add(new MarkdownToken(MarkdownTokenType.GT));
-                        } else if (character == '*' || character == '_') {
-                            tryCreateTextToken(currentText);
-                            StringBuilder emphasis = new StringBuilder();
-                            do {
-                                emphasis.append(character);
-                                character = readChar();
-                            } while (character == '*' || character == '_');
-                            tokens.add(new MarkdownToken(MarkdownTokenType.EM, emphasis.toString()));
-                            checkCharacterAgain = true;
-                        } else {
-                            currentText.append(character);
-                        }
+                    if (checkCurrentCharAgain) {
+                        checkCurrentCharAgain = false;
+                        boolean tokenCreated = tryTokenCRLF();      // '\n', '\r'
+                        tokenCreated |= tryTokenHtmlTag();          // '<'...'>'
+                        tokenCreated |= tryTokenEmphasis();         // '*', '_'
+                        if (!tokenCreated)
+                            currentText.append(currentChar);
                     }
-                } while (checkCharacterAgain && !eof);
+                } while (checkCurrentCharAgain && !eof);
             }
             tryCreateTextToken(currentText);
         } catch(IOException e){
@@ -167,7 +111,6 @@ public class MarkdownLexer {
         }
     }
 
-    // helpers:
     private boolean tryCreateTextToken(StringBuilder currentText) {
         if (!currentText.isEmpty()) {
             tokens.add(new MarkdownToken(MarkdownTokenType.T, currentText.toString()));
@@ -177,18 +120,130 @@ public class MarkdownLexer {
         return false;
     }
 
-    private char readChar() throws IOException {
-        return (char)reader.read();
+    private boolean tryToken(char findChar, MarkdownTokenType tokenType) {
+        if (currentChar == findChar) {
+            StringBuilder heading = new StringBuilder();
+            do {
+                heading.append(currentChar);
+                currentChar = readChar();
+            } while (currentChar == findChar);
+            tokens.add(new MarkdownToken(tokenType, heading.toString()));
+            checkCurrentCharAgain = (currentChar != ' ');
+            return true;
+        }
+        return false;
     }
 
-    private boolean tryReadNextChar(char c) throws IOException {
-        reader.mark(1);
-        char lineFeed = readChar();
-        if (lineFeed != c) {
-            reader.reset(); // equivalent for peek (in C#)
+    private boolean tryTokenCRLF() {
+        if (currentChar == '\r') {
+            tryCreateTextToken(currentText);
+            tryReadNextChar('\n');
+            tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
+            isNextCharAtLineStart = true;
+            return true;
+        } else if (currentChar == '\n') {
+            tryCreateTextToken(currentText);
+            tryReadNextChar('\r');
+            tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
+            isNextCharAtLineStart = true;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean tryTokenIndent() {
+        if (currentChar == ' ' || currentChar == '\t') {
+            StringBuilder space = new StringBuilder();
+            do {
+                space.append(currentChar);
+                currentChar = readChar();
+            } while (currentChar == ' ' || currentChar == '\t');
+            tokens.add(new MarkdownToken(MarkdownTokenType.INDENT, space.toString()));
+            return true;
+        }
+        return false;
+    }
+
+    private boolean tryTokenUnnumberedList() {
+        if (currentChar == '-' || currentChar == '*') {
+            if (tryReadNextChar(' '))
+                tokens.add(new MarkdownToken(MarkdownTokenType.UL, currentChar));
+            else
+                checkCurrentCharAgain = true;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean tryTokenBreak() {
+        if (currentChar == ' ') {
+            StringBuilder space = new StringBuilder();
+            do {
+                space.append(currentChar);
+                currentChar = readChar();
+            } while (currentChar == ' ');
+            if (space.length() > 1) {
+                tryCreateTextToken(currentText);
+                tokens.add(new MarkdownToken(MarkdownTokenType.BR, space.toString()));
+            } else
+                currentText.append(' ');
+            checkCurrentCharAgain = true;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean tryTokenEmphasis() {
+        if (currentChar == '*' || currentChar == '_') {
+            tryCreateTextToken(currentText);
+            StringBuilder emphasis = new StringBuilder();
+            do {
+                emphasis.append(currentChar);
+                currentChar = readChar();
+            } while (currentChar == '*' || currentChar == '_');
+            tokens.add(new MarkdownToken(MarkdownTokenType.EM, emphasis.toString()));
+            checkCurrentCharAgain = true;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean tryTokenHtmlTag() {
+        if (currentChar == '<') {
+            tryCreateTextToken(currentText);
+            tokens.add(new MarkdownToken(MarkdownTokenType.LT));
+            return true;
+        } else if (currentChar == '>') {
+            tryCreateTextToken(currentText);
+            tokens.add(new MarkdownToken(MarkdownTokenType.GT));
+            return true;
+        } else
+            return false;
+    }
+
+
+    // helpers:
+    private char readChar() {
+        try {
+            return (char)reader.read();
+        } catch (IOException e) {
+            return (char)-1;
+        }
+    }
+
+    private boolean tryReadNextChar(char c) {
+        try {
+            reader.mark(1);
+            char lineFeed = readChar();
+            if (lineFeed != c) {
+                reader.reset(); // equivalent for peek (in C#)
+                return false;
+            }
+            return true;
+        }
+        catch (IOException e) {
             return false;
         }
-        return true;
     }
 
 
