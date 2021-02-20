@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public class MarkdownLexer {
     // lexer configuration:
-    private final boolean isCreateCRLFEofToken;
+    private boolean isCreateCRLFEofToken;
 
     // intermediate variables during lexing:
-    private InputStream input;
+    private BufferedReader reader;
     private ArrayList<MarkdownToken> tokens;
 
     // construction:
@@ -28,30 +28,45 @@ public class MarkdownLexer {
         this.isCreateCRLFEofToken = isCreateCRLFEofToken;
     }
 
-    // getters:
+    // getters & setters:
+    public boolean isCreateCRLFEofToken() {
+        return isCreateCRLFEofToken;
+    }
+
+    public void setCreateCRLFEofToken(boolean createCRLFEofToken) {
+        isCreateCRLFEofToken = createCRLFEofToken;
+    }
+
     public ArrayList<MarkdownToken> getTokens() {
         return tokens;
     }
 
     // operations:
-    public void open(URI uri) throws IOException {
-        input = uri.toURL().openStream();
+    public ArrayList<MarkdownToken> tokenize(InputStream input) {
+        doTokenize(input);
+        return tokens;
     }
 
-    public void open(InputStream input) {
-        this.input = input;
+    public ArrayList<MarkdownToken> tokenize(URI uri) throws IOException {
+        return tokenize(uri.toURL().openStream());
     }
 
-    public void run() {
+    public ArrayList<MarkdownToken> tokenize(String text) {
+        return tokenize(new ByteArrayInputStream(text.getBytes()));
+    }
+
+
+    private void doTokenize(InputStream input) {
         tokens = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
+        try (BufferedReader reader =new BufferedReader(new InputStreamReader(input,StandardCharsets.UTF_8))){
+            this.reader = reader;
             StringBuilder currentText = new StringBuilder();
             boolean isNextCharAtLineStart = true;
             boolean isCharAtLineStart = false;
             boolean eof = false;
             while (!eof) {
-                char character = (char) reader.read();
+                char character = readChar();
                 isCharAtLineStart = isNextCharAtLineStart;
                 isNextCharAtLineStart = false;
 
@@ -63,12 +78,12 @@ public class MarkdownLexer {
                         eof = true;
                         if (isCreateCRLFEofToken)
                             tokens.add(new MarkdownToken(MarkdownTokenType.CRLF, "EOF"));
-                    } else if (isCharAtLineStart ) {
+                    } else if (isCharAtLineStart) {
                         if (character == ' ') {
                             StringBuilder space = new StringBuilder();
                             do {
                                 space.append(character);
-                                character = (char) reader.read();
+                                character = readChar();
                             } while (character == ' ');
                             tokens.add(new MarkdownToken(MarkdownTokenType.INDENT, space.toString()));
                         }
@@ -76,12 +91,12 @@ public class MarkdownLexer {
                             StringBuilder heading = new StringBuilder();
                             do {
                                 heading.append(character);
-                                character = (char) reader.read();
+                                character = readChar();
                             } while (character == '#');
                             tokens.add(new MarkdownToken(MarkdownTokenType.H, heading.toString()));
                             checkCharacterAgain = (character != ' ');
                         } else if (character == '-' || character == '*') {
-                            if (tryReadNextChar(reader, ' ') )
+                            if (tryReadNextChar(' '))
                                 tokens.add(new MarkdownToken(MarkdownTokenType.UL, character));
                             else
                                 checkCharacterAgain = true;
@@ -89,7 +104,7 @@ public class MarkdownLexer {
                             StringBuilder quote = new StringBuilder();
                             do {
                                 quote.append(character);
-                                character = (char) reader.read();
+                                character = readChar();
                             } while (character == '>');
                             tokens.add(new MarkdownToken(MarkdownTokenType.QUOTE, quote.toString()));
                             checkCharacterAgain = (character != ' ');
@@ -101,7 +116,7 @@ public class MarkdownLexer {
                             StringBuilder space = new StringBuilder();
                             do {
                                 space.append(character);
-                                character = (char) reader.read();
+                                character = readChar();
                             } while (character == ' ');
                             if (space.length() > 1) {
                                 tryCreateTextToken(currentText);
@@ -109,21 +124,20 @@ public class MarkdownLexer {
                             } else
                                 currentText.append(' ');
                             checkCharacterAgain = true;
-                        }
-                        else
+                        } else
                             checkCharacterAgain = true;
                     }
                     //
-                    if( checkCharacterAgain ) {
+                    if (checkCharacterAgain) {
                         checkCharacterAgain = false;
                         if (character == '\r') {
                             tryCreateTextToken(currentText);
-                            tryReadNextChar(reader, '\n');
+                            tryReadNextChar('\n');
                             tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
                             isNextCharAtLineStart = true;
                         } else if (character == '\n') {
                             tryCreateTextToken(currentText);
-                            tryReadNextChar(reader, '\r');
+                            tryReadNextChar('\r');
                             tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
                             isNextCharAtLineStart = true;
                         } else if (character == '<') {
@@ -137,7 +151,7 @@ public class MarkdownLexer {
                             StringBuilder emphasis = new StringBuilder();
                             do {
                                 emphasis.append(character);
-                                character = (char) reader.read();
+                                character = readChar();
                             } while (character == '*' || character == '_');
                             tokens.add(new MarkdownToken(MarkdownTokenType.EM, emphasis.toString()));
                             checkCharacterAgain = true;
@@ -148,7 +162,7 @@ public class MarkdownLexer {
                 } while (checkCharacterAgain && !eof);
             }
             tryCreateTextToken(currentText);
-        } catch (IOException e) {
+        } catch(IOException e){
             e.printStackTrace();
         }
     }
@@ -163,9 +177,13 @@ public class MarkdownLexer {
         return false;
     }
 
-    private boolean tryReadNextChar(BufferedReader reader, char c) throws IOException {
+    private char readChar() throws IOException {
+        return (char)reader.read();
+    }
+
+    private boolean tryReadNextChar(char c) throws IOException {
         reader.mark(1);
-        char lineFeed = (char) reader.read();
+        char lineFeed = readChar();
         if (lineFeed != c) {
             reader.reset(); // equivalent for peek (in C#)
             return false;
@@ -181,8 +199,7 @@ public class MarkdownLexer {
         String filename = "/patterns/sample.md";
         System.out.println("Lexing file: " + filename);
         MarkdownLexer lexer = new MarkdownLexer();
-        lexer.open(lexer.getClass().getResource(filename).toURI());
-        lexer.run();
+        lexer.tokenize(lexer.getClass().getResource(filename).toURI());
         System.out.println();
 
         System.out.println("Tokens: " + lexer.getTokens().size());

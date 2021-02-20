@@ -10,10 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MarkdownLexerTest {
     private static List<MarkdownToken> lexer(String s) {
-        MarkdownLexer lexer = new MarkdownLexer(false);
-        lexer.open( new ByteArrayInputStream(s.getBytes()) );
-        lexer.run();
-        return lexer.getTokens();
+        return new MarkdownLexer(false).tokenize( s );
     }
 
     @Test
