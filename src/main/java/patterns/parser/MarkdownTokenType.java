@@ -3,11 +3,10 @@ package patterns.parser;
 public enum MarkdownTokenType {
     T,
     CRLF,
-    H,
     INDENT,
     BR,
-    LT,
-    GT,
+    H,
+    HTML,
     EM,
     QUOTE,
     UL,

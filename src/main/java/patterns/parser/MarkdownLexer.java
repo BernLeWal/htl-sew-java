@@ -21,6 +21,8 @@ public class MarkdownLexer {
     private boolean checkCurrentCharAgain;
     private StringBuilder currentText;
     private boolean isNextCharAtLineStart;
+    private boolean eof;
+
     private ArrayList<MarkdownToken> tokens;
 
     // construction:
@@ -68,7 +70,7 @@ public class MarkdownLexer {
             currentText = new StringBuilder();
             isNextCharAtLineStart = true;
             boolean isCharAtLineStart = false;
-            boolean eof = false;
+            eof = false;
             while (!eof) {
                 currentChar = readChar();
                 isCharAtLineStart = isNextCharAtLineStart;
@@ -77,10 +79,8 @@ public class MarkdownLexer {
                 do {
                     checkCurrentCharAgain = false;
 
-                    if (currentChar == (char) -1) {
-                        eof = true;
-                        if (isCreateCRLFEofToken)
-                            tokens.add(new MarkdownToken(MarkdownTokenType.CRLF, "EOF"));
+                    if ( tryEOF() ) {
+                        break;
                     } else if (isCharAtLineStart) {
                         boolean tokenCreated = tryTokenIndent();    // ' '
                         tokenCreated |= tryToken('#', MarkdownTokenType.H);          // '#'
@@ -97,7 +97,8 @@ public class MarkdownLexer {
                     //
                     if (checkCurrentCharAgain) {
                         checkCurrentCharAgain = false;
-                        boolean tokenCreated = tryTokenCRLF();      // '\n', '\r'
+                        boolean tokenCreated = tryEOF();
+                        tokenCreated |= tryTokenCRLF();      // '\n', '\r'
                         tokenCreated |= tryTokenHtmlTag();          // '<'...'>'
                         tokenCreated |= tryTokenEmphasis();         // '*', '_'
                         if (!tokenCreated)
@@ -118,6 +119,18 @@ public class MarkdownLexer {
             return true;
         }
         return false;
+    }
+
+    private boolean tryEOF() {
+        if (currentChar == (char) -1) {
+            eof = true;
+            checkCurrentCharAgain = false;
+            if (isCreateCRLFEofToken)
+                tokens.add(new MarkdownToken(MarkdownTokenType.CRLF, "EOF"));
+            return true;
+        }
+        else
+            return false;
     }
 
     private boolean tryToken(char findChar, MarkdownTokenType tokenType) {
@@ -164,17 +177,6 @@ public class MarkdownLexer {
         return false;
     }
 
-    private boolean tryTokenUnnumberedList() {
-        if (currentChar == '-' || currentChar == '*') {
-            if (tryReadNextChar(' '))
-                tokens.add(new MarkdownToken(MarkdownTokenType.UL, currentChar));
-            else
-                checkCurrentCharAgain = true;
-            return true;
-        }
-        return false;
-    }
-
     private boolean tryTokenBreak() {
         if (currentChar == ' ') {
             StringBuilder space = new StringBuilder();
@@ -182,12 +184,15 @@ public class MarkdownLexer {
                 space.append(currentChar);
                 currentChar = readChar();
             } while (currentChar == ' ');
-            if (space.length() > 1) {
+            if (space.length() > 1 && (currentChar == '\n' || currentChar == '\r') ) {
                 tryCreateTextToken(currentText);
                 tokens.add(new MarkdownToken(MarkdownTokenType.BR, space.toString()));
-            } else
-                currentText.append(' ');
-            checkCurrentCharAgain = true;
+                if (currentChar=='\r')
+                    tryReadNextChar('\n');
+            } else {
+                currentText.append(space);
+                checkCurrentCharAgain = true;
+            }
             return true;
         }
         return false;
@@ -210,15 +215,42 @@ public class MarkdownLexer {
 
     private boolean tryTokenHtmlTag() {
         if (currentChar == '<') {
-            tryCreateTextToken(currentText);
-            tokens.add(new MarkdownToken(MarkdownTokenType.LT));
-            return true;
-        } else if (currentChar == '>') {
-            tryCreateTextToken(currentText);
-            tokens.add(new MarkdownToken(MarkdownTokenType.GT));
-            return true;
+            try {
+                reader.mark(100);
+                StringBuilder html = new StringBuilder();
+                do {
+                    html.append(currentChar);
+                    currentChar = readChar();
+                } while (currentChar!='>' && currentChar!='\n' && currentChar!='\r' && currentChar!='<' && currentChar!=((char)-1) && html.length()<100 );
+                if (currentChar=='>') {
+                    tryCreateTextToken(currentText);
+                    html.append(currentChar);
+                    tokens.add(new MarkdownToken(MarkdownTokenType.HTML, html.toString()));
+                    return true;
+                }
+                else
+                {
+                    reader.reset();
+                    currentChar = readChar();
+                    currentText.append('<');
+                    return false;
+                }
+            } catch (IOException e) {
+                return false;
+            }
         } else
             return false;
+    }
+
+    private boolean tryTokenUnnumberedList() {
+        if (currentChar == '-' || currentChar == '*' || currentChar == '+') {
+            if (tryReadNextChar(' '))
+                tokens.add(new MarkdownToken(MarkdownTokenType.UL, currentChar));
+            else
+                checkCurrentCharAgain = true;
+            return true;
+        }
+        return false;
     }
 
 
@@ -251,7 +283,7 @@ public class MarkdownLexer {
     public static void main(String[] args) throws URISyntaxException, IOException {
         System.out.println("MarkdownLexer Demo");
 
-        String filename = "/patterns/sample.md";
+        String filename = "/patterns/basic_samples.md";
         System.out.println("Lexing file: " + filename);
         MarkdownLexer lexer = new MarkdownLexer();
         lexer.tokenize(lexer.getClass().getResource(filename).toURI());

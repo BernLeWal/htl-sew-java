@@ -109,6 +109,84 @@ class MarkdownLexerTest {
         assertEquals( expected, lexer("First\nSecond\n") );
     }
 
+    @Test
+    void testSimpleTokens_NoLineBreak1() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text "),
+                new MarkdownToken(MarkdownTokenType.CRLF)
+        );
+        assertEquals( expected, lexer( "Text \n") );
+    }
+
+    @Test
+    void testSimpleTokens_NoLineBreak2() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text ")
+        );
+        assertEquals( expected, lexer( "Text ") );
+    }
+
+    @Test
+    void testSimpleTokens_NoLineBreak3() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "First  Second")
+        );
+        assertEquals( expected, lexer( "First  Second") );
+    }
+
+    @Test
+    void testSimpleTokens_LineBreak1() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text"),
+                new MarkdownToken(MarkdownTokenType.BR, "  ")
+        );
+        assertEquals( expected, lexer( "Text  \n") );
+    }
+
+    @Test
+    void testSimpleTokens_LineBreak2() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text"),
+                new MarkdownToken(MarkdownTokenType.BR, "   ")
+        );
+        assertEquals( expected, lexer( "Text   \n") );
+    }
+
+    @Test
+    void testSimpleTokens_LineBreak3() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text"),
+                new MarkdownToken(MarkdownTokenType.BR, "    ")
+        );
+        assertEquals( expected, lexer( "Text    \n") );
+    }
+
+    @Test
+    void testSimpleTokens_LineBreak1b() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text"),
+                new MarkdownToken(MarkdownTokenType.BR, "  ")
+        );
+        assertEquals( expected, lexer( "Text  \r\n") );
+    }
+
+    @Test
+    void testSimpleTokens_LineBreak2b() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text"),
+                new MarkdownToken(MarkdownTokenType.BR, "   ")
+        );
+        assertEquals( expected, lexer( "Text   \r\n") );
+    }
+
+    @Test
+    void testSimpleTokens_LineBreak3b() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text"),
+                new MarkdownToken(MarkdownTokenType.BR, "    ")
+        );
+        assertEquals( expected, lexer( "Text    \r\n") );
+    }
 
     @Test
     void testSimpleTokens_H1() {
@@ -224,6 +302,75 @@ class MarkdownLexerTest {
         assertEquals( expected, lexer(" ######Heading") );
     }
 
+    @Test
+    void testSimpleTokens_HtmlTagHR() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.HTML, "<hr>")
+        );
+        assertEquals( expected, lexer("<hr>") );
+    }
+
+    @Test
+    void testSimpleTokens_HtmlTagHR1() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Text"),
+                new MarkdownToken(MarkdownTokenType.HTML, "<hr>")
+        );
+        assertEquals( expected, lexer("Text<hr>") );
+    }
+
+    @Test
+    void testSimpleTokens_HtmlTagHR2() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.HTML, "<hr>"),
+                new MarkdownToken(MarkdownTokenType.T, "Text")
+        );
+        assertEquals( expected, lexer("<hr>Text") );
+    }
+
+    @Test
+    void testSimpleTokens_HtmlTagHR3() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "Front"),
+                new MarkdownToken(MarkdownTokenType.HTML, "<hr>"),
+                new MarkdownToken(MarkdownTokenType.T, "Back")
+        );
+        assertEquals( expected, lexer("Front<hr>Back") );
+    }
+
+    @Test
+    void testSimpleTokens_HtmlTagBR() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.HTML, "<br/>")
+        );
+        assertEquals( expected, lexer("<br/>") );
+    }
+
+    @Test
+    void testSimpleTokent_NoHtmlTag1() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "The result of 9<10 is true")
+        );
+        assertEquals( expected, lexer("The result of 9<10 is true") );
+    }
+
+    @Test
+    void testSimpleTokent_NoHtmlTag2() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "The result of 10 < 11 is true"),
+                new MarkdownToken(MarkdownTokenType.CRLF)
+        );
+        assertEquals( expected, lexer("The result of 10 < 11 is true\n") );
+    }
+
+    @Test
+    void testSimpleTokent_NoHtmlTag3() {
+        final String longText = "Lorem ipsum < dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, longText)
+        );
+        assertEquals( expected, lexer(longText) );
+    }
 
 
     @Test
@@ -318,6 +465,23 @@ class MarkdownLexerTest {
     }
 
     @Test
+    void testSimpleTokens_UnnumberedListItem3() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.UL,"+"),
+                new MarkdownToken(MarkdownTokenType.T, "List Item") );
+        assertEquals( expected, lexer("+ List Item") );
+    }
+
+    @Test
+    void testSimpleTokens_IndentUnnumberedListItem3() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.INDENT, " "),
+                new MarkdownToken(MarkdownTokenType.UL,"+"),
+                new MarkdownToken(MarkdownTokenType.T, "List Item") );
+        assertEquals( expected, lexer(" + List Item") );
+    }
+
+    @Test
     void testSimpleTokens_NoUnnumberedListItem1() {
         var expected = Arrays.asList(
                 new MarkdownToken(MarkdownTokenType.T, "-List Item") );
@@ -347,6 +511,21 @@ class MarkdownLexerTest {
                 new MarkdownToken(MarkdownTokenType.EM,"*"),
                 new MarkdownToken(MarkdownTokenType.T, "List Item") );
         assertEquals( expected, lexer(" *List Item") );
+    }
+
+    @Test
+    void testSimpleTokens_NoUnnumberedListItem3() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.T, "+List Item") );
+        assertEquals( expected, lexer("+List Item") );
+    }
+
+    @Test
+    void testSimpleTokens_IndentNoUnnumberedListItem3() {
+        var expected = Arrays.asList(
+                new MarkdownToken(MarkdownTokenType.INDENT, " "),
+                new MarkdownToken(MarkdownTokenType.T, "+List Item") );
+        assertEquals( expected, lexer(" +List Item") );
     }
 
 }

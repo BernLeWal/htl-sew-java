@@ -134,13 +134,38 @@ Two cascaded lists written with indentations:
     2. Indented item
 4. Fourth item 
 
-Unordered Lists @TODO
+Unordered Lists
 
-To create an unordered list, add line items with '-' or '*' followed by an gap
+To create an unordered list, add dashes (-), asterisks (*), or plus signs (+) in front of line items. Indent one or more items to create a nested list.
 
 - First item
 * Second item
-  - Third item
-  * Fourth item 
++ Third item 
+  - Fourth item
+  * Fifth item
+  + Sixth item
+- Seventh item
+
+Adding Elements in Lists
+
+To add another element in a list while preserving the continuity of the list, indent the element four spaces or one tab, as shown in the following examples.  
+Paragraphs
+
+*   This is the first list item.
+*   Here's the second list item.
+
+    I need to add another paragraph below the second list item.
+
+*   And here's the third list item.
+
+Blockquotes
+
+*   This is the first list item.
+*   Here's the second list item.
+
+    > A blockquote would look great below the second list item.
+
+*   And here's the third list item.
+
 
 
