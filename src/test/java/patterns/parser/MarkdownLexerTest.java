@@ -3,6 +3,7 @@ package patterns.parser;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +13,14 @@ class MarkdownLexerTest {
     private static List<MarkdownToken> lexer(String s) {
         return new MarkdownLexer(false).tokenize( s );
     }
+
+    @Test
+    void test_Empty() {
+        var expected = new ArrayList<MarkdownToken>();
+        var actual = lexer("");
+        assertEquals( expected, actual );
+    }
+
 
     @Test
     void testSingleToken_Text() {
@@ -28,6 +37,35 @@ class MarkdownLexerTest {
         assertEquals( expected, lexer("\r\n") );
         assertEquals( expected, lexer("\n\r") );
     }
+
+    @Test
+    void testSingleToken_Indent1() {
+        var expected = Arrays.asList( new MarkdownToken(MarkdownTokenType.INDENT," ") );
+        var actual = lexer(" ");
+        assertEquals( expected, actual );
+    }
+
+    @Test
+    void testSingleToken_Indent2() {
+        var expected = Arrays.asList( new MarkdownToken(MarkdownTokenType.INDENT,"  ") );
+        var actual = lexer("  ");
+        assertEquals( expected, actual );
+    }
+
+    @Test
+    void testSingleToken_IndentTab1() {
+        var expected = Arrays.asList( new MarkdownToken(MarkdownTokenType.INDENT,"\t") );
+        var actual = lexer("\t");
+        assertEquals( expected, actual );
+    }
+
+    @Test
+    void testSingleToken_IndentTab2() {
+        var expected = Arrays.asList( new MarkdownToken(MarkdownTokenType.INDENT,"\t\t") );
+        var actual = lexer("\t\t");
+        assertEquals( expected, actual );
+    }
+
 
     @Test
     void testSimpleTokens_DoubleCRLF() {
@@ -185,6 +223,8 @@ class MarkdownLexerTest {
         assertEquals( expected, lexer(" ###### Heading") );
         assertEquals( expected, lexer(" ######Heading") );
     }
+
+
 
     @Test
     void testSimpleTokens_Quote1() {
