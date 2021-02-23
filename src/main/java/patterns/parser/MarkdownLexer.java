@@ -114,7 +114,7 @@ public class MarkdownLexer {
 
     private boolean tryCreateTextToken(StringBuilder currentText) {
         if (!currentText.isEmpty()) {
-            tokens.add(new MarkdownToken(MarkdownTokenType.T, currentText.toString()));
+            tokens.add(MarkdownTokenFactory.createT( currentText.toString()));
             currentText.setLength(0);
             return true;
         }
@@ -126,7 +126,7 @@ public class MarkdownLexer {
             eof = true;
             checkCurrentCharAgain = false;
             if (isCreateCRLFEofToken)
-                tokens.add(new MarkdownToken(MarkdownTokenType.CRLF, "EOF"));
+                tokens.add(MarkdownTokenFactory.createCRLF());
             return true;
         }
         else
@@ -151,13 +151,13 @@ public class MarkdownLexer {
         if (currentChar == '\r') {
             tryCreateTextToken(currentText);
             tryReadNextChar('\n');
-            tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
+            tokens.add(MarkdownTokenFactory.createCRLF());
             isNextCharAtLineStart = true;
             return true;
         } else if (currentChar == '\n') {
             tryCreateTextToken(currentText);
             tryReadNextChar('\r');
-            tokens.add(new MarkdownToken(MarkdownTokenType.CRLF));
+            tokens.add(MarkdownTokenFactory.createCRLF());
             isNextCharAtLineStart = true;
             return true;
         }
@@ -171,7 +171,7 @@ public class MarkdownLexer {
                 space.append(currentChar);
                 currentChar = readChar();
             } while (currentChar == ' ' || currentChar == '\t');
-            tokens.add(new MarkdownToken(MarkdownTokenType.INDENT, space.toString()));
+            tokens.add(MarkdownTokenFactory.createINDENT( space.toString()));
             return true;
         }
         return false;
@@ -186,7 +186,7 @@ public class MarkdownLexer {
             } while (currentChar == ' ');
             if (space.length() > 1 && (currentChar == '\n' || currentChar == '\r') ) {
                 tryCreateTextToken(currentText);
-                tokens.add(new MarkdownToken(MarkdownTokenType.BR, space.toString()));
+                tokens.add(MarkdownTokenFactory.createBR());
                 if (currentChar=='\r')
                     tryReadNextChar('\n');
             } else {
@@ -206,7 +206,7 @@ public class MarkdownLexer {
                 emphasis.append(currentChar);
                 currentChar = readChar();
             } while (currentChar == '*' || currentChar == '_');
-            tokens.add(new MarkdownToken(MarkdownTokenType.EM, emphasis.toString()));
+            tokens.add(MarkdownTokenFactory.createEM( emphasis.toString()));
             checkCurrentCharAgain = true;
             return true;
         }
@@ -225,7 +225,7 @@ public class MarkdownLexer {
                 if (currentChar=='>') {
                     tryCreateTextToken(currentText);
                     html.append(currentChar);
-                    tokens.add(new MarkdownToken(MarkdownTokenType.HTML, html.toString()));
+                    tokens.add(MarkdownTokenFactory.createHTML( html.toString()));
                     return true;
                 }
                 else
@@ -245,7 +245,7 @@ public class MarkdownLexer {
     private boolean tryTokenUnnumberedList() {
         if (currentChar == '-' || currentChar == '*' || currentChar == '+') {
             if (tryReadNextChar(' '))
-                tokens.add(new MarkdownToken(MarkdownTokenType.UL, currentChar));
+                tokens.add(MarkdownTokenFactory.createUL( String.valueOf(currentChar)) );
             else
                 checkCurrentCharAgain = true;
             return true;

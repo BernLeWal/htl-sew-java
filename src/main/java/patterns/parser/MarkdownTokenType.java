@@ -7,8 +7,10 @@ public enum MarkdownTokenType {
     BR,
     H,
     HTML,
+
     EM,
     QUOTE,
     UL,
-
+    NL,
+    CODE,
 }
