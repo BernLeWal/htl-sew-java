@@ -13,7 +13,7 @@ public class MdText extends MdNode {
     @Override
     public String toString() {
         return "MdText{" +
-                ", value='" + getValue() + '\'' +
+                "value='" + getValue() + '\'' +
                 '}';
     }
 

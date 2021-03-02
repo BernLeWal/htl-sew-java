@@ -61,11 +61,26 @@ public abstract class MdNode implements Composable<MdNode> {
 
     @Override
     public String toString() {
-        return "MdNode{" +
-                "parent=" + parent +
-                ", children=" + children +
-                ", value='" + value + '\'' +
-                '}';
+        return getClass().getSimpleName() + "{}";
+    }
+
+    public String toStringRecursive(boolean showType) {
+        StringBuilder sb = new StringBuilder();
+        if( showType )
+            sb.append( toString() );
+        if( !isLeaf() ) {
+            sb.append("[");
+            boolean isFirst = true;
+            for (MdNode child : children) {
+                if (isFirst)
+                    isFirst = false;
+                else
+                    sb.append(", ");
+                sb.append(child.toStringRecursive(true));
+            }
+            sb.append("] ");
+        }
+        return sb.toString();
     }
 
     @Override

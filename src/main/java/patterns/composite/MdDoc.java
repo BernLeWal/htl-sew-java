@@ -18,7 +18,7 @@ public class MdDoc extends MdNode {
     public String toString() {
         return "MdDoc{" +
                 "filePath=" + filePath +
-                '}';
+                '}' + toStringRecursive(false);
     }
 
     // parser:

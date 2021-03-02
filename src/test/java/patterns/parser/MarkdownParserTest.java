@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import patterns.composite.MdDoc;
 import patterns.composite.MdHeading;
 import patterns.composite.MdParagraph;
+import patterns.composite.MdText;
 
 public class MarkdownParserTest {
     @Test
@@ -16,10 +17,41 @@ public class MarkdownParserTest {
     }
 
     @Test
-    void test_SingleParagraph() {
+    void test_SingleParagraphEmpty() {
+        var expected = new MdDoc(null);
+        expected.addChild( new MdParagraph() );
+        var actual = MdDoc.parse("\n");
+        assertEquals( expected, actual );
+    }
+
+    @Test
+    void test_SingleParagraph1Text() {
         var expected = new MdDoc(null);
         expected.addChild( new MdParagraph("A single paragraph with text") );
         var actual = MdDoc.parse("A single paragraph with text");
+        assertEquals( expected, actual );
+    }
+
+    @Test
+    void test_SingleParagraph2Text() {
+        var expected = new MdDoc(null);
+        var paragraph = new MdParagraph();
+        paragraph.addChild( new MdText("First Line") );
+        paragraph.addChild( new MdText( "Second Line") );
+        expected.addChild( paragraph );
+        var actual = MdDoc.parse("First Line\nSecond Line");
+        assertEquals( expected, actual );
+    }
+
+    @Test
+    void test_SingleParagraph3Text() {
+        var expected = new MdDoc(null);
+        var paragraph = new MdParagraph();
+        paragraph.addChild( new MdText("First Line") );
+        paragraph.addChild( new MdText( "Second Line") );
+        paragraph.addChild( new MdText( "Third Line") );
+        expected.addChild( paragraph );
+        var actual = MdDoc.parse("First Line\nSecond Line\nThird Line");
         assertEquals( expected, actual );
     }
 

@@ -13,7 +13,6 @@ public class MdParagraph extends MdNode {
         addChild(new MdText(text));
     }
 
-
     // parser:
     public static MdParagraph parse(ListIterator<MarkdownToken> it) {
         if( !it.hasNext() )
@@ -29,9 +28,14 @@ public class MdParagraph extends MdNode {
             } else {
                 MarkdownToken token = it.next();
                 if (token.getType()== MarkdownTokenType.CRLF) {
-                    if( it.hasNext() && it.next().getType()==MarkdownTokenType.CRLF) {
-                        // double CRLF: end of paragraph
-                        break;
+                    if( it.hasNext() ) {
+                        token = it.next();
+                        if( token.getType()==MarkdownTokenType.CRLF) {
+                            // double CRLF: end of paragraph
+                            break;
+                        }
+                        else
+                            it.previous();
                     }
                 } else if (token.getType()==MarkdownTokenType.H) {
                     // end of paragraph
