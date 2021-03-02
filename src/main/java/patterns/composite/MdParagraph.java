@@ -1,0 +1,50 @@
+package patterns.composite;
+
+import patterns.parser.MarkdownToken;
+import patterns.parser.MarkdownTokenType;
+
+import java.util.ListIterator;
+
+public class MdParagraph extends MdNode {
+    public MdParagraph() {
+    }
+
+    public MdParagraph(String text) {
+        addChild(new MdText(text));
+    }
+
+
+    // parser:
+    public static MdParagraph parse(ListIterator<MarkdownToken> it) {
+        if( !it.hasNext() )
+            return null;
+
+        MdParagraph paragraph = new MdParagraph();
+
+        // add child-tokens
+        MdNode node = null;
+        while (it.hasNext()) {
+            if ((node = MdText.parse(it)) != null ) {
+                paragraph.addChild(node);
+            } else {
+                MarkdownToken token = it.next();
+                if (token.getType()== MarkdownTokenType.CRLF) {
+                    if( it.hasNext() && it.next().getType()==MarkdownTokenType.CRLF) {
+                        // double CRLF: end of paragraph
+                        break;
+                    }
+                } else if (token.getType()==MarkdownTokenType.H) {
+                    // end of paragraph
+                    it.previous();
+                    if (paragraph.isLeaf()) {
+                        // no children!
+                        return null;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return paragraph;
+    }
+}
