@@ -1,4 +1,4 @@
-package patterns.mvvm.model;
+package ui.mvvm.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

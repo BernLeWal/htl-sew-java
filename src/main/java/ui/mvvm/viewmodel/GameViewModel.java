@@ -1,13 +1,13 @@
-package patterns.mvvm.viewmodel;
+package ui.mvvm.viewmodel;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import patterns.mvvm.biz.BoardState;
-import patterns.mvvm.model.Board;
-import patterns.mvvm.model.Player;
+import ui.mvvm.biz.BoardState;
+import ui.mvvm.model.Board;
+import ui.mvvm.model.Player;
 
 public class GameViewModel {
     private Player[] players = new Player[2];

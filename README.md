@@ -143,6 +143,7 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 * __EventHandlingDemo__ is a JavaFX application which shows how event-handling is implemented in Java
     via simple onAction-eventhandling directly at a control (here a Button)
     or with the PresentationModel-Pattern to provide a managable solution for multiple-handlings.
+* __ImagesDemo__ is a JavaFX application which shows how to work with images and use them in an ImageView.
 * __LayoutsDemo__ is a JavaFX application which demonstrates how layouting
     of your controls on the user-interface works,
     with samples of TabPane, VBox/HBox, StackPane and GridPane.
@@ -272,7 +273,7 @@ Currently you have to create a ```src/main/resources/server/webapp/hello```-dire
  * __TetrisDemo__ implements the tetris game using a simple form of the gameloop behavioral pattern
     with a Swing/AWT user interface.
 
-### patterns.mvvm
+### ui.mvvm
  * __TicTacToeDemo__ implements the tic-tac-toe game with a computer enemy.
     It shows how to use the MVVM-pattern together with a JavaFX FXML GUI.
 

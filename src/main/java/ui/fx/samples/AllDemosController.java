@@ -61,5 +61,8 @@ public class AllDemosController extends AbstractController {
         showDialog("CSS.fxml", "CSS");
     }
 
-
+    @FXML
+    public void onImages(ActionEvent actionEvent) throws IOException {
+        showDialog( "Images.fxml", "Images");
+    }
 }
