@@ -273,7 +273,7 @@ Currently you have to create a ```src/main/resources/server/webapp/hello```-dire
  * __TetrisDemo__ implements the tetris game using a simple form of the gameloop behavioral pattern
     with a Swing/AWT user interface.
 
-### patterns.mvvm
+### ui.mvvm
  * __TicTacToeDemo__ implements the tic-tac-toe game with a computer enemy.
     It shows how to use the MVVM-pattern together with a JavaFX FXML GUI.
 

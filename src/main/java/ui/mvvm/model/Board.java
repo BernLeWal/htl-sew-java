@@ -1,4 +1,4 @@
-package patterns.mvvm.model;
+package ui.mvvm.model;
 
 import java.util.Arrays;
 

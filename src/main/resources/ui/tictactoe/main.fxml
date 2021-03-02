@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 
 <SplitPane dividerPositions="0.3468727534148095" xmlns="http://javafx.com/javafx/10.0.2-internal"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="patterns.mvvm.view.MainController">
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.mvvm.view.MainController">
     <items>
         <VBox minHeight="200.0" minWidth="100.0" prefWidth="150">
             <children>

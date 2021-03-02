@@ -1,7 +1,7 @@
-package patterns.mvvm.biz;
+package ui.mvvm.biz;
 
 import javafx.util.Pair;
-import patterns.mvvm.model.Board;
+import ui.mvvm.model.Board;
 
 import java.util.Optional;
 

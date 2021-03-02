@@ -1,4 +1,4 @@
-package patterns.mvvm.view;
+package ui.mvvm.view;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,7 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.util.converter.NumberStringConverter;
-import patterns.mvvm.viewmodel.GameViewModel;
+import ui.mvvm.viewmodel.GameViewModel;
 
 public class MainController {
 

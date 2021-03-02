@@ -1,4 +1,4 @@
-package patterns.mvvm;
+package ui.mvvm;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
