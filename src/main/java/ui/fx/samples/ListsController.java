@@ -2,6 +2,7 @@ package ui.fx.samples;
 
 import core.data.Person;
 import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
@@ -43,5 +44,9 @@ public class ListsController extends AbstractController {
         }));
 
         table.setItems(FXCollections.observableArrayList(persons));
+    }
+
+    public void onListClicked(Event event) {
+        System.out.println(list.getSelectionModel().getSelectedItem());
     }
 }

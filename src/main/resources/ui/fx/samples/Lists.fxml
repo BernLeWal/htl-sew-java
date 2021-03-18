@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.*?>
-<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="ui.fx.samples.ListsController">
+<?import javafx.scene.control.cell.*?>
+
+<TabPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="ui.fx.samples.ListsController">
     <Tab text="ListView">
-        <ListView fx:id="list"/>
+        <ListView fx:id="list" onMouseClicked="#onListClicked" />
     </Tab>
     <Tab text="TableView">
         <TableView fx:id="table">
             <columns>
                 <TableColumn text="Nr">
                     <cellValueFactory>
-                        <PropertyValueFactory property="nr"/>
+                        <PropertyValueFactory property="nr" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Vorame">
                     <cellValueFactory>
-                        <PropertyValueFactory property="vorname"/>
+                        <PropertyValueFactory property="vorname" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Nachname">
                     <cellValueFactory>
-                        <PropertyValueFactory property="nachname"/>
+                        <PropertyValueFactory property="nachname" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Age">
                     <cellValueFactory>
-                        <PropertyValueFactory property="alter"/>
+                        <PropertyValueFactory property="alter" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
