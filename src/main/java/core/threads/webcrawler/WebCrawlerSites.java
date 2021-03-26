@@ -1,7 +1,6 @@
 package core.threads.webcrawler;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Data structure for a web crawler. Keeps track of the visited sites and keeps
@@ -10,8 +9,8 @@ import java.util.List;
  * based on https://www.vogella.com/tutorials/JavaConcurrency/article.html
  */
 public class WebCrawlerSites {
-    private final List<String> crawledSites = new ArrayList<>();
-    private final List<String> linkedSites = new ArrayList<>();
+    private final Set<String> crawledSites = new HashSet<>();
+    private final List<String> linkedSites = new LinkedList<>();
 
     public void add(String site) {
         synchronized (this) {
