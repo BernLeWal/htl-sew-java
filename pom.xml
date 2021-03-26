@@ -94,7 +94,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>ui.mvvm.TicTacToeDemo</mainClass>
+                    <mainClass>ui.fx.samples.AllDemos</mainClass>
                 </configuration>
             </plugin>
             <plugin>
