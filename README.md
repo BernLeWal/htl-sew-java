@@ -163,6 +163,11 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
     The presentation-model manages the validation and data flow.
 
 
+### ui.mvvm
+* __TicTacToeDemo__ implements the tic-tac-toe game with a computer enemy.
+  It shows how to use the MVVM-pattern together with a JavaFX FXML GUI.
+
+
 ## Module 5: Client & Server Programming
 
 ### server.sockets
@@ -272,10 +277,6 @@ Currently you have to create a ```src/main/resources/server/webapp/hello```-dire
 ### patterns.gameloop
  * __TetrisDemo__ implements the tetris game using a simple form of the gameloop behavioral pattern
     with a Swing/AWT user interface.
-
-### ui.mvvm
- * __TicTacToeDemo__ implements the tic-tac-toe game with a computer enemy.
-    It shows how to use the MVVM-pattern together with a JavaFX FXML GUI.
 
 ### patterns.pc
 * __CafeteriaSimulatorDemo__ demonstrates the usage of the producer/consumer-pattern.  

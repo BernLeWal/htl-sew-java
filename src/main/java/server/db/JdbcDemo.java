@@ -3,7 +3,17 @@ package server.db;
 import java.sql.*;
 
 /**
- * JdbcDemo shows how to use a very simple database based on SQLite
+ * JdbcDemo shows how to use a very simple database based on SQLite.
+ *
+ * To use SQLite you need to download the SQLite JDBC-Connector,
+ *   f.e. from https://dbschema.com/jdbc-driver/Sqlite.html ,
+ *   place it into the /lib folder and add a JAR dependency
+ * or add the following dependency in your Maven pom.xml:
+ *         <dependency>
+ *             <groupId>org.xerial</groupId>
+ *             <artifactId>sqlite-jdbc</artifactId>
+ *             <version>3.34.0</version>
+ *         </dependency>
  */
 public class JdbcDemo {
     public static void main(String[] args) throws ClassNotFoundException {
