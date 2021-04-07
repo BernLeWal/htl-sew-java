@@ -1,4 +1,4 @@
-package server.rest;
+package server.rest.opendata;
 
 import utils.CsvUtils;
 

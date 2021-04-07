@@ -218,23 +218,31 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
    to collect picture information and download the image files.
 
 ### server.rest
- * __OpenDataDemo__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):  
-   _"Katalog Gestorbene in Österreich (ohne Auslandssterbefälle) ab 2000 nach Kalenderwoche"_  
-   (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
-   It calculates the total amount of deaths per year.
-   
- * __NicerOpenDataDemo__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):  
-    _"Katalog Gestorbene in Österreich (ohne Auslandssterbefälle) ab 2000 nach Kalenderwoche"_
-    (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
-    Improvement: It stores the data in specific objects instead of unspecific tables of strings.    
-    It calculates the total amount of deaths per year, per agegroup and per male/female
-
  * __MapQuestDirectionsDemo__ shows how to use REST-GET Webservice calls to the MapQuest-Directions API
     to build a very simple road/tour-navigation system.  
     It uses the URL-class to do the HTTP transfers and the Jackson-Library to parse JSON.  
     API-Documentation see (https://developer.mapquest.com/documentation/directions-api)  
     __ATTENTION__: You must provide a authentication-key (stored in MAPQUEST_API_KEY) to use that service!
     see (https://developer.mapquest.com/) - Get a free API key
+
+### server.rest.opendata
+* __OpenDataDemo__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):  
+  _"Katalog Gestorbene in Österreich (ohne Auslandssterbefälle) ab 2000 nach Kalenderwoche"_  
+  (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
+  It calculates the total amount of deaths per year.
+
+* __NicerOpenDataDemo__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):  
+  _"Katalog Gestorbene in Österreich (ohne Auslandssterbefälle) ab 2000 nach Kalenderwoche"_
+  (https://www.data.gv.at/katalog/dataset/d3b85461-fc0d-3639-9aa9-39211c4ecade)  
+  Improvement: It stores the data in specific objects instead of unspecific tables of strings.    
+  It calculates the total amount of deaths per year, per agegroup and per male/female
+
+* __OpenDataQuery__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/)  
+  used f.e. by AustriaDeathsPerTistrictSince2020
+
+* __AustriaDeathsPerDistrictSince2020__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):
+  Katalog Altersstandardisierte Sterberate in Österreich (ohne Auslandssterbefälle) ab 2020 nach Kalenderwoche, Bundesland und Bezirken
+  (https://www.data.gv.at/katalog/dataset/14589f68-d1ac-3be8-ad3d-07249865fb85)
    
 ### server.http
  * __MiniWebServer__ demonstrates how to write a simplistic HTTP server.  
