@@ -1,6 +1,6 @@
 package server.rest.opendata;
 
-import utils.CsvUtils;
+import patterns.parser.CsvParser;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +26,7 @@ public class OpenDataDemo {
             // STEP 1: Download the CSV file
             var conn = new URL(DOWNLOAD_URL).openConnection();
             var input = conn.getInputStream();
-            var table = CsvUtils.read(input, ';');
+            var table = new CsvParser(';').parse(input);
             System.out.printf("CSV file contains %d rows.\n", table.size());
             // Dump out the read data:
 //            for( ArrayList<String> columns : table ) {

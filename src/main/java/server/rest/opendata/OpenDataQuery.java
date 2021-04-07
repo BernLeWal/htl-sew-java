@@ -1,6 +1,6 @@
 package server.rest.opendata;
 
-import utils.CsvUtils;
+import patterns.parser.CsvParser;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +35,7 @@ public class OpenDataQuery<T> {
      * @throws IOException occurs when reading from OpenData webservice fails
      */
     public OpenDataQuery<T> readCSV() throws IOException {
-        rawTable = CsvUtils.read(new URL(url).openConnection().getInputStream(), ';');
+        rawTable = new CsvParser(';').parse(new URL(url).openConnection().getInputStream());
         return this;
     }
 

@@ -41,6 +41,8 @@ public class AustriaDeathsPerDistrictSince2020 {
             Integer currentDeaths = currentYear.get(week);
             currentYear.put(week, ((currentDeaths != null) ? currentDeaths : 0) + record.amount);
         }
+
+        // STEP 5: output the aggregated data
         //totalDeathsPerWeek.keySet().forEach((key) -> System.out.println(key + ": " + totalDeathsPerWeek.get(key)));
         String firstYear = null;
         System.out.print("Week");

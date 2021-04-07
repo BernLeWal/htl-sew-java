@@ -1,4 +1,4 @@
-package utils;
+package patterns.parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,14 +10,36 @@ import java.util.ArrayList;
 /**
  * Helper functions to read CSV files.
  */
-public class CsvUtils {
-    public static ArrayList<ArrayList<String>> read(InputStream input, char separator) throws IOException {
+public class CsvParser {
+    private final char separator;
+
+    private boolean verbose = false;
+
+    public CsvParser(char separator) {
+        this.separator = separator;
+    }
+
+    public char getSeparator() {
+        return separator;
+    }
+
+    public boolean isVerbose() {
+        return verbose;
+    }
+
+    public void setVerbose(boolean verbose) {
+        this.verbose = verbose;
+    }
+
+
+    public ArrayList<ArrayList<String>> parse(InputStream input) throws IOException {
         ArrayList<ArrayList<String>> list = new ArrayList<>();
 
         // first line is the header (we already know and store for debugging purpose)
         BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
         var header = reader.readLine();
-        System.out.println("CSV-header: " + header);
+        if (verbose)
+            System.out.println("CSV-header: " + header);
 
         boolean isContentOver = false;
         while (!isContentOver) {
@@ -49,7 +71,7 @@ public class CsvUtils {
                         } else if (character == '\"') {
                             do {
                                 character = (char) reader.read();
-                                if (character == (char)-1) {
+                                if (character == (char) -1) {
                                     isPartOver = true;
                                     isContentOver = true;
                                     break;
@@ -73,7 +95,8 @@ public class CsvUtils {
             }
         }
 
-        System.out.printf("Read %d items from CSV-file.\n", list.size());
+        if (verbose)
+            System.out.printf("Read %d items from CSV-file.\n", list.size());
         return list;
     }
 }
