@@ -96,6 +96,20 @@ This repository is used as learning by investigating functioning samples and lat
 ### core.threads.sync
  * __CounterDemo__ demonstrates the necessitiy of synchronizing threads which share the same resources.
 
+### core.functional
+* __FunctionalSearch__ implements a DFS (bepth-first-search) and a BFS (breadth-first-search) algorithm with functionals.
+
+* __Puzzle__ implements the field-moving puzzle game, where you have to bring the numbers 1-8 inside a 3x3 field
+  in the correct order:
+  ```
+  8 3       873              123
+  275  -->  2 5  --> ... --> 456
+  461       461              78
+  ```
+  The demo in the main-programm shows how to find the solution with a DFS (bepth-first-search)
+  and a BFS (breadth-first-search) algorithm implemented with functionals.
+
+
 ### core.streams
 
 ### core.streams.opendata

@@ -4,6 +4,9 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ *  FunctionalSearch implements a DFS (bepth-first-search) and a BFS (breadth-first-search) algorithm with functionals.
+ */
 public class FunctionalSearch {
     private boolean verbose = false;
     private int stepCount = 0;
