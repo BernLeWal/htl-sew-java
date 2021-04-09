@@ -1,9 +1,11 @@
 package server.rest.opendata;
 
 import javafx.util.Pair;
+import patterns.parser.CsvParser;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.net.URL;
 
 /**
  * TyrolDeathsPerDistrictSince2010 accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):
@@ -32,15 +34,16 @@ public class TyrolDeathsPerDistrictSince2010 {
                 System.out.printf("%s %d\n", item.getKey(), deathsPerYear);
             }
             catch( Exception e ) {
-                System.err.println( "Could not evaluate " + item.getKey() + " url " + item.getValue() + " reason " + e.getLocalizedMessage());
+                System.err.println( "Could not evaluate " + item.getKey() + " url " + item.getValue() + " reason " + e.getMessage());
             }
         }
     }
 
     private static int readTotalDeaths(String url) throws IOException {
-        return new OpenDataQuery<RawData>(url)
-                .readCSV()
-                .transformData(
+        // explanations to calculation with stream-API: https://www.baeldung.com/java-stream-sum
+        return new CsvParser(';')
+                .parse( new URL(url).openConnection().getInputStream() ).stream()
+                .map(
                         row -> new RawData(
                                 row.get(3),                     // DISTRICT_CODE
                                 row.get(4),                     // NAME
@@ -49,10 +52,7 @@ public class TyrolDeathsPerDistrictSince2010 {
                         )
                 )
                 .filter( record -> record.districtCode.equals("70926" ) )   // Schwaz
-                .getDataTable()
-
-                // explanations to calculation with stream-API: https://www.baeldung.com/java-stream-sum
-                .stream().mapToInt( row -> row.deathsTotal ).sum();
+                .mapToInt( row -> row.deathsTotal ).sum();
     }
 
     public static record RawData(
