@@ -27,7 +27,7 @@ public class NicerOpenDataDemo {
             // STEP 1: Download the CSV file
             var conn = new URL(DOWNLOAD_URL).openConnection();
             var input = conn.getInputStream();
-            var table = new CsvParser(';').parse(input);
+            var table = new CsvParser().parse(input);
             System.out.printf("CSV file contains %d rows.\n", table.size());
 
             // STEP 2: convert plain strings into numbers (to be able to evaluate information)

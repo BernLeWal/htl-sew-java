@@ -96,6 +96,18 @@ This repository is used as learning by investigating functioning samples and lat
 ### core.threads.sync
  * __CounterDemo__ demonstrates the necessitiy of synchronizing threads which share the same resources.
 
+### core.streams
+
+### core.streams.opendata
+* __AustriaDeathsPerDistrictSince2020__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):
+  Katalog Altersstandardisierte Sterberate in Österreich (ohne Auslandssterbefälle) ab 2020 nach Kalenderwoche, Bundesland und Bezirken
+  (https://www.data.gv.at/katalog/dataset/14589f68-d1ac-3be8-ad3d-07249865fb85)
+
+* __TyrolDeathsPerDistrictSince2010__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):
+  Katalog Sterbefälle nach Geschlecht und Altersgruppen in Tirol
+  (https://www.data.gv.at/katalog/dataset/bd1a2cb8-8942-475d-9d0d-44c21194b660)
+  
+
 ## Module 4: User-Interfaces for your programs
 
 ### ui.console
@@ -238,14 +250,6 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
   It calculates the total amount of deaths per year, per agegroup and per male/female
 
 * __OpenDataQuery__ tool class which helps accessing catalogues of "Open Data Österreich" (https://www.data.gv.at/)  
-
-* __AustriaDeathsPerDistrictSince2020__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):
-  Katalog Altersstandardisierte Sterberate in Österreich (ohne Auslandssterbefälle) ab 2020 nach Kalenderwoche, Bundesland und Bezirken
-  (https://www.data.gv.at/katalog/dataset/14589f68-d1ac-3be8-ad3d-07249865fb85)
-
-* __TyrolDeathsPerDistrictSince2010__ accesses the following catalog of "Open Data Österreich" (https://www.data.gv.at/):
-  Katalog Sterbefälle nach Geschlecht und Altersgruppen in Tirol
-  (https://www.data.gv.at/katalog/dataset/bd1a2cb8-8942-475d-9d0d-44c21194b660)
 
 ### server.http
  * __MiniWebServer__ demonstrates how to write a simplistic HTTP server.  

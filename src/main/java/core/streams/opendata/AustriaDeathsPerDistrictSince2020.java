@@ -1,4 +1,4 @@
-package server.rest.opendata;
+package core.streams.opendata;
 
 import patterns.parser.CsvParser;
 
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class AustriaDeathsPerDistrictSince2020 {
     public static void main(String[] args) throws IOException {
-        var rawData = new CsvParser(';')
+        var rawData = new CsvParser()
                 // STEP 1: Download the CSV file
                 .parse(new URL("https://data.statistik.gv.at/data/OGD_rate_kalwobez_GEST_KALWOCHE_STR_BZ_100.csv").openStream() )
                 .stream()

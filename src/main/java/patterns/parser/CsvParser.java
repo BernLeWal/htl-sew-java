@@ -8,19 +8,39 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
- * Helper functions to read CSV files.
+ * Helper functions to read and parse CSV files.
  */
 public class CsvParser {
-    private final char separator;
-
+    private char columnSeparator = ';';
+    private char quotationChar = '\"';
+    private boolean firstRowIsHeader = true;
     private boolean verbose = false;
 
-    public CsvParser(char separator) {
-        this.separator = separator;
+
+    public CsvParser() {
     }
 
-    public char getSeparator() {
-        return separator;
+
+    public char getColumnSeparator() {
+        return columnSeparator;
+    }
+
+    public void setColumnSeparator(char columnSeparator) { this.columnSeparator = columnSeparator; }
+
+    public char getQuotationChar() {
+        return quotationChar;
+    }
+
+    public void setQuotationChar(char quotationChar) {
+        this.quotationChar = quotationChar;
+    }
+
+    public boolean isFirstRowIsHeader() {
+        return firstRowIsHeader;
+    }
+
+    public void setFirstRowIsHeader(boolean firstRowIsHeader) {
+        this.firstRowIsHeader = firstRowIsHeader;
     }
 
     public boolean isVerbose() {
@@ -37,9 +57,11 @@ public class CsvParser {
 
         // first line is the header (we already know and store for debugging purpose)
         BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
-        var header = reader.readLine();
-        if (verbose)
-            System.out.println("CSV-header: " + header);
+        if (firstRowIsHeader ) {
+            var header = reader.readLine();
+            if (verbose)
+                System.out.println("CSV-header: " + header);
+        }
 
         boolean isContentOver = false;
         while (!isContentOver) {
@@ -57,7 +79,7 @@ public class CsvParser {
                         isContentOver = true;
                     } else {
                         char character = (char) i;
-                        if (character == separator) {
+                        if (character == columnSeparator) {
                             isPartOver = true;
                         } else if (character == '\r' || character == '\n') {
                             reader.mark(1);
@@ -68,19 +90,19 @@ public class CsvParser {
 
                             isPartOver = true;
                             isLineOver = true;
-                        } else if (character == '\"') {
+                        } else if (character == quotationChar) {
                             do {
                                 character = (char) reader.read();
                                 if (character == (char) -1) {
                                     isPartOver = true;
                                     isContentOver = true;
                                     break;
-                                } else if (character == '\"') {
+                                } else if (character == quotationChar) {
                                     break;
                                 } else {
                                     readPart.append(character); // because character is of type int
                                 }
-                            } while (character != '\"');
+                            } while (character != quotationChar);
                         } else {
                             readPart.append(character);
                         }

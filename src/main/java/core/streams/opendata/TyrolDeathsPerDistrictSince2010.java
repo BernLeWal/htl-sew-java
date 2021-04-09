@@ -1,4 +1,4 @@
-package server.rest.opendata;
+package core.streams.opendata;
 
 import javafx.util.Pair;
 import patterns.parser.CsvParser;
@@ -41,7 +41,7 @@ public class TyrolDeathsPerDistrictSince2010 {
 
     private static int readTotalDeaths(String url) throws IOException {
         // explanations to calculation with stream-API: https://www.baeldung.com/java-stream-sum
-        return new CsvParser(';')
+        return new CsvParser()
                 .parse( new URL(url).openConnection().getInputStream() ).stream()
                 .map(
                         row -> new RawData(
