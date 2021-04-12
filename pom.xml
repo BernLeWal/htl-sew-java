@@ -101,6 +101,9 @@
                 <version>0.0.4</version>
                 <configuration>
                     <mainClass>ui.fx.samples.AllDemos</mainClass>
+                    <options>
+                        <option>--enable-preview</option>
+                    </options>
                 </configuration>
             </plugin>
             <plugin>
