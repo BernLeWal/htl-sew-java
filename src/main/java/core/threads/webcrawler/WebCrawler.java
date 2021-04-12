@@ -13,10 +13,10 @@ public class WebCrawler implements Runnable {
     private static int WEBCRAWLER_COUNT = 0;
 
     private final int nr;
-    private final WebCrawlerSites sites;
+    private final Sites sites;
     private String currentSite;
 
-    public WebCrawler(WebCrawlerSites sites) throws InterruptedException {
+    public WebCrawler(Sites sites) throws InterruptedException {
         nr = ++WEBCRAWLER_COUNT;
         System.out.printf("%s Created WebCrawler%d\n", Thread.currentThread().getName(), nr);
         this.sites = sites;

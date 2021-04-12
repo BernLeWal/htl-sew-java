@@ -8,15 +8,14 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * WebCrawlerSite represents the data structure for a web crawler.
  * It keeps track of the visited sites and keeps a list of sites which needs still to be crawled.
- *
- * based on https://www.vogella.com/tutorials/JavaConcurrency/article.html
  */
-public class WebCrawlerSites {
+public class LockedSites implements Sites {
     private final Set<String> crawledSites = new HashSet<>();
     private final List<String> linkedSites = new LinkedList<>();
     private final Lock lock = new ReentrantLock();
     private final Condition notEmpty = lock.newCondition();
 
+    @Override
     public void add(String site) {
         lock.lock();
         try {
@@ -32,6 +31,7 @@ public class WebCrawlerSites {
     /**
      * Get next site to crawl. Can return null (if nothing to crawl)
      */
+    @Override
     public String next() {
         if (linkedSites.size() == 0) {
             return null;
@@ -54,6 +54,7 @@ public class WebCrawlerSites {
     /**
      * Get next site to crawl. If there is currently none, wait for one (blocking method-call).
      */
+    @Override
     public String take() throws InterruptedException {
         lock.lockInterruptibly();
         try {
@@ -65,10 +66,12 @@ public class WebCrawlerSites {
         }
     }
 
+    @Override
     public int getNrCrawledSites() {
         return crawledSites.size();
     }
 
+    @Override
     public int getNrLinkedSites() {
         return linkedSites.size();
     }

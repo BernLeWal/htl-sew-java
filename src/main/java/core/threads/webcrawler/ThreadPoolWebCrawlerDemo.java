@@ -12,7 +12,7 @@ public class ThreadPoolWebCrawlerDemo {
     public static final int NUM_THREADS = 10;
 
     public static void main(String[] args) throws InterruptedException {
-        var sites = new WebCrawlerSites();
+        var sites = new LockedSites();
         sites.add("https://www.orf.at");
 
         ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);

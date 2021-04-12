@@ -6,7 +6,7 @@ package core.threads.webcrawler;
  */
 public class SingleThreadWebCrawlerDemo {
     public static void main(String[] args) throws InterruptedException {
-        var sites = new WebCrawlerSites();
+        var sites = new SynchronizedSites();
         sites.add("https://www.orf.at");
 
         WebCrawler worker = new WebCrawler( sites );
