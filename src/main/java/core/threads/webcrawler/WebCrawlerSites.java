@@ -1,6 +1,9 @@
 package core.threads.webcrawler;
 
 import java.util.*;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * WebCrawlerSite represents the data structure for a web crawler.
@@ -11,12 +14,18 @@ import java.util.*;
 public class WebCrawlerSites {
     private final Set<String> crawledSites = new HashSet<>();
     private final List<String> linkedSites = new LinkedList<>();
+    private final Lock lock = new ReentrantLock();
+    private final Condition notEmpty = lock.newCondition();
 
     public void add(String site) {
-        synchronized (this) {
+        lock.lock();
+        try {
             if (!crawledSites.contains(site)) {
                 linkedSites.add(site);
+                notEmpty.signal();
             }
+        } finally {
+            lock.unlock();
         }
     }
 
@@ -27,7 +36,8 @@ public class WebCrawlerSites {
         if (linkedSites.size() == 0) {
             return null;
         }
-        synchronized (this) {
+        lock.lock();
+        try {
             // Need to check again if size has changed
             if (linkedSites.size() > 0) {
                 String s = linkedSites.get(0);
@@ -35,7 +45,23 @@ public class WebCrawlerSites {
                 crawledSites.add(s);
                 return s;
             }
-            return null;
+        } finally {
+            lock.unlock();
+        }
+        return null;
+    }
+
+    /**
+     * Get next site to crawl. If there is currently none, wait for one (blocking method-call).
+     */
+    public String take() throws InterruptedException {
+        lock.lockInterruptibly();
+        try {
+            while (linkedSites.size() == 0)
+                notEmpty.await();
+            return next();
+        } finally {
+            lock.unlock();
         }
     }
 

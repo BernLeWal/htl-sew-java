@@ -20,16 +20,14 @@ public class WebCrawler implements Runnable {
         nr = ++WEBCRAWLER_COUNT;
         System.out.printf("%s Created WebCrawler%d\n", Thread.currentThread().getName(), nr);
         this.sites = sites;
-        // Wait for a site to start
-        while ( (currentSite = sites.next())==null ) {
-            Thread.sleep(100);
-        }
+        this.currentSite = sites.take();    // Wait for the first site to start
+        System.out.printf("%s Created WebCrawler%d will start with %s\n", Thread.currentThread().getName(), nr, currentSite);
     }
 
     @Override
     public void run() {
         System.out.printf("%s Started WebCrawler%d...\n", Thread.currentThread().getName(), nr);
-        var pattern = Pattern.compile("( href=\"http.*\")");
+        var pattern = Pattern.compile("(a href=\"http.*\")");
 
         do {
             System.out.printf("%s WebCrawler%d crawling %s\n", Thread.currentThread().getName(), nr, currentSite);
@@ -40,7 +38,7 @@ public class WebCrawler implements Runnable {
                 var matcher = pattern.matcher( content );
                 while (matcher.find() ) {
                     String nextSite = matcher.group();
-                    nextSite = nextSite.substring(7, nextSite.indexOf('"',8) );
+                    nextSite = nextSite.substring(8, nextSite.indexOf('"',9) );
                     sites.add(nextSite);
                 }
             } catch (IOException e) {
