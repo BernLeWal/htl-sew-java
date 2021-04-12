@@ -96,6 +96,19 @@ This repository is used as learning by investigating functioning samples and lat
 ### core.threads.sync
  * __CounterDemo__ demonstrates the necessitiy of synchronizing threads which share the same resources.
 
+### core.threads.webcrawler
+ * __WebCrawler__ is a runnable which retrieves its workload from the WebCrawlerSites collection,
+   it takes a url to a webpage, fetches the content and finds links to other pages which
+   are added to the WebCrawlerSites collection.
+ * __WebCrawlerSite__ represents the data structure for a web crawler.
+   It keeps track of the visited sites and keeps a list of sites which needs still to be crawled.
+
+ * __SingleThreadWebCrawlerDemo__ shows how runnables are executed in an extra thread
+   and how these "neverending" threads are interrupted from the main-thread.
+ * __ThreadPoolWebCrawlerDemo__ shows how runnables are executed in parallel by
+   using a thread-pool of 10 threads controlled by an ExecutorService.
+
+
 ### core.functional
 * __FunctionalSearch__ implements a DFS (bepth-first-search) and a BFS (breadth-first-search) algorithm with functionals.
 

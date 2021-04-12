@@ -4,6 +4,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * ThreadPoolWebCrawlerDemo shows how runnables are executed in parallel by
+ * using a thread-pool of 10 threads controlled by an ExecutorService.
+ */
 public class ThreadPoolWebCrawlerDemo {
     public static final int NUM_THREADS = 10;
 
@@ -13,8 +17,7 @@ public class ThreadPoolWebCrawlerDemo {
 
         ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
         for (int i = 0; i < NUM_THREADS; i++) {
-            Runnable worker =  new WebCrawler( sites );
-            executor.execute(worker);
+            executor.execute(new WebCrawler( sites ));
         }
 
         var startTime = System.currentTimeMillis();

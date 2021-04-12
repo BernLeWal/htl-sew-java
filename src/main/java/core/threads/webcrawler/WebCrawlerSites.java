@@ -3,8 +3,8 @@ package core.threads.webcrawler;
 import java.util.*;
 
 /**
- * Data structure for a web crawler. Keeps track of the visited sites and keeps
- * a list of sites which needs still to be crawled.
+ * WebCrawlerSite represents the data structure for a web crawler.
+ * It keeps track of the visited sites and keeps a list of sites which needs still to be crawled.
  *
  * based on https://www.vogella.com/tutorials/JavaConcurrency/article.html
  */
