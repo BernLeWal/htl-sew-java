@@ -50,6 +50,8 @@ public class Person implements Serializable, Comparable<Person> {
         return alter;
     }
 
+    public void setAlter(int alter) { this.alter = alter; }
+
     // Methods
     public String name() {
         return nachname + " " + vorname;
