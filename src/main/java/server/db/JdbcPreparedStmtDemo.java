@@ -3,7 +3,7 @@ package server.db;
 import java.sql.*;
 
 /**
- * JdbcPreparedStmt shows how to use prepared-statements to avoid SQL-injection
+ * JdbcPreparedStmtDemo shows how to use prepared-statements to avoid SQL-injection
  * based on a simple PostgreSQL database.
  *
  * To use PostgreSQL you need to
@@ -19,7 +19,7 @@ import java.sql.*;
  *   <version>42.2.18.jre7</version>
  * </dependency>
  */
-public class JdbcPreparedStmt {
+public class JdbcPreparedStmtDemo {
     public static void main(String[] args) throws ClassNotFoundException {
         // load the sqlite-JDBC driver using the current class loader
         Class.forName("org.sqlite.JDBC");

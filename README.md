@@ -286,6 +286,8 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
    
 ### server.db
  * __JdbcDemo__ shows how to use a very simple database based on SQLite.
+ * __JdbcPreparedStmtDemo__ shows how to use prepared-statements to avoid SQL-injection based on a simple PostgreSQL database.
+ * __DaoDemo__ shows the implementation of the DAO-pattern with a "memory" and a database persistence layer.
 
 ### server.webapp 
 This module contains all demos for web-application, based on the Jakarta (JavaEE 9) framework.  
