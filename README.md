@@ -223,6 +223,11 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 ### server.sockets.echo
 * __EchoServer__ implements a simple console based echo-server,
   the server just echos all incoming messages from the clients.
+* __SingleClassEchoServer__ is the server of the EchoServer-Demo
+  The server listens for incomming connections from new clients and
+  delegates the newly created socket for a client to an extra thread to be answered.
+  All implemented in a single class.
+
 
 ### server.sockets.chat
 * __ChatServer__ implements a simple console based chat
