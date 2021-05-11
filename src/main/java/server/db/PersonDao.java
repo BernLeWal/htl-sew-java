@@ -13,6 +13,7 @@ public class PersonDao implements Dao<Person>{
     private List<Person> persons = new ArrayList<>();
 
     public PersonDao() {
+        // add some test data
         persons.add(new Person("Rudi", "Ratlos", 43));
         persons.add(new Person( "Susi", "Sorglos", 19));
     }
