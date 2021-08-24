@@ -33,6 +33,8 @@ public class PersonDaoDb implements Dao<Person> {
             try (Statement statement = connection.createStatement() ) {
                 statement.executeUpdate("drop table if exists person");
                 statement.executeUpdate("create table person (id integer primary key autoincrement , vorname string, nachname string, [alter] integer)");
+
+                // add some test data
                 statement.executeUpdate("insert into person (vorname, nachname, [alter]) values('Rudi','Ratlos',43)");
                 statement.executeUpdate("insert into person (vorname, nachname, [alter]) values('Susi','Sorglos',19)");
             }

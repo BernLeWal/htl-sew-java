@@ -134,6 +134,15 @@ This repository is used as learning by investigating functioning samples and lat
   Katalog Sterbefälle nach Geschlecht und Altersgruppen in Tirol
   (https://www.data.gv.at/katalog/dataset/bd1a2cb8-8942-475d-9d0d-44c21194b660)
   
+### core.properties
+* __PropertiesDemo__ shows how to read properties from a .properties-file
+  (provided in the resources), change some property-values and write
+  it to a .properties-file stored in the current working directory.
+
+* __XmlPropertiesDemo__ shows how to read properties from a .xml-file
+  (provided in the resources), change some property-values and write
+  it to a .xml-file stored in the current working directory.
+
 
 ## Module 4: User-Interfaces for your programs
 
@@ -223,6 +232,11 @@ _ATTENTION_: See documentation how JavaFX must be configured and activated in th
 ### server.sockets.echo
 * __EchoServer__ implements a simple console based echo-server,
   the server just echos all incoming messages from the clients.
+* __SingleClassEchoServer__ is the server of the EchoServer-Demo
+  The server listens for incomming connections from new clients and
+  delegates the newly created socket for a client to an extra thread to be answered.
+  All implemented in a single class.
+
 
 ### server.sockets.chat
 * __ChatServer__ implements a simple console based chat
