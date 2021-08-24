@@ -8,9 +8,9 @@ import java.util.List;
  * @param <T> Class which is persisted
  */
 public interface Dao<T> {
-    T get(int id);
-    List<T> getAll();
-    int create(T t);
-    void update(int id, T t);
-    void delete(int id);
+    T get(int id);              // Read (Retrieve) one specific instance (by id)
+    List<T> getAll();           // Read (Retrieve) all instances
+    int create(T t);            // Create, returns the new id
+    void update(int id, T t);   // Update
+    void delete(int id);        // Delete
 }
