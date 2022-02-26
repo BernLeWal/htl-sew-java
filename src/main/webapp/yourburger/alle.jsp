@@ -19,7 +19,7 @@
 <body>
 <!-- Header -->
 <header id="header">
-    <div class="logo"><a href="index.jsp">Your Burger <span>for MATTHIAS</span></a></div>
+    <div class="logo"><a href="index.jsp">Your Burger <span>served by MATTHIAS</span></a></div>
     <a href="#menu"><span>Men&uuml;</span></a>
 </header>
 

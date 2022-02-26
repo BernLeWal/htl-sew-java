@@ -9,29 +9,29 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <sql:setDataSource var="dataSource" driver="org.sqlite.JDBC"
-                   url="jdbc:sqlite:src/main/resources/server/webapp/foodorder/MacDagoberts.db"/>
+                   url="jdbc:sqlite:src/main/resources/server/webapp/foodorder/YourBurger.db"/>
 
 <sql:query var="speisen" dataSource="${dataSource}">
-    select id, name, kategorie, preis from speisen where kategorie='SPEISE'
+    select id, name, kategorie, preis from speisen where kategorie='BUN'
 </sql:query>
 
 <sql:query var="beilagen" dataSource="${dataSource}">
-    select id, name, kategorie, preis from speisen where kategorie='BEILAGE'
+    select id, name, kategorie, preis from speisen where kategorie='SOSSE'
 </sql:query>
 
 <sql:query var="getraenke" dataSource="${dataSource}">
-    select id, name, kategorie, preis from speisen where kategorie='TRINKEN'
+    select id, name, kategorie, preis from speisen where kategorie='FLEISCH'
 </sql:query>
 
 <sql:query var="desserts" dataSource="${dataSource}">
-    select id, name, kategorie, preis from speisen where kategorie='DESSERT'
+    select id, name, kategorie, preis from speisen where kategorie='VEGI'
 </sql:query>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>MacDagobert's - Neue Bestellung</title>
+    <title>Your Burger - Neue Bestellung</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="../static/assets/css/main.css"/>
@@ -50,7 +50,7 @@
 <body>
 <!-- Header -->
 <header id="header">
-    <div class="logo"><a href="index.jsp">MacDagobert's <span>for MATTHIAS</span></a></div>
+    <div class="logo"><a href="index.jsp">Your Burger <span>served by MATTHIAS</span></a></div>
     <a href="#menu"><span>Men&uuml;</span></a>
 </header>
 
@@ -76,7 +76,7 @@
                 <h1>Ihre Bestellung bitte</h1>
             </header>
         </div>
-        <a href="#one" class="more">Etwas zu Essen...</a>
+        <a href="#one" class="more">Brot und Gebäck, das schmeckt...</a>
     </section>
 
     <!-- One -->
@@ -84,7 +84,7 @@
         <div class="inner">
             <article class="box">
                 <header>
-                    <h2>Etwas zu Essen?</h2>
+                    <h2>Brot und Gebäck, das schmeckt</h2>
                 </header>
                 <div class="content">
                     <div class="row">
@@ -105,7 +105,7 @@
                 </div>
             </article>
         </div>
-        <a href="#two" class="more">Noch etwas dazu...</a>
+        <a href="#two" class="more">Sauce in den Burger...</a>
     </section>
 
     <!-- Two -->
@@ -113,7 +113,7 @@
         <div class="inner">
             <article class="box">
                 <header>
-                    <h2>Noch etwas dazu?</h2>
+                    <h2>Sauce in den Burger?</h2>
                 </header>
                 <div class="content">
                     <div class="row">
@@ -135,7 +135,7 @@
                 </div>
             </article>
         </div>
-        <a href="#three" class="more">Etwas Trinken...</a>
+        <a href="#three" class="more">Des beste G'mias is des Fleisch...</a>
     </section>
 
     <!-- Three -->
@@ -143,7 +143,7 @@
         <div class="inner">
             <article class="box">
                 <header>
-                    <h2>Etwas trinken?</h2>
+                    <h2>Des beste G'mias is des Fleisch</h2>
                 </header>
                 <div class="content">
                     <div class="row">
@@ -165,7 +165,7 @@
                 </div>
             </article>
         </div>
-        <a href="#four" class="more">Auch noch eine Nachspeise...</a>
+        <a href="#four" class="more">Noch Vitamine gefällig...</a>
     </section>
 
     <!-- Four -->
@@ -173,7 +173,7 @@
         <div class="inner">
             <article class="box">
                 <header>
-                    <h2>Auch noch eine Nachspeise?</h2>
+                    <h2>Noch Vitamine gefällig?</h2>
                 </header>
                 <div class="content">
                     <div class="row">

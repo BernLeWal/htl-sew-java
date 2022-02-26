@@ -1,4 +1,4 @@
-package server.webapp.macdagoberts;
+package server.webapp.foodorder;
 
 import java.sql.*;
 
@@ -8,11 +8,10 @@ import java.sql.*;
  *
  * Remarks: Run getInstance().setup() before starting the webapp!
  */
-public class MacdagobertsWebapp {
+public class MacdagobertsWebapp extends BaseWebapp {
     // constants define the database-server, -driver and datasource
     public static final String JDBC_DRIVER = "org.sqlite.JDBC";
-    public static final String DATABASE_NAME = "resources/server/webapp/macdagoberts/MacDagoberts.db";
-
+    public static final String DATABASE_NAME = "resources/server/webapp/foodorder/MacDagoberts.db";
 
     //
     // singleton-pattern to retrieve the one and only instance for the webapp
@@ -36,76 +35,16 @@ public class MacdagobertsWebapp {
     }
 
 
-
-    private final Connection connection;
-
     private MacdagobertsWebapp() throws ClassNotFoundException, SQLException {
-        // load the sqlite-JDBC driver using the current class loader
-        Class.forName(JDBC_DRIVER);
-
-        // create a database connection
-        connection = DriverManager.getConnection("jdbc:sqlite:src/main/" + DATABASE_NAME);
+        super(JDBC_DRIVER, DATABASE_NAME);
     }
 
-    public void setup() {
-        System.out.println("Setup SQLite database in " + DATABASE_NAME);
-
-        recreateTableSpeisen();
-        recreateTableBestellungen();
-        testTableBestellungen();
-    }
-
-    public int getNextOrderId() {
+    @Override
+    protected void recreateTableSpeisen() {
+        super.recreateTableSpeisen();
         try (
                 Statement statement = connection.createStatement()
         ) {
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-            // fetch max id-number
-            int id = 1;
-            ResultSet rs = statement.executeQuery("select max(id) from bestellungen");
-            while (rs.next()) {
-                // read the result set
-                id = rs.getInt(1) + 1;
-            }
-            return id;
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return 0;
-        }
-    }
-
-    public int removeOrder(int id) {
-        try (
-                Statement statement = connection.createStatement()
-        ) {
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            System.out.println("Remove bestellung " + id);
-            return statement.executeUpdate("delete from bestellungen where id=" + id);
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return -1;
-        }
-    }
-
-    private void recreateTableSpeisen() {
-        System.out.println("Recreate table speisen");
-
-        try (
-                Statement statement = connection.createStatement()
-        ) {
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            statement.executeUpdate("drop table if exists speisen");
-            statement.executeUpdate("""
-                    create table speisen (
-                        id integer,
-                        name string,
-                        kategorie string,
-                        preis real
-                    )
-                    """);
-
             statement.executeUpdate("""
                     insert into speisen (id, name, kategorie, preis) values
                     (1,	'Hamburger',   'SPEISE', 	1.00),
@@ -142,30 +81,6 @@ public class MacdagobertsWebapp {
                 System.out.printf("\tSpeise: id=%02d, name='%s', kategorie='%s', preis=%f\n",
                         rs.getInt("id"), rs.getString("name"), rs.getString("kategorie"), rs.getFloat("preis"));
             }
-        } catch (SQLException e) {
-            // if the error message is "out of memory",
-            // it probably means no database file is found
-            System.err.println(e.getMessage());
-        }
-    }
-
-    private void recreateTableBestellungen() {
-        System.out.println("Recreate table bestellungen");
-
-        try (
-                Statement statement = connection.createStatement()
-        ) {
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-            statement.executeUpdate("drop table if exists bestellungen");
-            statement.executeUpdate("""
-                    create table bestellungen (
-                        id integer,
-                        name string,
-                        anzahl string,
-                        preis real
-                    )
-                    """);
         } catch (SQLException e) {
             // if the error message is "out of memory",
             // it probably means no database file is found
@@ -223,5 +138,6 @@ public class MacdagobertsWebapp {
 
     public static void main(String[] args) {
         getInstance().setup();
+        getInstance().testTableBestellungen();
     }
 }

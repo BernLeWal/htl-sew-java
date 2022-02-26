@@ -18,7 +18,7 @@
     <body>
         <!-- Header -->
         <header id="header">
-            <div class="logo"><a href="index.jsp">Your Burger <span>for MATTHIAS</span></a></div>
+            <div class="logo"><a href="index.jsp">Your Burger <span>served by MATTHIAS</span></a></div>
             <a href="#menu"><span>Men&uuml;</span></a>
         </header>
 
@@ -40,7 +40,7 @@
         <section id="banner" class="bg-img" data-bg="banner.jpg">
             <div class="inner">
                 <header>
-                    <h1>Willkommen bei MacDagobert's</h1>
+                    <h1>Willkommen bei <b>Your Burger</b></h1>
                 </header>
                 <div class="content">
                     <p>Bitte auf den anderen Geräten die folgende Adresse<br/>
@@ -62,7 +62,7 @@
                         }
                     %>                                                     
                     <p>
-                        <strong><a href="http:/<%=serverAddress%>:8080/macdagoberts">http:/<%=serverAddress%>:8080/macdagoberts</a></strong>
+                        <strong><a href="http:/<%=serverAddress%>:8080/yourburger">http:/<%=serverAddress%>:8080/yourburger</a></strong>
                     </p>
                     <ul class="actions">
                         <li><a href="neu.jsp" class="button special">Neue Bestellung</a></li>
