@@ -14,8 +14,8 @@
     <url>http://localhost</url>
 
     <properties>
-        <java.version>16</java.version>
-        <javafx.version>16</javafx.version>
+        <java.version>17</java.version>
+        <javafx.version>17</javafx.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -96,6 +96,11 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+            </plugin>
+            <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
@@ -124,7 +129,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>11.0.0</version>
+                <version>11.0.8</version>
             </plugin>
         </plugins>
         <finalName>htl-sew-java-web</finalName>

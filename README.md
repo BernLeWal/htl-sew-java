@@ -314,7 +314,7 @@ To start the webapps use the maven command: ```mvn jetty:run```
 
 To deploy the webapps on a jetty server follow the instructions in
 [Eclipse Jetty: Operations Guide](https://www.eclipse.org/jetty/documentation/jetty-11/operations-guide/index.html#og-begin),  
-then build the war with the maven command: ```mvn war```  
+then build the war with the maven command: ```mvn war:war```  
 and copy the resulting file [/target/htl-sew-java-web.war](/target/htl-sew-java-web.war) into your JETTY_BASE directory.
 
 @TODO FIXME :The used SQLite database files are accessed from the src-directory - move them into the right place.
